@@ -1,0 +1,36 @@
+{
+  "generatedAt": "2026-08-05T00:00:00.000Z",
+  "source": "https://github.com/adafruit/Adafruit_CAD_Parts",
+  "note": "Public CAD assets cached for local module previews. STL is rendered directly when available; STEP is kept for export and review.",
+  "modules": [
+    {
+      "id": "esp32-feather",
+      "stl": "/assets/real-cad/esp32-feather.stl",
+      "step": "/assets/real-cad/esp32-feather.step",
+      "image": "/assets/real-cad/esp32-feather.gif"
+    },
+    {
+      "id": "radio-featherwing",
+      "stl": "/assets/real-cad/radio-featherwing.stl",
+      "step": "/assets/real-cad/radio-featherwing.step",
+      "image": "/assets/real-cad/radio-featherwing.jpg"
+    },
+    {
+      "id": "bme280",
+      "stl": "/assets/real-cad/bme280.stl",
+      "step": "/assets/real-cad/bme280.step",
+      "image": "/assets/real-cad/bme280.jpg"
+    },
+    {
+      "id": "microlipo",
+      "stl": "/assets/real-cad/microlipo.stl",
+      "step": "/assets/real-cad/microlipo.step",
+      "image": "/assets/real-cad/microlipo.jpg"
+    },
+    {
+      "id": "oled-128x32",
+      "step": "/assets/real-cad/oled-128x32.step",
+      "fallback": "STEP cached; parametric OLED is used in browser until STEP conversion is added."
+    }
+  ]
+}

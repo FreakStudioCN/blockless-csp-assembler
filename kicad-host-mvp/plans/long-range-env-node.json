@@ -1,0 +1,223 @@
+{
+  "title": "Long-range environment node",
+  "board_mm": [
+    100,
+    68
+  ],
+  "modules": [
+    {
+      "id": "esp32-feather",
+      "name": "Adafruit HUZZAH32 ESP32 Feather",
+      "size_mm": [
+        23,
+        51
+      ],
+      "pins": [
+        "VIN",
+        "3V3",
+        "GND",
+        "SDA",
+        "SCL",
+        "TX",
+        "RX"
+      ],
+      "cad": {
+        "presentation": "../assets/presentation-cad/esp32-feather.wrl",
+        "stl": "../../public/assets/real-cad/esp32-feather.stl",
+        "step": "../../public/assets/real-cad/esp32-feather.step"
+      },
+      "placement": [
+        22,
+        34,
+        0
+      ]
+    },
+    {
+      "id": "radio-featherwing",
+      "name": "Adafruit Radio FeatherWing RFM95",
+      "size_mm": [
+        23,
+        51
+      ],
+      "pins": [
+        "VCC",
+        "GND",
+        "TX",
+        "RX"
+      ],
+      "cad": {
+        "presentation": "../assets/presentation-cad/radio-featherwing.wrl",
+        "stl": "../../public/assets/real-cad/radio-featherwing.stl",
+        "step": "../../public/assets/real-cad/radio-featherwing.step"
+      },
+      "placement": [
+        55,
+        34,
+        0
+      ],
+      "keepout": [
+        68,
+        4,
+        28,
+        8
+      ]
+    },
+    {
+      "id": "bme280",
+      "name": "Adafruit BME280 I2C",
+      "size_mm": [
+        16,
+        12
+      ],
+      "pins": [
+        "VCC",
+        "GND",
+        "SDA",
+        "SCL"
+      ],
+      "cad": {
+        "presentation": "../assets/presentation-cad/bme280.wrl",
+        "stl": "../../public/assets/real-cad/bme280.stl",
+        "step": "../../public/assets/real-cad/bme280.step"
+      },
+      "placement": [
+        78,
+        20,
+        0
+      ]
+    },
+    {
+      "id": "microlipo",
+      "name": "Adafruit MicroLipo Charger",
+      "size_mm": [
+        16,
+        25
+      ],
+      "pins": [
+        "OUT+",
+        "OUT-",
+        "B+",
+        "B-"
+      ],
+      "cad": {
+        "presentation": "../assets/presentation-cad/microlipo.wrl",
+        "stl": "../../public/assets/real-cad/microlipo.stl",
+        "step": "../../public/assets/real-cad/microlipo.step"
+      },
+      "placement": [
+        78,
+        52,
+        0
+      ]
+    },
+    {
+      "id": "jst-ph-2pin",
+      "name": "JST-PH 2Pin Battery Connector",
+      "size_mm": [
+        8,
+        7
+      ],
+      "pins": [
+        "BAT+",
+        "GND"
+      ],
+      "cad": {
+        "presentation": "../assets/presentation-cad/jst-ph-2pin.wrl"
+      },
+      "placement": [
+        92,
+        61,
+        0
+      ]
+    },
+    {
+      "id": "i2c-expansion",
+      "name": "Qwiic/Grove I2C Expansion",
+      "size_mm": [
+        12,
+        8
+      ],
+      "pins": [
+        "VCC",
+        "GND",
+        "SDA",
+        "SCL"
+      ],
+      "cad": {
+        "presentation": "../assets/presentation-cad/i2c-expansion.wrl"
+      },
+      "placement": [
+        93,
+        34,
+        90
+      ]
+    }
+  ],
+  "nets": [
+    [
+      "BAT+",
+      "jst-ph-2pin.BAT+",
+      [
+        "microlipo.B+"
+      ]
+    ],
+    [
+      "5V",
+      "microlipo.OUT+",
+      [
+        "esp32-feather.VIN",
+        "radio-featherwing.VCC"
+      ]
+    ],
+    [
+      "3V3",
+      "esp32-feather.3V3",
+      [
+        "bme280.VCC",
+        "i2c-expansion.VCC"
+      ]
+    ],
+    [
+      "GND",
+      "microlipo.OUT-",
+      [
+        "esp32-feather.GND",
+        "radio-featherwing.GND",
+        "bme280.GND",
+        "i2c-expansion.GND",
+        "jst-ph-2pin.GND",
+        "microlipo.B-"
+      ]
+    ],
+    [
+      "I2C_SDA",
+      "esp32-feather.SDA",
+      [
+        "bme280.SDA",
+        "i2c-expansion.SDA"
+      ]
+    ],
+    [
+      "I2C_SCL",
+      "esp32-feather.SCL",
+      [
+        "bme280.SCL",
+        "i2c-expansion.SCL"
+      ]
+    ],
+    [
+      "LORA_TX",
+      "radio-featherwing.TX",
+      [
+        "esp32-feather.RX"
+      ]
+    ],
+    [
+      "LORA_RX",
+      "esp32-feather.TX",
+      [
+        "radio-featherwing.RX"
+      ]
+    ]
+  ]
+}

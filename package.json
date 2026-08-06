@@ -1,0 +1,34 @@
+{
+  "name": "ai-pcb-module-backplane-mvp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "harvest:assets": "node scripts/harvest-real-cad.mjs",
+    "kicad:plans": "python kicad-host-mvp/scripts/generate_plan.py",
+    "kicad:validate": "python kicad-host-mvp/scripts/validate_plans.py",
+    "kicad:build": "powershell -NoProfile -ExecutionPolicy Bypass -File kicad-host-mvp/scripts/build_boards.ps1",
+    "kicad:ai-route": "powershell -NoProfile -ExecutionPolicy Bypass -File kicad-host-mvp/scripts/ai_route_with_kicad_routing_tools.ps1",
+    "build": "tsc -b && vite build",
+    "typecheck": "tsc -b",
+    "test:ui": "playwright test",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "jszip": "^3.10.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "three": "^0.171.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.1.2",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@types/three": "^0.171.0",
+    "typescript": "^5.6.3",
+    "vite": "^6.0.1"
+  }
+}

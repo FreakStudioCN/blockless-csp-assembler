@@ -1,0 +1,11 @@
+node_modules/
+dist/
+*.tsbuildinfo
+vite-dev.log
+vite-dev.err
+vite.config.js
+vite.config.d.ts
+test-results/
+playwright-report/
+__pycache__/
+*.pyc

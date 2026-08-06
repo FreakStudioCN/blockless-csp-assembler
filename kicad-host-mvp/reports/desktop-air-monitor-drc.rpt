@@ -1,0 +1,218 @@
+** Drc report for desktop-air-monitor.kicad_pcb **
+** Created on 2026-08-05T13:49:47 **
+** Report includes: Errors, Warnings **
+
+** Found 43 DRC violations **
+[copper_edge_clearance]: 电路板边缘间距违规 (<电路板配置> 中的 "板边" 约束 间距 0.5000 mm; 实际 0.0000 mm)
+    Rule: <电路板配置> 中的 "板边" 约束; error
+    @(0.0000 mm, 0.0000 mm): Segment on Edge.Cuts
+    @(11.5000 mm, 0.0000 mm): PTH pad SDA [I2C_SDA] of esp32-feather
+[copper_edge_clearance]: 电路板边缘间距违规 (<电路板配置> 中的 "板边" 约束 间距 0.5000 mm; 实际 0.2533 mm)
+    Rule: <电路板配置> 中的 "板边" 约束; error
+    @(0.0000 mm, 0.0000 mm): Segment on Edge.Cuts
+    @(6.0000 mm, 0.8533 mm): PTH pad SDA [I2C_SDA] of i2c-expansion
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(46.7300 mm, 23.0000 mm): Track [3V3] on F.Cu, length 25.8300 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(32.2500 mm, 36.7200 mm): Track [3V3] on F.Cu, length 17.7500 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(32.2500 mm, 34.1600 mm): Track [3V3] on F.Cu, length 17.7500 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(32.2500 mm, 34.1600 mm): Via [3V3] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(32.2500 mm, 20.2333 mm): Via [3V3] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(46.7300 mm, 23.0000 mm): Via [3V3] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(46.7300 mm, 12.4667 mm): Via [3V3] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(32.2500 mm, 12.4667 mm): Via [3V3] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(45.8767 mm, 20.2333 mm): Via [3V3] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(31.1000 mm, 11.2333 mm): Via [3V3] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(32.2500 mm, 36.7200 mm): Via [3V3] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(45.8767 mm, 23.0000 mm): Via [3V3] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(31.1000 mm, 3.7000 mm): Via [3V3] on F.Cu - B.Cu
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(14.5000 mm, 12.4667 mm): Track [3V3] on B.Cu, length 16.6000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(14.5000 mm, 20.2333 mm): Track [3V3] on B.Cu, length 16.6000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(31.1000 mm, 11.2333 mm): Track [3V3] on B.Cu, length 13.4000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(31.1000 mm, 3.7000 mm): Track [3V3] on B.Cu, length 13.4000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(51.7500 mm, 39.2800 mm): Track [I2C_SDA] on F.Cu, length 14.2500 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(51.7500 mm, 41.8400 mm): Track [I2C_SDA] on F.Cu, length 14.2500 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(56.5233 mm, 35.0000 mm): Track [I2C_SDA] on F.Cu, length 12.6233 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(56.1000 mm, 18.7667 mm): Via [I2C_SDA] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(56.1000 mm, 26.3000 mm): Via [I2C_SDA] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(51.7500 mm, 41.8400 mm): Via [I2C_SDA] on F.Cu - B.Cu
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(51.7500 mm, 39.2800 mm): Via [I2C_SDA] on F.Cu - B.Cu
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(56.1000 mm, 26.3000 mm): Track [I2C_SDA] on B.Cu, length 15.4000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(56.1000 mm, 18.7667 mm): Track [I2C_SDA] on B.Cu, length 15.4000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(37.5000 mm, 28.0000 mm): Track [I2C_SDA] on B.Cu, length 18.6000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(37.5000 mm, 35.7667 mm): Track [I2C_SDA] on B.Cu, length 18.6000 mm
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(76.0000 mm, 52.0000 mm): Segment on Edge.Cuts
+    @(14.5000 mm, 53.5000 mm): Segment on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(76.0000 mm, 52.0000 mm): Segment on Edge.Cuts
+    @(37.5000 mm, 2.5000 mm): Segment on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(0.0000 mm, 52.0000 mm): Segment on Edge.Cuts
+    @(3.0000 mm, 3.0000 mm): PCB text 'Desktop air quality monitor' on F.Silkscreen
+[hole_to_hole]: 钻孔太靠近其他孔 (电路板配置约束 最小 0.2495 mm; 实际 0.0733 mm)
+    Rule: 电路板配置约束; warning
+    @(56.5233 mm, 28.0000 mm): Via [I2C_SDA] on F.Cu - B.Cu
+    @(56.1000 mm, 28.0000 mm): Via [I2C_SDA] on F.Cu - B.Cu
+[hole_to_hole]: 钻孔太靠近其他孔 (电路板配置约束 最小 0.2495 mm; 实际 0.0800 mm)
+    Rule: 电路板配置约束; warning
+    @(56.1000 mm, 35.7667 mm): Via [I2C_SDA] on F.Cu - B.Cu
+    @(55.6700 mm, 35.7667 mm): Via [I2C_SDA] on F.Cu - B.Cu
+[silk_overlap]: Silkscreen clearance
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(74.0000 mm, 35.0000 mm): Segment on F.Silkscreen
+    @(64.0000 mm, 35.0000 mm): PCB text 'Qwiic/Grove I2C Expansion' on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(70.0000 mm, 29.0000 mm): Reference field of i2c-expansion
+    @(64.0000 mm, 35.0000 mm): PCB text 'Qwiic/Grove I2C Expansion' on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(74.0000 mm, 35.0000 mm): Segment on F.Silkscreen
+    @(70.0000 mm, 29.0000 mm): Reference field of i2c-expansion
+[silk_overlap]: Silkscreen clearance
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(66.0000 mm, 23.0000 mm): Segment on F.Silkscreen
+    @(70.0000 mm, 29.0000 mm): Reference field of i2c-expansion
+[silk_overlap]: Silkscreen clearance
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(71.5000 mm, 28.5000 mm): Segment on F.Silkscreen
+    @(70.0000 mm, 29.0000 mm): Reference field of i2c-expansion
+[silk_overlap]: Silkscreen clearance
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(74.0000 mm, 23.0000 mm): Segment on F.Silkscreen
+    @(64.0000 mm, 35.0000 mm): PCB text 'Qwiic/Grove I2C Expansion' on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(3.0000 mm, 3.0000 mm): PCB text 'Desktop air quality monitor' on F.Silkscreen
+    @(14.5000 mm, 53.5000 mm): Segment on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(14.5000 mm, 2.5000 mm): Segment on F.Silkscreen
+    @(3.0000 mm, 3.0000 mm): PCB text 'Desktop air quality monitor' on F.Silkscreen
+
+** Found 14 unconnected pads **
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(-13.5000 mm, -3.7667 mm): PTH pad GND [GND] of oled-128x32
+    @(-8.0000 mm, -1.2800 mm): PTH pad GND [GND] of bme280
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(-11.5000 mm, -7.7667 mm): PTH pad GND [GND] of esp32-feather
+    @(-13.5000 mm, -3.7667 mm): PTH pad GND [GND] of oled-128x32
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(-8.0000 mm, -1.2800 mm): PTH pad GND [GND] of bme280
+    @(-6.0000 mm, -0.8533 mm): PTH pad GND [GND] of i2c-expansion
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(8.0000 mm, 3.8400 mm): PTH pad SCL [I2C_SCL] of bme280
+    @(6.0000 mm, 2.5600 mm): PTH pad SCL [I2C_SCL] of i2c-expansion
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(11.5000 mm, 7.7667 mm): PTH pad SCL [I2C_SCL] of esp32-feather
+    @(8.0000 mm, 3.8400 mm): PTH pad SCL [I2C_SCL] of bme280
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(13.5000 mm, 11.3000 mm): PTH pad SCL [I2C_SCL] of oled-128x32
+    @(11.5000 mm, 7.7667 mm): PTH pad SCL [I2C_SCL] of esp32-feather
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(6.0000 mm, 0.8533 mm): PTH pad SDA [I2C_SDA] of i2c-expansion
+    @(8.0000 mm, 1.2800 mm): PTH pad SDA [I2C_SDA] of bme280
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(8.0000 mm, 1.2800 mm): PTH pad SDA [I2C_SDA] of bme280
+    @(11.5000 mm, 0.0000 mm): PTH pad SDA [I2C_SDA] of esp32-feather
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(13.5000 mm, 3.7667 mm): PTH pad SDA [I2C_SDA] of oled-128x32
+    @(11.5000 mm, 0.0000 mm): PTH pad SDA [I2C_SDA] of esp32-feather
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(37.5000 mm, 28.0000 mm): Track [I2C_SDA] on B.Cu, length 18.6000 mm
+    @(13.5000 mm, 3.7667 mm): PTH pad SDA [I2C_SDA] of oled-128x32
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(-13.5000 mm, -11.3000 mm): PTH pad VCC [3V3] of oled-128x32
+    @(-8.0000 mm, -3.8400 mm): PTH pad VCC [3V3] of bme280
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(-11.5000 mm, -15.5333 mm): PTH pad 3V3 [3V3] of esp32-feather
+    @(-13.5000 mm, -11.3000 mm): PTH pad VCC [3V3] of oled-128x32
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(-8.0000 mm, -3.8400 mm): PTH pad VCC [3V3] of bme280
+    @(-6.0000 mm, -2.5600 mm): PTH pad VCC [3V3] of i2c-expansion
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(14.5000 mm, 12.4667 mm): Track [3V3] on B.Cu, length 16.6000 mm
+    @(-6.0000 mm, -2.5600 mm): PTH pad VCC [3V3] of i2c-expansion
+
+** Found 0 Footprint errors **
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Footprint component type doesn't match footprint pads
+
+** End of Report **

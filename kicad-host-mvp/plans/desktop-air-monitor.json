@@ -1,0 +1,171 @@
+{
+  "title": "Desktop air quality monitor",
+  "board_mm": [
+    92,
+    64
+  ],
+  "modules": [
+    {
+      "id": "esp32-feather",
+      "name": "Adafruit HUZZAH32 ESP32 Feather",
+      "size_mm": [
+        23,
+        51
+      ],
+      "pins": [
+        "VIN",
+        "3V3",
+        "GND",
+        "SDA",
+        "SCL",
+        "TX",
+        "RX"
+      ],
+      "cad": {
+        "presentation": "../assets/presentation-cad/esp32-feather.wrl",
+        "stl": "../../public/assets/real-cad/esp32-feather.stl",
+        "step": "../../public/assets/real-cad/esp32-feather.step"
+      },
+      "placement": [
+        18,
+        32,
+        0
+      ]
+    },
+    {
+      "id": "bme280",
+      "name": "SGP30/Air Quality I2C Module",
+      "size_mm": [
+        16,
+        12
+      ],
+      "pins": [
+        "VCC",
+        "GND",
+        "SDA",
+        "SCL"
+      ],
+      "cad": {
+        "presentation": "../assets/presentation-cad/bme280.wrl",
+        "stl": "../../public/assets/real-cad/bme280.stl",
+        "step": "../../public/assets/real-cad/bme280.step"
+      },
+      "placement": [
+        58,
+        47,
+        0
+      ]
+    },
+    {
+      "id": "oled-128x32",
+      "name": "OLED I2C Display",
+      "size_mm": [
+        27,
+        27
+      ],
+      "pins": [
+        "VCC",
+        "GND",
+        "SDA",
+        "SCL"
+      ],
+      "cad": {
+        "presentation": "../assets/presentation-cad/oled-128x32.wrl",
+        "step": "../../public/assets/real-cad/oled-128x32.step"
+      },
+      "placement": [
+        58,
+        18,
+        0
+      ]
+    },
+    {
+      "id": "usb-c-5v-breakout",
+      "name": "USB-C 5V Power Breakout",
+      "size_mm": [
+        14,
+        18
+      ],
+      "pins": [
+        "VBUS",
+        "GND"
+      ],
+      "cad": {
+        "presentation": "../assets/presentation-cad/usb-c-5v-breakout.wrl"
+      },
+      "placement": [
+        76,
+        54,
+        0
+      ]
+    },
+    {
+      "id": "i2c-expansion",
+      "name": "Qwiic/Grove I2C Expansion",
+      "size_mm": [
+        12,
+        8
+      ],
+      "pins": [
+        "VCC",
+        "GND",
+        "SDA",
+        "SCL"
+      ],
+      "cad": {
+        "presentation": "../assets/presentation-cad/i2c-expansion.wrl"
+      },
+      "placement": [
+        84,
+        34,
+        90
+      ]
+    }
+  ],
+  "nets": [
+    [
+      "5V",
+      "usb-c-5v-breakout.VBUS",
+      [
+        "esp32-feather.VIN"
+      ]
+    ],
+    [
+      "3V3",
+      "esp32-feather.3V3",
+      [
+        "bme280.VCC",
+        "oled-128x32.VCC",
+        "i2c-expansion.VCC"
+      ]
+    ],
+    [
+      "GND",
+      "esp32-feather.GND",
+      [
+        "bme280.GND",
+        "oled-128x32.GND",
+        "i2c-expansion.GND",
+        "usb-c-5v-breakout.GND"
+      ]
+    ],
+    [
+      "I2C_SDA",
+      "esp32-feather.SDA",
+      [
+        "bme280.SDA",
+        "oled-128x32.SDA",
+        "i2c-expansion.SDA"
+      ]
+    ],
+    [
+      "I2C_SCL",
+      "esp32-feather.SCL",
+      [
+        "bme280.SCL",
+        "oled-128x32.SCL",
+        "i2c-expansion.SCL"
+      ]
+    ]
+  ]
+}

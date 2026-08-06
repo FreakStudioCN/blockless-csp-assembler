@@ -1,0 +1,317 @@
+** Drc report for long-range-env-node.kicad_pcb **
+** Created on 2026-08-05T15:44:28 **
+** Report includes: Errors, Warnings **
+
+** Found 60 DRC violations **
+[tracks_crossing]: Tracks crossing
+    Local override; error
+    @(48.0000 mm, 34.0000 mm): Track [I2C_SDA] on F.Cu, length 5.6569 mm
+    @(38.0000 mm, 36.0000 mm): Track [3V3] on F.Cu, length 12.0000 mm
+[shorting_items]: 短路了两个不同网络的项目 (网络 LORA_RX 和 5V)
+    Local override; error
+    @(11.5000 mm, 23.3000 mm): PTH pad RX [LORA_RX] of radio-featherwing
+    @(6.0000 mm, 30.0000 mm): Track [5V] on F.Cu, length 14.1421 mm
+[tracks_crossing]: Tracks crossing
+    Local override; error
+    @(40.0000 mm, 42.0000 mm): Track [LORA_RX] on F.Cu, length 8.0000 mm
+    @(39.5000 mm, 35.7667 mm): Track [I2C_SCL] on F.Cu, length 2.5109 mm
+[shorting_items]: 短路了两个不同网络的项目 (网络 GND 和 LORA_TX)
+    Local override; error
+    @(6.0000 mm, 38.5667 mm): Track [GND] on F.Cu, length 48.0483 mm
+    @(52.0000 mm, 32.0000 mm): Track [LORA_TX] on F.Cu, length 11.3137 mm
+[tracks_crossing]: Tracks crossing
+    Local override; error
+    @(48.0000 mm, 34.0000 mm): Track [I2C_SDA] on F.Cu, length 5.6569 mm
+    @(50.0000 mm, 36.0000 mm): Track [3V3] on F.Cu, length 2.8284 mm
+[tracks_crossing]: Tracks crossing
+    Local override; error
+    @(48.0000 mm, 34.0000 mm): Track [I2C_SDA] on F.Cu, length 5.6569 mm
+    @(52.0000 mm, 32.0000 mm): Track [LORA_TX] on F.Cu, length 11.3137 mm
+[tracks_crossing]: Tracks crossing
+    Local override; error
+    @(48.0000 mm, 34.0000 mm): Track [I2C_SDA] on F.Cu, length 5.6569 mm
+    @(52.0000 mm, 38.0000 mm): Track [3V3] on F.Cu, length 2.0064 mm
+[shorting_items]: 短路了两个不同网络的项目 (网络 5V 和 3V3)
+    Local override; error
+    @(16.0000 mm, 20.0000 mm): Track [5V] on F.Cu, length 14.0000 mm
+    @(16.5000 mm, 12.4667 mm): Track [3V3] on F.Cu, length 2.1450 mm
+[shorting_items]: 短路了两个不同网络的项目 (网络 LORA_RX 和 LORA_TX)
+    Local override; error
+    @(11.5000 mm, 23.3000 mm): PTH pad RX [LORA_RX] of radio-featherwing
+    @(11.5000 mm, 23.3000 mm): PTH pad RX [LORA_TX] of esp32-feather
+[shorting_items]: 短路了两个不同网络的项目 (网络 3V3 和 GND)
+    Local override; error
+    @(-8.0000 mm, -3.8400 mm): PTH pad VCC [3V3] of bme280
+    @(-8.0000 mm, -3.4333 mm): PTH pad OUT- [GND] of microlipo
+[shorting_items]: 短路了两个不同网络的项目 (网络 LORA_RX 和 LORA_TX)
+    Local override; error
+    @(11.5000 mm, 23.3000 mm): PTH pad RX [LORA_RX] of radio-featherwing
+    @(11.5000 mm, 23.3000 mm): PTH pad RX [LORA_TX] of esp32-feather
+[shorting_items]: 短路了两个不同网络的项目 (网络 3V3 和 GND)
+    Local override; error
+    @(-8.0000 mm, -3.8400 mm): PTH pad VCC [3V3] of bme280
+    @(-8.0000 mm, -3.4333 mm): PTH pad OUT- [GND] of microlipo
+[shorting_items]: 短路了两个不同网络的项目 (网络 LORA_TX 和 I2C_SCL)
+    Local override; error
+    @(11.5000 mm, 7.7667 mm): PTH pad TX [LORA_TX] of radio-featherwing
+    @(11.5000 mm, 7.7667 mm): PTH pad SCL [I2C_SCL] of esp32-feather
+[shorting_items]: 短路了两个不同网络的项目 (网络 LORA_TX 和 I2C_SCL)
+    Local override; error
+    @(11.5000 mm, 7.7667 mm): PTH pad TX [LORA_TX] of radio-featherwing
+    @(11.5000 mm, 7.7667 mm): PTH pad SCL [I2C_SCL] of esp32-feather
+[copper_edge_clearance]: 电路板边缘间距违规 (<电路板配置> 中的 "板边" 约束 间距 0.5000 mm; 实际 0.0000 mm)
+    Rule: <电路板配置> 中的 "板边" 约束; error
+    @(82.0000 mm, 0.0000 mm): Segment on Edge.Cuts
+    @(71.4400 mm, 20.3600 mm): Track [I2C_SCL] on B.Cu, length 19.6010 mm
+[copper_edge_clearance]: 电路板边缘间距违规 (<电路板配置> 中的 "板边" 约束 间距 0.5000 mm; 实际 0.2533 mm)
+    Rule: <电路板配置> 中的 "板边" 约束; error
+    @(0.0000 mm, 0.0000 mm): Segment on Edge.Cuts
+    @(6.0000 mm, 0.8533 mm): PTH pad SDA [I2C_SDA] of i2c-expansion
+[copper_edge_clearance]: 电路板边缘间距违规 (<电路板配置> 中的 "板边" 约束 间距 0.5000 mm; 实际 0.0000 mm)
+    Rule: <电路板配置> 中的 "板边" 约束; error
+    @(0.0000 mm, 0.0000 mm): Segment on Edge.Cuts
+    @(11.5000 mm, 0.0000 mm): PTH pad SDA [I2C_SDA] of esp32-feather
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(16.0000 mm, 6.0000 mm): Track [5V] on F.Cu, length 1.3928 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(6.0000 mm, 31.7000 mm): Track [5V] on F.Cu, length 1.7000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(52.0000 mm, 38.0000 mm): Track [3V3] on F.Cu, length 2.0064 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(6.0000 mm, 38.5667 mm): Track [GND] on F.Cu, length 48.0483 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(68.0000 mm, 44.0000 mm): Track [I2C_SDA] on F.Cu, length 2.1257 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(39.5000 mm, 28.0000 mm): Track [I2C_SDA] on F.Cu, length 2.0616 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(68.0000 mm, 46.0000 mm): Track [I2C_SCL] on F.Cu, length 2.0064 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(76.0000 mm, 40.0000 mm): Track [I2C_SCL] on B.Cu, length 2.1744 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(39.5000 mm, 28.0000 mm): Track [I2C_SCL] on B.Cu, length 2.0616 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(71.4400 mm, 20.3600 mm): Track [I2C_SCL] on B.Cu, length 19.6010 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(76.0000 mm, 40.0000 mm): Track [I2C_SCL] on B.Cu, length 3.2486 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(39.5000 mm, 35.7667 mm): Track [I2C_SCL] on B.Cu, length 2.2886 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(69.9417 mm, 32.9117 mm): Track [I2C_SCL] on B.Cu, length 9.7746 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(52.1300 mm, 24.1367 mm): Track [I2C_SCL] on B.Cu, length 24.9420 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(16.5000 mm, 12.4667 mm): Track [I2C_SCL] on B.Cu, length 10.5265 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(71.1167 mm, 18.5567 mm): Track [I2C_SCL] on B.Cu, length 10.5265 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(6.0000 mm, 31.7000 mm): Track [I2C_SCL] on B.Cu, length 19.6010 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(40.0000 mm, 50.0000 mm): Track [LORA_TX] on F.Cu, length 1.3928 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(54.2333 mm, 29.5000 mm): Track [LORA_TX] on F.Cu, length 3.3523 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(39.5000 mm, 43.5333 mm): Track [LORA_RX] on F.Cu, length 1.6128 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(38.0000 mm, 32.0000 mm): Track [LORA_RX] on F.Cu, length 2.5962 mm
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(82.0000 mm, 0.0000 mm): Segment on Edge.Cuts
+    @(36.5000 mm, 6.5000 mm): Segment on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(82.0000 mm, 0.0000 mm): Segment on Edge.Cuts
+    @(87.5000 mm, 29.5000 mm): Segment on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(82.0000 mm, 56.0000 mm): Segment on Edge.Cuts
+    @(6.0000 mm, 56.5000 mm): PCB text 'Adafruit MicroLipo Charger' on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(82.0000 mm, 56.0000 mm): Segment on Edge.Cuts
+    @(16.5000 mm, 55.5000 mm): PCB text 'Adafruit HUZZAH32 ESP32 Feather' on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(0.0000 mm, 56.0000 mm): Segment on Edge.Cuts
+    @(3.0000 mm, 3.0000 mm): PCB text 'Long-range environment node' on F.Silkscreen
+[hole_to_hole]: 钻孔太靠近其他孔 (电路板配置约束 最小 0.2495 mm; 实际 0.0000 mm)
+    Rule: 电路板配置约束; warning
+    @(-8.0000 mm, -3.4333 mm): PTH pad OUT- [GND] of microlipo
+    @(-8.0000 mm, -3.8400 mm): PTH pad VCC [3V3] of bme280
+[holes_co_located]: Drilled holes co-located
+    Local override; warning
+    @(-11.5000 mm, -7.7667 mm): PTH pad GND [GND] of esp32-feather
+    @(-11.5000 mm, -7.7667 mm): PTH pad GND [GND] of radio-featherwing
+[holes_co_located]: Drilled holes co-located
+    Local override; warning
+    @(11.5000 mm, 23.3000 mm): PTH pad RX [LORA_RX] of radio-featherwing
+    @(11.5000 mm, 23.3000 mm): PTH pad RX [LORA_TX] of esp32-feather
+[holes_co_located]: Drilled holes co-located
+    Local override; warning
+    @(11.5000 mm, 7.7667 mm): PTH pad TX [LORA_TX] of radio-featherwing
+    @(11.5000 mm, 7.7667 mm): PTH pad SCL [I2C_SCL] of esp32-feather
+[holes_co_located]: Drilled holes co-located
+    Local override; warning
+    @(-11.5000 mm, -23.3000 mm): PTH pad VCC [5V] of radio-featherwing
+    @(-11.5000 mm, -23.3000 mm): PTH pad VIN [5V] of esp32-feather
+[silk_overlap]: Silkscreen clearance
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(54.0000 mm, 48.0000 mm): Segment on F.Silkscreen
+    @(50.5000 mm, 45.5000 mm): PCB text 'Adafruit Radio FeatherWing RFM95' on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(76.0000 mm, 32.0000 mm): Reference field of i2c-expansion
+    @(72.0000 mm, 26.0000 mm): Segment on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(70.0000 mm, 38.0000 mm): PCB text 'Qwiic/Grove I2C Expansion' on F.Silkscreen
+    @(80.0000 mm, 26.0000 mm): Segment on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(70.0000 mm, 38.0000 mm): PCB text 'Qwiic/Grove I2C Expansion' on F.Silkscreen
+    @(80.0000 mm, 38.0000 mm): Segment on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(87.5000 mm, 29.5000 mm): Segment on F.Silkscreen
+    @(76.0000 mm, 32.0000 mm): Reference field of i2c-expansion
+[silk_overlap]: Silkscreen clearance
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(70.0000 mm, 38.0000 mm): PCB text 'Qwiic/Grove I2C Expansion' on F.Silkscreen
+    @(76.0000 mm, 32.0000 mm): Reference field of i2c-expansion
+[silk_overlap]: Silkscreen clearance
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(76.0000 mm, 32.0000 mm): Reference field of i2c-expansion
+    @(80.0000 mm, 38.0000 mm): Segment on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(6.0000 mm, 56.5000 mm): PCB text 'Adafruit MicroLipo Charger' on F.Silkscreen
+    @(16.5000 mm, 55.5000 mm): PCB text 'Adafruit HUZZAH32 ESP32 Feather' on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(14.0000 mm, 42.0000 mm): Reference field of microlipo
+    @(16.5000 mm, 53.5000 mm): Segment on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(3.0000 mm, 3.0000 mm): PCB text 'Long-range environment node' on F.Silkscreen
+    @(16.5000 mm, 53.5000 mm): Segment on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(39.5000 mm, 2.5000 mm): Segment on F.Silkscreen
+    @(50.5000 mm, 45.5000 mm): PCB text 'Adafruit Radio FeatherWing RFM95' on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: <电路板配置> 中的 "丝印" 约束; warning
+    @(3.0000 mm, 3.0000 mm): PCB text 'Long-range environment node' on F.Silkscreen
+    @(16.5000 mm, 2.5000 mm): Segment on F.Silkscreen
+
+** Found 20 unconnected pads **
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(-11.5000 mm, -7.7667 mm): PTH pad GND [GND] of esp32-feather
+    @(-8.0000 mm, -3.4333 mm): PTH pad OUT- [GND] of microlipo
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(-8.0000 mm, -3.4333 mm): PTH pad OUT- [GND] of microlipo
+    @(-8.0000 mm, -1.2800 mm): PTH pad GND [GND] of bme280
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(-6.0000 mm, -0.8533 mm): PTH pad GND [GND] of i2c-expansion
+    @(-8.0000 mm, -1.2800 mm): PTH pad GND [GND] of bme280
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(-6.0000 mm, -0.8533 mm): PTH pad GND [GND] of i2c-expansion
+    @(16.0000 mm, 22.0000 mm): Track [GND] on F.Cu, length 1.8361 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(6.0000 mm, 2.5600 mm): PTH pad SCL [I2C_SCL] of i2c-expansion
+    @(8.0000 mm, 3.8400 mm): PTH pad SCL [I2C_SCL] of bme280
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(8.0000 mm, 3.8400 mm): PTH pad SCL [I2C_SCL] of bme280
+    @(11.5000 mm, 7.7667 mm): PTH pad SCL [I2C_SCL] of esp32-feather
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(11.5000 mm, 7.7667 mm): PTH pad SCL [I2C_SCL] of esp32-feather
+    @(16.5000 mm, 12.4667 mm): Track [I2C_SCL] on B.Cu, length 10.5265 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(39.5000 mm, 35.7667 mm): Track [I2C_SCL] on F.Cu, length 2.5109 mm
+    @(39.5000 mm, 35.7667 mm): Track [I2C_SCL] on B.Cu, length 2.2886 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(6.0000 mm, 0.8533 mm): PTH pad SDA [I2C_SDA] of i2c-expansion
+    @(8.0000 mm, 1.2800 mm): PTH pad SDA [I2C_SDA] of bme280
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(8.0000 mm, 1.2800 mm): PTH pad SDA [I2C_SDA] of bme280
+    @(11.5000 mm, 0.0000 mm): PTH pad SDA [I2C_SDA] of esp32-feather
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(39.5000 mm, 28.0000 mm): Track [I2C_SDA] on F.Cu, length 2.0616 mm
+    @(11.5000 mm, 0.0000 mm): PTH pad SDA [I2C_SDA] of esp32-feather
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(-11.5000 mm, -15.5333 mm): PTH pad 3V3 [3V3] of esp32-feather
+    @(-8.0000 mm, -3.8400 mm): PTH pad VCC [3V3] of bme280
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(-6.0000 mm, -2.5600 mm): PTH pad VCC [3V3] of i2c-expansion
+    @(-8.0000 mm, -3.8400 mm): PTH pad VCC [3V3] of bme280
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(-6.0000 mm, -2.5600 mm): PTH pad VCC [3V3] of i2c-expansion
+    @(16.5000 mm, 12.4667 mm): Track [3V3] on F.Cu, length 2.1450 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(-11.5000 mm, -23.3000 mm): PTH pad VIN [5V] of esp32-feather
+    @(-8.0000 mm, -10.3000 mm): PTH pad OUT+ [5V] of microlipo
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(16.0000 mm, 6.0000 mm): Track [5V] on F.Cu, length 1.3928 mm
+    @(-8.0000 mm, -10.3000 mm): PTH pad OUT+ [5V] of microlipo
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(11.5000 mm, 15.5333 mm): PTH pad TX [LORA_RX] of esp32-feather
+    @(11.5000 mm, 23.3000 mm): PTH pad RX [LORA_RX] of radio-featherwing
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(11.5000 mm, 23.3000 mm): PTH pad RX [LORA_RX] of radio-featherwing
+    @(40.0000 mm, 34.0000 mm): Track [LORA_RX] on F.Cu, length 2.8284 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(11.5000 mm, 7.7667 mm): PTH pad TX [LORA_TX] of radio-featherwing
+    @(11.5000 mm, 23.3000 mm): PTH pad RX [LORA_TX] of esp32-feather
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(44.0000 mm, 40.0000 mm): Track [LORA_TX] on F.Cu, length 2.0000 mm
+    @(11.5000 mm, 23.3000 mm): PTH pad RX [LORA_TX] of esp32-feather
+
+** Found 0 Footprint errors **
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Footprint component type doesn't match footprint pads
+
+** End of Report **
