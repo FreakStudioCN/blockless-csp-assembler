@@ -67,6 +67,25 @@ function segmentDistance(point: Point, a: Point, b: Point) {
   return distance(point, { x: a.x + t * dx, y: a.y + t * dy });
 }
 
+function almostSamePoint(a: Point, b: Point) {
+  return distance(a, b) < 0.2;
+}
+
+function orientation(a: Point, b: Point, c: Point) {
+  const value = (b.y - a.y) * (c.x - b.x) - (b.x - a.x) * (c.y - b.y);
+  if (Math.abs(value) < 0.0001) return 0;
+  return value > 0 ? 1 : 2;
+}
+
+function segmentsIntersect(a: Point, b: Point, c: Point, d: Point) {
+  if (almostSamePoint(a, c) || almostSamePoint(a, d) || almostSamePoint(b, c) || almostSamePoint(b, d)) return false;
+  const o1 = orientation(a, b, c);
+  const o2 = orientation(a, b, d);
+  const o3 = orientation(c, d, a);
+  const o4 = orientation(c, d, b);
+  return o1 !== o2 && o3 !== o4;
+}
+
 function pointBlocked(point: Point, obstacles: Rect[], start: Point, end: Point) {
   if (distance(point, start) < GRID_MM * 1.4 || distance(point, end) < GRID_MM * 1.4) return false;
   return obstacles.some((rect) => contains(rect, point));
@@ -106,6 +125,22 @@ function reservedTrackPenalty(point: Point, routed: TrackSegment[], currentNet: 
   return penalty;
 }
 
+function reservedSegmentPenalty(a: Point, b: Point, routed: TrackSegment[], currentNet: string, layer: TrackSegment["layer"]) {
+  let penalty = 0;
+  for (const track of routed) {
+    if (track.net === currentNet) continue;
+    for (let index = 0; index < track.points.length - 1; index += 1) {
+      const c = track.points[index];
+      const d = track.points[index + 1];
+      if (segmentsIntersect(a, b, c, d)) penalty += track.layer === layer ? 160 : 18;
+      const midpoint = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+      const gap = segmentDistance(midpoint, c, d);
+      if (gap < TRACK_CLEARANCE_MM * 0.75 && track.layer === layer) penalty += 34;
+    }
+  }
+  return penalty;
+}
+
 function simplify(points: Point[]) {
   const deduped = points.filter((point, index) => index === 0 || distance(point, points[index - 1]) > 0.05);
   const simplified: Point[] = [];
@@ -121,6 +156,35 @@ function simplify(points: Point[]) {
     }
   }
   return simplified;
+}
+
+function softenCorners(points: Point[]) {
+  if (points.length < 3) return points;
+  const softened: Point[] = [points[0]];
+  for (let index = 1; index < points.length - 1; index += 1) {
+    const previous = points[index - 1];
+    const current = points[index];
+    const next = points[index + 1];
+    const inLength = distance(previous, current);
+    const outLength = distance(current, next);
+    const cross = (current.x - previous.x) * (next.y - current.y) - (current.y - previous.y) * (next.x - current.x);
+    if (Math.abs(cross) < 0.01 || inLength < 1.8 || outLength < 1.8) {
+      softened.push(current);
+      continue;
+    }
+
+    const cut = Math.min(1.35, inLength * 0.32, outLength * 0.32);
+    softened.push({
+      x: current.x + ((previous.x - current.x) / inLength) * cut,
+      y: current.y + ((previous.y - current.y) / inLength) * cut,
+    });
+    softened.push({
+      x: current.x + ((next.x - current.x) / outLength) * cut,
+      y: current.y + ((next.y - current.y) / outLength) * cut,
+    });
+  }
+  softened.push(points[points.length - 1]);
+  return softened;
 }
 
 function reconstruct(cameFrom: Map<string, string>, pointsByKey: Map<string, Point>, endKey: string) {
@@ -146,6 +210,22 @@ function fallbackRoute(start: Point, end: Point) {
     { x: end.x - Math.sign(dx) * diagonal, y: end.y - Math.sign(dy) * diagonal },
     end,
   ];
+}
+
+function polishRoute(points: Point[]) {
+  return softenCorners(simplify(points));
+}
+
+function routePriority(net: NetConnection) {
+  const kindPriority: Record<NetConnection["kind"], number> = {
+    power: 0,
+    gnd: 1,
+    spi: 2,
+    i2c: 3,
+    uart: 4,
+    gpio: 5,
+  };
+  return kindPriority[net.kind] * 100 - net.widthMm * 10 + (net.layer === "bottom" ? 8 : 0);
 }
 
 function routeAStar({
@@ -204,7 +284,7 @@ function routeAStar({
     const current = pointsByKey.get(currentKey);
     if (!current) break;
     if (currentKey === endKey) {
-      return simplify([start, ...reconstruct(cameFrom, pointsByKey, currentKey).slice(1, -1), end]);
+      return polishRoute([start, ...reconstruct(cameFrom, pointsByKey, currentKey).slice(1, -1), end]);
     }
 
     open.delete(currentKey);
@@ -225,7 +305,8 @@ function routeAStar({
         baseCost +
         diagonalBias +
         clearancePenalty(next, obstacles) +
-        reservedTrackPenalty(next, routed, net, layer);
+        reservedTrackPenalty(next, routed, net, layer) +
+        reservedSegmentPenalty(current, next, routed, net, layer);
 
       if (tentative >= (gScore.get(nextKey) ?? Number.POSITIVE_INFINITY)) continue;
       cameFrom.set(nextKey, currentKey);
@@ -236,7 +317,7 @@ function routeAStar({
     }
   }
 
-  return simplify(fallbackRoute(start, end));
+  return polishRoute(fallbackRoute(start, end));
 }
 
 export function routeNets(
@@ -248,7 +329,7 @@ export function routeNets(
   const byModule = Object.fromEntries(placements.map((placement) => [placement.moduleId, placement]));
   const routed: TrackSegment[] = [];
 
-  nets.forEach((net) => {
+  [...nets].sort((a, b) => routePriority(a) - routePriority(b)).forEach((net) => {
     const fromPlacement = byModule[net.from.moduleId];
     if (!fromPlacement) return;
     const from = getPinPoint(getModule(net.from.moduleId), fromPlacement, net.from.pin);

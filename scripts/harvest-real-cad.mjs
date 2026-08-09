@@ -51,6 +51,78 @@ const targets = [
       step: "931 OLED 128x32 I2C.step",
     },
   },
+  {
+    id: "ds3231-rtc",
+    api: "https://api.github.com/repos/adafruit/Adafruit_CAD_Parts/contents/3013%20DS3231%20RTC",
+    preferred: {
+      stl: "3013 DS3231 RTC.stl",
+      step: "3013 DS3231 RTC.step",
+      image: "3013 DS3231 RTC.jpg",
+    },
+  },
+  {
+    id: "mini-gps-pa1010d",
+    api: "https://api.github.com/repos/adafruit/Adafruit_CAD_Parts/contents/4415%20Mini%20GPS%20PA1010D",
+    preferred: {
+      "3mf": "4415 Mini GPS PA1010D.3mf",
+      step: "4415 Mini GPS PA1010D.step",
+      image: "4415 Mini GPS PA1010D.jpg",
+    },
+  },
+  {
+    id: "sht31d",
+    api: "https://api.github.com/repos/adafruit/Adafruit_CAD_Parts/contents/2857%20SHT31-D",
+    preferred: {
+      stl: "2857 SHT31-D.stl",
+      step: "2857 SHT31-D.step",
+      image: "2857 SHT31-D.gif",
+    },
+  },
+  {
+    id: "power-relay-featherwing",
+    api: "https://api.github.com/repos/adafruit/Adafruit_CAD_Parts/contents/3191%20Power%20Relay%20FeatherWing",
+    preferred: {
+      stl: "3191 Power Relay FeatherWing.stl",
+      step: "3191 Power Relay FeatherWing.step",
+      image: "3191 Power Relay FeatherWing.jpg",
+    },
+  },
+  {
+    id: "lsm6dsox-lis3mdl",
+    api: "https://api.github.com/repos/adafruit/Adafruit_CAD_Parts/contents/4517%20LSM6DSOX-LIS3MDL",
+    preferred: {
+      stl: "4517 LSM6DSOX-LIS3MDL.stl",
+      step: "4517 LSM6DSOX-LIS3MDL.step",
+      image: "4517 LSM6DSOX-LIS3MDL.jpg",
+    },
+  },
+  {
+    id: "featherwing-lis3mdl-lsm6dsox",
+    api: "https://api.github.com/repos/adafruit/Adafruit_CAD_Parts/contents/4565%20FeatherWing%20LIS3MDL%20LSM6DSOX",
+    preferred: {
+      stl: "4565 FeatherWing LIS3MDL LSM6DSOX.stl",
+      step: "4565 FeatherWing LIS3MDL LSM6DSOX.step",
+      image: "4565 FeatherWing LIS3MDL LSM6DSOX.jpg",
+    },
+  },
+  {
+    id: "featherwing-adalogger",
+    api: "https://api.github.com/repos/adafruit/Adafruit_CAD_Parts/contents/2922%20FeatherWing%20Adalogger",
+    preferred: {
+      stl: "2922 FeatherWing Adalogger.stl",
+      step: "2922 FeatherWing Adalogger.step",
+      image: "2922 FeatherWing Adalogger.jpg",
+    },
+  },
+  {
+    id: "oled-1-5in",
+    api: "https://api.github.com/repos/adafruit/Adafruit_CAD_Parts/contents/4741%20OLED%201.5in",
+    preferred: {
+      stl: "4741 1.5-inch OLED.stl",
+      step: "4741 1.5-inch OLED.step",
+      image: "4741 1.5-inch OLED.stl.jpg",
+    },
+  },
 ];
 
 function extFor(kind, fileName) {

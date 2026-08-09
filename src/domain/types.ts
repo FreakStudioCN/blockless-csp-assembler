@@ -39,7 +39,7 @@ export interface ModulePin {
 }
 
 export interface ModuleAsset {
-  mode: "cached" | "parametric" | "missing" | "stl";
+  mode: "cached" | "parametric" | "missing" | "stl" | "3mf";
   source?: string;
   sourceUrl?: string;
   localUrl?: string;
@@ -72,7 +72,18 @@ export interface HardwareModule {
 export interface DemoCase {
   id: string;
   name: string;
+  nameEn?: string;
+  summary?: string;
+  summaryEn?: string;
+  industry?: string;
+  industryEn?: string;
+  status?: string;
+  statusEn?: string;
+  outputs?: string[];
+  outputsEn?: string[];
   prompt: string;
+  promptEn?: string;
+  coverImage?: string;
   intentTags: string[];
   preferredModules: string[];
   boardSizeMm: { w: number; h: number };

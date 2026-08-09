@@ -1,0 +1,66 @@
+{
+  "styleReference": "Use the attached AR glasses product image as a style reference only: photorealistic premium product photography, shallow depth of field, soft daylight, real environment, clean industrial design, no CAD screenshot, no isolated electronics module.",
+  "sharedConstraints": "16:10 landscape cover, product-mockup / photorealistic-natural, finished hardware product in context, no visible brand logos, no readable text, no watermark, no UI mockup overlay unless the product naturally has a display.",
+  "items": [
+    {
+      "id": "long-range-env-node",
+      "output": "public/assets/project-covers-ai/long-range-env-node.png",
+      "prompt": "Use case: product-mockup. Asset type: public project library cover. Primary request: a finished long-range outdoor environmental sensor node, not a bare PCB. Scene/backdrop: mounted on a weathered fence post at the edge of a field, soft morning haze. Subject: compact matte graphite sealed enclosure with subtle vent slots, small LoRa antenna, tiny status light, gasket seam, screw bosses. Style/medium: photorealistic premium product photography. Composition/framing: three-quarter close-up, shallow depth of field, generous crop for a 16:10 card. Lighting/mood: natural soft daylight, realistic shadows. Constraints: no logos, no readable text, no watermark, no exposed module product photo, no CAD render."
+    },
+    {
+      "id": "desktop-air-monitor",
+      "output": "public/assets/project-covers-ai/desktop-air-monitor.png",
+      "prompt": "Use case: product-mockup. Asset type: public project library cover. Primary request: a finished desktop air quality monitor. Scene/backdrop: modern desk near a window, softly blurred indoor background. Subject: small rounded rectangular device in dark charcoal and translucent smoked plastic, front ventilation grille, compact OLED-like glow without readable text, USB-C cable partially visible. Style/medium: photorealistic product photography. Composition/framing: low three-quarter angle, product centered, shallow depth of field. Lighting/mood: soft daylight and subtle screen glow. Constraints: no logos, no readable text, no watermark, no exposed PCB, no CAD screenshot."
+    },
+    {
+      "id": "cold-chain-logger",
+      "output": "public/assets/project-covers-ai/cold-chain-logger.png",
+      "prompt": "Use case: product-mockup. Asset type: public project library cover. Primary request: a finished cold-chain shipment logger. Scene/backdrop: insulated shipping container and gel packs, cool warehouse lighting, background softly blurred. Subject: small sealed white and graphite data logger clipped to a crate, rubber gasket, status LED, vent membrane, screw heads, rugged label area with no readable text. Style/medium: photorealistic product photography. Composition/framing: close-up three-quarter angle, 16:10 crop. Lighting/mood: cool clean light, realistic condensation texture. Constraints: no brand logos, no readable text, no watermark, no bare electronics module."
+    },
+    {
+      "id": "asset-tracker-node",
+      "output": "public/assets/project-covers-ai/asset-tracker-node.png",
+      "prompt": "Use case: product-mockup. Asset type: public project library cover. Primary request: a finished GNSS plus LoRa asset tracker. Scene/backdrop: logistics pallet and hard case in a warehouse, background bokeh. Subject: slim rugged tracker enclosure attached with a strap, small antenna window, matte black shell, rounded edges, status LED, visible weather seal. Style/medium: photorealistic premium hardware product photo. Composition/framing: product in foreground, three-quarter angle, shallow depth of field. Lighting/mood: soft industrial daylight. Constraints: no logos, no readable text, no watermark, no module photo, no CAD render."
+    },
+    {
+      "id": "pump-relay-controller",
+      "output": "public/assets/project-covers-ai/pump-relay-controller.png",
+      "prompt": "Use case: product-mockup. Asset type: public project library cover. Primary request: a finished pump and relay controller for light automation. Scene/backdrop: irrigation pipes and pump room wall, softly blurred. Subject: compact wall-mounted sealed controller enclosure, cable glands, USB-C service port flap, subtle ventilation detail, small indicator lights. Style/medium: photorealistic industrial product photography. Composition/framing: three-quarter close-up, product fills the frame without cropping important edges. Lighting/mood: practical workshop lighting, realistic plastic texture. Constraints: no logos, no readable text, no watermark, no exposed PCB."
+    },
+    {
+      "id": "motion-diagnostics-panel",
+      "output": "public/assets/project-covers-ai/motion-diagnostics-panel.png",
+      "prompt": "Use case: product-mockup. Asset type: public project library cover. Primary request: a finished portable motion diagnostics panel. Scene/backdrop: electronics workbench with tools blurred in background. Subject: handheld black diagnostic device with small display glow, rubberized corners, lanyard slot, subtle sensor window, USB-C port. Style/medium: photorealistic product photography. Composition/framing: three-quarter tabletop shot, shallow depth of field, 16:10 cover crop. Lighting/mood: soft studio-workbench light, premium but practical. Constraints: no logos, no readable text, no watermark, no bare module photo."
+    },
+    {
+      "id": "greenhouse-sensor-node",
+      "output": "public/assets/project-covers-ai/greenhouse-sensor-node.png",
+      "prompt": "Use case: product-mockup. Asset type: public project library cover. Primary request: a finished greenhouse sensor node. Scene/backdrop: greenhouse rail with plants and diffused glass roof blurred behind. Subject: small weather-resistant vented enclosure clipped to a metal rail, matte white and graphite materials, side antenna, tiny status light, condensation-resistant surface. Style/medium: photorealistic natural product photo. Composition/framing: close-up at plant height, shallow depth of field. Lighting/mood: bright diffused greenhouse daylight. Constraints: no logos, no readable text, no watermark, no exposed PCB."
+    },
+    {
+      "id": "maintenance-console",
+      "output": "public/assets/project-covers-ai/maintenance-console.png",
+      "prompt": "Use case: product-mockup. Asset type: public project library cover. Primary request: a finished maintenance service console. Scene/backdrop: industrial equipment bay, blurred machine panels. Subject: compact handheld service console with dark enclosure, small display glow, a few tactile buttons, USB-C cable, rugged corners. Style/medium: photorealistic product photography. Composition/framing: close-up on work surface, three-quarter angle, 16:10. Lighting/mood: practical industrial light with soft reflections. Constraints: no logos, no readable text, no watermark, no CAD screenshot, no bare electronics."
+    },
+    {
+      "id": "environmental-logger",
+      "output": "public/assets/project-covers-ai/environmental-logger.png",
+      "prompt": "Use case: product-mockup. Asset type: public project library cover. Primary request: a finished environmental data logger. Scene/backdrop: field notebook and lab desk near a window, background softly blurred. Subject: compact portable logger in matte graphite plastic, sensor grille, small status display glow without readable text, rubber feet, USB-C port. Style/medium: photorealistic premium product photography. Composition/framing: low three-quarter tabletop shot, shallow depth of field. Lighting/mood: soft daylight, subtle reflections. Constraints: no logos, no readable text, no watermark, no bare module photo."
+    },
+    {
+      "id": "wireless-gateway",
+      "output": "public/assets/project-covers-ai/wireless-gateway.png",
+      "prompt": "Use case: product-mockup. Asset type: public project library cover. Primary request: a finished wireless gateway device. Scene/backdrop: desk beside a window with blurred network equipment. Subject: compact desktop gateway enclosure, two short antennas, translucent status window, small display glow, USB-C cable, matte black shell. Style/medium: photorealistic product photography. Composition/framing: three-quarter close-up, product centered, 16:10 crop. Lighting/mood: soft natural light, premium hardware feel. Constraints: no logos, no readable text, no watermark, no CAD render."
+    },
+    {
+      "id": "battery-dock-node",
+      "output": "public/assets/project-covers-ai/battery-dock-node.png",
+      "prompt": "Use case: product-mockup. Asset type: public project library cover. Primary request: a finished battery dock node. Scene/backdrop: clean workbench with soft background bokeh. Subject: small charging dock and removable sensor puck, matte graphite and warm gray plastic, subtle LED ring, USB-C cable, battery bay seam, screw details. Style/medium: photorealistic premium product photography. Composition/framing: low close-up, three-quarter angle, 16:10 card crop. Lighting/mood: soft studio daylight, realistic material texture. Constraints: no logos, no readable text, no watermark, no exposed module."
+    },
+    {
+      "id": "field-diagnostics-panel",
+      "output": "public/assets/project-covers-ai/field-diagnostics-panel.png",
+      "prompt": "Use case: product-mockup. Asset type: public project library cover. Primary request: a finished field diagnostics panel. Scene/backdrop: technician kit on a vehicle tailgate, outdoor background softly blurred. Subject: rugged diagnostic panel in dark enclosure with small display glow, protected ports, relay indicator lights, side antenna, rubber bumpers. Style/medium: photorealistic product photography. Composition/framing: three-quarter close-up, 16:10 cover crop. Lighting/mood: overcast natural light, practical field-service feel. Constraints: no logos, no readable text, no watermark, no CAD screenshot, no bare electronics module."
+    }
+  ]
+}

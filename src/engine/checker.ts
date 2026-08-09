@@ -1,5 +1,7 @@
 import type { BoardDesign, BomLine, CheckItem, CheckReport, HardwareModule, Placement, SelectedModule } from "../domain/types";
 
+type Locale = "zh" | "en";
+
 type Rect = {
   moduleId: string;
   x1: number;
@@ -49,7 +51,7 @@ function rectGap(a: Rect, b: Rect) {
   return -Math.min(overlapX, overlapY);
 }
 
-function moduleMechanicalChecks(design: Omit<BoardDesign, "report" | "bom">): CheckItem[] {
+function moduleMechanicalChecks(design: Omit<BoardDesign, "report" | "bom">, locale: Locale): CheckItem[] {
   const modules = moduleMap(design.selectedModules);
   const rects = design.placements.flatMap((placement) => {
     const module = modules.get(placement.moduleId);
@@ -61,9 +63,23 @@ function moduleMechanicalChecks(design: Omit<BoardDesign, "report" | "bom">): Ch
   );
 
   if (edgeMargin < 0) {
-    checks.push({ level: "fail", code: "DRC-MECH-EDGE", message: `模块外形超出板框 ${Math.abs(edgeMargin).toFixed(1)}mm。` });
+    checks.push({
+      level: "fail",
+      code: "DRC-MECH-EDGE",
+      message:
+        locale === "en"
+          ? `Module outline exceeds the board edge by ${Math.abs(edgeMargin).toFixed(1)} mm.`
+          : `模块外形超出板框 ${Math.abs(edgeMargin).toFixed(1)} mm。`,
+    });
   } else {
-    checks.push({ level: "pass", code: "DRC-MECH-EDGE", message: `所有模块外形距离板边至少 ${edgeMargin.toFixed(1)}mm。` });
+    checks.push({
+      level: "pass",
+      code: "DRC-MECH-EDGE",
+      message:
+        locale === "en"
+          ? `All module outlines are at least ${edgeMargin.toFixed(1)} mm from the board edge.`
+          : `所有模块外形距离板边至少 ${edgeMargin.toFixed(1)} mm。`,
+    });
   }
 
   let minGap = Number.POSITIVE_INFINITY;
@@ -79,43 +95,80 @@ function moduleMechanicalChecks(design: Omit<BoardDesign, "report" | "bom">): Ch
   }
 
   if (minGap < 0) {
-    checks.push({ level: "fail", code: "DRC-MECH-OVERLAP", message: `模块机械占位重叠 ${Math.abs(minGap).toFixed(1)}mm：${closestPair}。` });
+    checks.push({
+      level: "fail",
+      code: "DRC-MECH-OVERLAP",
+      message:
+        locale === "en"
+          ? `Mechanical module keepouts overlap by ${Math.abs(minGap).toFixed(1)} mm: ${closestPair}.`
+          : `模块机械占位重叠 ${Math.abs(minGap).toFixed(1)} mm：${closestPair}。`,
+    });
   } else {
-    checks.push({ level: "pass", code: "DRC-MECH-CLEAR", message: `模块机械占位无重叠，最近间距 ${minGap.toFixed(1)}mm：${closestPair}。` });
+    checks.push({
+      level: "pass",
+      code: "DRC-MECH-CLEAR",
+      message:
+        locale === "en"
+          ? `No mechanical overlap; closest clearance is ${minGap.toFixed(1)} mm: ${closestPair}.`
+          : `模块机械占位无重叠，最近间距 ${minGap.toFixed(1)} mm：${closestPair}。`,
+    });
   }
 
   return checks;
 }
 
-export function checkDesign(design: Omit<BoardDesign, "report" | "bom">): CheckReport {
+export function checkDesign(design: Omit<BoardDesign, "report" | "bom">, locale: Locale = "zh"): CheckReport {
   const erc: CheckItem[] = [
-    { level: "pass", code: "ERC-PWR-001", message: "所有模块都绑定到GND网络。" },
-    { level: "pass", code: "ERC-I2C-001", message: "I2C SDA/SCL已从ESP32分配到传感器和扩展口。" },
-    { level: "pass", code: "ERC-UART-001", message: "UART TX/RX方向已交叉匹配。" },
+    {
+      level: "pass",
+      code: "ERC-PWR-001",
+      message: locale === "en" ? "All modules are tied to the GND network." : "所有模块都绑定到 GND 网络。",
+    },
+    {
+      level: "pass",
+      code: "ERC-I2C-001",
+      message: locale === "en" ? "I2C SDA/SCL are routed from the ESP32 to sensors and expansion ports." : "I2C SDA/SCL 已从 ESP32 分配到传感器和扩展口。",
+    },
+    {
+      level: "pass",
+      code: "ERC-UART-001",
+      message: locale === "en" ? "UART TX/RX directions are correctly crossed." : "UART TX/RX 方向已交叉匹配。",
+    },
   ];
 
   if (!design.selectedModules.some((item) => item.module.category === "power")) {
-    erc.push({ level: "fail", code: "ERC-PWR-002", message: "缺少电源输入模块。" });
+    erc.push({ level: "fail", code: "ERC-PWR-002", message: locale === "en" ? "Missing a power input module." : "缺少电源输入模块。" });
   }
 
   const drc: CheckItem[] = [
-    { level: "pass", code: "DRC-WIDTH-001", message: "信号线宽度不低于0.25mm。" },
-    { level: "pass", code: "DRC-CLEAR-001", message: "走线间距使用JLC 2层标准板保守规则。" },
-    ...moduleMechanicalChecks(design),
+    { level: "pass", code: "DRC-WIDTH-001", message: locale === "en" ? "Signal trace width is at least 0.25 mm." : "信号线宽度不低于 0.25 mm。" },
+    { level: "pass", code: "DRC-CLEAR-001", message: locale === "en" ? "Routing clearance follows conservative JLC 2-layer board rules." : "走线间距使用 JLC 2 层标准板保守规则。" },
+    ...moduleMechanicalChecks(design, locale),
   ];
 
   if (design.keepouts.length > 0) {
-    drc.push({ level: "warn", code: "DRC-KEEP-001", message: "已生成无线/气流keepout，需要人工最终审阅。" });
+    drc.push({
+      level: "warn",
+      code: "DRC-KEEP-001",
+      message: locale === "en" ? "Wireless/airflow keepouts were generated and still need final human review." : "已生成无线/气流 keepout，需要人工最终审阅。",
+    });
   }
 
   const dfm: CheckItem[] = [
-    { level: "pass", code: "DFM-JLC-001", message: "已选择JLC 2层标准板保守规则。" },
+    { level: "pass", code: "DFM-JLC-001", message: locale === "en" ? "Conservative JLC 2-layer board rules were selected." : "已选择 JLC 2 层标准板保守规则。" },
     {
       level: "pass",
       code: "DFM-SIZE-001",
-      message: `板框${design.boardSizeMm.w}mm x ${design.boardSizeMm.h}mm，适合小批量打样和产品验证。`,
+      message:
+        locale === "en"
+          ? `Board outline ${design.boardSizeMm.w} mm x ${design.boardSizeMm.h} mm is suitable for small-batch prototyping and product validation.`
+          : `板框 ${design.boardSizeMm.w} mm x ${design.boardSizeMm.h} mm，适合小批量打样和产品验证。`,
     },
-    { level: "warn", code: "DFM-EDA-001", message: "导出工程需要在JLC EDA内复核封装、层设置和制造规则。" },
+    {
+      level: "warn",
+      code: "DFM-EDA-001",
+      message: locale === "en" ? "The exported project still needs footprint, layer, and manufacturing rule review inside JLC EDA." : "导出工程需要在 JLC EDA 内复核封装、层设置和制造规则。",
+    },
   ];
 
   const all = [...erc, ...drc, ...dfm];

@@ -1,0 +1,194 @@
+- main [ref=f1e3]:
+  - generic [ref=f1e4]:
+    - generic [ref=f1e5]:
+      - paragraph [ref=f1e6]: Blockless PCB Studio
+      - heading "模块化 PCB 设计工作台" [level=1] [ref=f1e7]
+    - generic [ref=f1e8]:
+      - generic "语言切换" [ref=f1e9]:
+        - button "中文" [ref=f1e10] [cursor=pointer]
+        - button "EN" [ref=f1e11] [cursor=pointer]
+      - generic [ref=f1e12]:
+        - generic [ref=f1e13]: 模块选型
+        - generic [ref=f1e14]: JLC EDA 导出
+        - generic [ref=f1e15]: 自动布局布线
+        - generic [ref=f1e16]: STEP/STL 3D 预览
+        - generic [ref=f1e17]: CAM/CNC 刀路
+  - generic [ref=f1e18]:
+    - complementary [ref=f1e19]:
+      - generic [ref=f1e20]:
+        - paragraph [ref=f1e21]: 项目
+        - strong [ref=f1e22]: 远距离环境采集节点
+        - generic [ref=f1e23]:
+          - generic [ref=f1e24]: 100 x 68 mm
+          - generic [ref=f1e25]: 6 个模块
+      - generic [ref=f1e26]:
+        - paragraph [ref=f1e27]: 工作区
+        - generic [ref=f1e28]:
+          - button "输入" [ref=f1e29] [cursor=pointer]
+          - button "选型" [ref=f1e30] [cursor=pointer]
+          - button "检查" [ref=f1e31] [cursor=pointer]
+          - button "布局" [ref=f1e32] [cursor=pointer]
+          - button "导出" [ref=f1e33] [cursor=pointer]
+      - generic [ref=f1e34]:
+        - paragraph [ref=f1e35]: 状态
+        - generic [ref=f1e36]:
+          - generic [ref=f1e37]: 9 通过
+          - generic [ref=f1e38]: 2 警告
+          - generic [ref=f1e39]: 0 失败
+          - generic [ref=f1e40]: $15.30
+    - generic [ref=f1e41]:
+      - generic [ref=f1e42]:
+        - generic [ref=f1e43]:
+          - paragraph [ref=f1e44]: 当前视图
+          - heading "输入" [level=2] [ref=f1e45]
+        - generic [ref=f1e46]:
+          - generic [ref=f1e47]: 6 个模块
+          - generic [ref=f1e48]: 8 条网络
+          - generic [ref=f1e49]: 100 x 68 mm
+          - generic [ref=f1e50]: 2 警告
+      - generic [ref=f1e52]:
+        - generic [ref=f1e53]:
+          - generic [ref=f1e55]:
+            - paragraph [ref=f1e56]: 公开项目库
+            - heading "12 个可直接打开的项目" [level=2] [ref=f1e57]
+            - paragraph [ref=f1e58]: 从公开项目库直接进入布局、布线和外壳流程。
+          - generic [ref=f1e59]:
+            - button "远距离环境采集节点 battery 远距离环境采集节点6 modules 做一个电池供电的远距离环境采集节点，支持ESP32、LoRa、温湿度传感器、锂电池充电和I2C扩展。 batterylong_rangeenvironment" [ref=f1e60] [cursor=pointer]:
+              - generic [ref=f1e61]:
+                - img "远距离环境采集节点" [ref=f1e62]
+                - text: battery
+              - generic [ref=f1e63]:
+                - generic [ref=f1e64]:
+                  - strong [ref=f1e65]: 远距离环境采集节点
+                  - generic [ref=f1e66]: 6 modules
+                - paragraph [ref=f1e67]: 做一个电池供电的远距离环境采集节点，支持ESP32、LoRa、温湿度传感器、锂电池充电和I2C扩展。
+                - generic [ref=f1e68]: batterylong_rangeenvironment
+            - button "桌面空气质量监测器 desktop 桌面空气质量监测器5 modules 做一个USB-C供电的桌面空气质量监测器，支持ESP32、空气质量传感器、OLED显示和I2C扩展。 desktopair_qualitydisplay" [ref=f1e69] [cursor=pointer]:
+              - generic [ref=f1e70]:
+                - img "桌面空气质量监测器" [ref=f1e71]
+                - text: desktop
+              - generic [ref=f1e72]:
+                - generic [ref=f1e73]:
+                  - strong [ref=f1e74]: 桌面空气质量监测器
+                  - generic [ref=f1e75]: 5 modules
+                - paragraph [ref=f1e76]: 做一个USB-C供电的桌面空气质量监测器，支持ESP32、空气质量传感器、OLED显示和I2C扩展。
+                - generic [ref=f1e77]: desktopair_qualitydisplay
+            - button "电池传感器中枢 battery 电池传感器中枢5 modules 做一个小批量创客用的电池传感器中枢，支持ESP32、BME280、AHT20、Qwiic扩展和锂电池供电。 batterysensori2c" [ref=f1e78] [cursor=pointer]:
+              - generic [ref=f1e79]:
+                - img "电池传感器中枢" [ref=f1e80]
+                - text: battery
+              - generic [ref=f1e81]:
+                - generic [ref=f1e82]:
+                  - strong [ref=f1e83]: 电池传感器中枢
+                  - generic [ref=f1e84]: 5 modules
+                - paragraph [ref=f1e85]: 做一个小批量创客用的电池传感器中枢，支持ESP32、BME280、AHT20、Qwiic扩展和锂电池供电。
+                - generic [ref=f1e86]: batterysensori2c
+            - button "LoRa 低功耗信标 battery LoRa 低功耗信标5 modules 做一个LoRa低功耗信标，支持ESP32、LoRa模块、电池充电和简单状态显示。 batterylorawireless" [ref=f1e87] [cursor=pointer]:
+              - generic [ref=f1e88]:
+                - img "LoRa 低功耗信标" [ref=f1e89]
+                - text: battery
+              - generic [ref=f1e90]:
+                - generic [ref=f1e91]:
+                  - strong [ref=f1e92]: LoRa 低功耗信标
+                  - generic [ref=f1e93]: 5 modules
+                - paragraph [ref=f1e94]: 做一个LoRa低功耗信标，支持ESP32、LoRa模块、电池充电和简单状态显示。
+                - generic [ref=f1e95]: batterylorawireless
+            - button "OLED 状态控制台 display OLED 状态控制台5 modules 做一个带OLED显示的状态控制台，支持ESP32、USB-C供电、I2C扩展和几个传感器输入。 displaydesktopi2c" [ref=f1e96] [cursor=pointer]:
+              - generic [ref=f1e97]:
+                - img "OLED 状态控制台" [ref=f1e98]
+                - text: display
+              - generic [ref=f1e99]:
+                - generic [ref=f1e100]:
+                  - strong [ref=f1e101]: OLED 状态控制台
+                  - generic [ref=f1e102]: 5 modules
+                - paragraph [ref=f1e103]: 做一个带OLED显示的状态控制台，支持ESP32、USB-C供电、I2C扩展和几个传感器输入。
+                - generic [ref=f1e104]: displaydesktopi2c
+            - button "USB-C 传感器桥接板 usb_c USB-C 传感器桥接板5 modules 做一个USB-C供电的传感器桥接板，支持ESP32、BME280、Qwiic扩展和外部接口。 usb_csensorbridge" [ref=f1e105] [cursor=pointer]:
+              - generic [ref=f1e106]:
+                - img "USB-C 传感器桥接板" [ref=f1e107]
+                - text: usb_c
+              - generic [ref=f1e108]:
+                - generic [ref=f1e109]:
+                  - strong [ref=f1e110]: USB-C 传感器桥接板
+                  - generic [ref=f1e111]: 5 modules
+                - paragraph [ref=f1e112]: 做一个USB-C供电的传感器桥接板，支持ESP32、BME280、Qwiic扩展和外部接口。
+                - generic [ref=f1e113]: usb_csensorbridge
+            - button "电池底座节点 battery 电池底座节点5 modules 做一个桌面/便携两用的电池底座节点，支持锂电池接口、USB-C充电、ESP32和状态显示。 batterydockpower" [ref=f1e114] [cursor=pointer]:
+              - generic [ref=f1e115]:
+                - img "电池底座节点" [ref=f1e116]
+                - text: battery
+              - generic [ref=f1e117]:
+                - generic [ref=f1e118]:
+                  - strong [ref=f1e119]: 电池底座节点
+                  - generic [ref=f1e120]: 5 modules
+                - paragraph [ref=f1e121]: 做一个桌面/便携两用的电池底座节点，支持锂电池接口、USB-C充电、ESP32和状态显示。
+                - generic [ref=f1e122]: batterydockpower
+            - button "I2C 扩展中心 i2c I2C 扩展中心5 modules 做一个I2C扩展中心，支持ESP32、Qwiic连接、多路传感器和一个本地显示屏。 i2chubdisplay" [ref=f1e123] [cursor=pointer]:
+              - generic [ref=f1e124]:
+                - img "I2C 扩展中心" [ref=f1e125]
+                - text: i2c
+              - generic [ref=f1e126]:
+                - generic [ref=f1e127]:
+                  - strong [ref=f1e128]: I2C 扩展中心
+                  - generic [ref=f1e129]: 5 modules
+                - paragraph [ref=f1e130]: 做一个I2C扩展中心，支持ESP32、Qwiic连接、多路传感器和一个本地显示屏。
+                - generic [ref=f1e131]: i2chubdisplay
+            - button "环境记录器 environment 环境记录器5 modules 做一个可记录环境数据的小板，支持ESP32、BME280、AHT20、USB-C供电和固定孔。 environmentloggersensor" [ref=f1e132] [cursor=pointer]:
+              - generic [ref=f1e133]:
+                - img "环境记录器" [ref=f1e134]
+                - text: environment
+              - generic [ref=f1e135]:
+                - generic [ref=f1e136]:
+                  - strong [ref=f1e137]: 环境记录器
+                  - generic [ref=f1e138]: 5 modules
+                - paragraph [ref=f1e139]: 做一个可记录环境数据的小板，支持ESP32、BME280、AHT20、USB-C供电和固定孔。
+                - generic [ref=f1e140]: environmentloggersensor
+            - button "无线网关 wireless 无线网关5 modules 做一个无线网关底板，支持ESP32、LoRa、USB-C供电、I2C扩展和状态显示。 wirelessgatewaylora" [ref=f1e141] [cursor=pointer]:
+              - generic [ref=f1e142]:
+                - img "无线网关" [ref=f1e143]
+                - text: wireless
+              - generic [ref=f1e144]:
+                - generic [ref=f1e145]:
+                  - strong [ref=f1e146]: 无线网关
+                  - generic [ref=f1e147]: 5 modules
+                - paragraph [ref=f1e148]: 做一个无线网关底板，支持ESP32、LoRa、USB-C供电、I2C扩展和状态显示。
+                - generic [ref=f1e149]: wirelessgatewaylora
+            - button "创客核心控制台 display 创客核心控制台5 modules 做一个创客核心控制台，支持ESP32、OLED显示、Qwiic扩展、USB-C供电和电池接口。 displaybatteryi2c" [ref=f1e150] [cursor=pointer]:
+              - generic [ref=f1e151]:
+                - img "创客核心控制台" [ref=f1e152]
+                - text: display
+              - generic [ref=f1e153]:
+                - generic [ref=f1e154]:
+                  - strong [ref=f1e155]: 创客核心控制台
+                  - generic [ref=f1e156]: 5 modules
+                - paragraph [ref=f1e157]: 做一个创客核心控制台，支持ESP32、OLED显示、Qwiic扩展、USB-C供电和电池接口。
+                - generic [ref=f1e158]: displaybatteryi2c
+            - button "现场诊断面板 field 现场诊断面板5 modules 做一个现场诊断面板，支持ESP32、LoRa、BME280、OLED、USB-C供电和固定孔。 fielddiagnosticslora" [ref=f1e159] [cursor=pointer]:
+              - generic [ref=f1e160]:
+                - img "现场诊断面板" [ref=f1e161]
+                - text: field
+              - generic [ref=f1e162]:
+                - generic [ref=f1e163]:
+                  - strong [ref=f1e164]: 现场诊断面板
+                  - generic [ref=f1e165]: 5 modules
+                - paragraph [ref=f1e166]: 做一个现场诊断面板，支持ESP32、LoRa、BME280、OLED、USB-C供电和固定孔。
+                - generic [ref=f1e167]: fielddiagnosticslora
+        - generic [ref=f1e168]:
+          - generic [ref=f1e169]:
+            - heading "自然语言需求" [level=2] [ref=f1e170]
+            - textbox [ref=f1e171]: 做一个电池供电的远距离环境采集节点，支持ESP32、LoRa、温湿度传感器、锂电池充电和I2C扩展。
+            - button "生成模块底板" [ref=f1e173] [cursor=pointer]
+          - generic [ref=f1e174]:
+            - generic [ref=f1e176]:
+              - paragraph [ref=f1e177]: 当前项目
+              - heading "远距离环境采集节点" [level=2] [ref=f1e178]
+            - generic [ref=f1e179]:
+              - img "远距离环境采集节点" [ref=f1e180]
+              - paragraph [ref=f1e181]: 做一个电池供电的远距离环境采集节点，支持ESP32、LoRa、温湿度传感器、锂电池充电和I2C扩展。
+              - generic [ref=f1e182]: batterylong_rangeenvironmenti2clora
+              - generic [ref=f1e183]:
+                - generic [ref=f1e184]: 100 x 68 mm
+                - generic [ref=f1e185]: 6 modules
+  - generic [ref=f1e186]:
+    - generic [ref=f1e187]: 工作流：商用模块库 + 接口匹配 + KiCad/KRT 布线校验
+    - generic [ref=f1e188]: 输出：JLC EDA 工程包、BOM、检查报告、3D 预览和 CAM/CNC 刀路
