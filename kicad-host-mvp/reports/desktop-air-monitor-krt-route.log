@@ -25,38 +25,38 @@ MPS Round 5: 1 units: 5V
 Routing 5 single-ended net(s)...
 ============================================================
 Building base obstacle map...
-Base obstacle map built in 0.27s
+Base obstacle map built in 0.77s
 Found 5 unrouted nets in PCB for stub proximity
 Pre-computing net obstacle cache...
-Net obstacle cache built in 0.01s (5 nets)
+Net obstacle cache built in 0.02s (5 nets)
 
-[1/5] Routing I2C_SCL (id=3)
+[1/5] Routing I2C_SCL (id=2)
 ----------------------------------------
   Detected multi-point net with 4 pads (Phase 1: main route only)
   Multi-point net Phase 1: routing longest MST edge (pads 0 and 1, length=47.57mm)
   Phase 1 routed in 366 iterations, 4 segments
-  SUCCESS: 4 segments, 0 vias, 366 iterations, length=41.13mm (stubs=0.00mm) (0.00s)
+  SUCCESS: 4 segments, 0 vias, 366 iterations, length=41.13mm (stubs=0.00mm) (0.01s)
 
-[2/5] Routing I2C_SDA (id=4)
+[2/5] Routing I2C_SDA (id=3)
 ----------------------------------------
   Detected multi-point net with 4 pads (Phase 1: main route only)
   Multi-point net Phase 1: routing longest MST edge (pads 0 and 2, length=52.23mm)
   Phase 1 routed in 421 iterations, 3 segments
-  SUCCESS: 3 segments, 0 vias, 421 iterations, length=46.26mm (stubs=0.00mm) (0.00s)
+  SUCCESS: 3 segments, 0 vias, 421 iterations, length=46.26mm (stubs=0.00mm) (0.01s)
 
-[3/5] Routing 3V3 (id=1)
+[3/5] Routing 3V3 (id=4)
 ----------------------------------------
   Detected multi-point net with 4 pads (Phase 1: main route only)
   Multi-point net Phase 1: routing longest MST edge (pads 2 and 3, length=51.72mm)
   Phase 1 routed in 668 iterations, 12 segments
-  SUCCESS: 12 segments, 0 vias, 668 iterations, length=44.28mm (stubs=0.00mm) (0.01s)
+  SUCCESS: 12 segments, 0 vias, 668 iterations, length=44.28mm (stubs=0.00mm) (0.02s)
 
-[4/5] Routing GND (id=2)
+[4/5] Routing GND (id=1)
 ----------------------------------------
   Detected multi-point net with 5 pads (Phase 1: main route only)
   Multi-point net Phase 1: routing longest MST edge (pads 3 and 4, length=48.65mm)
   Phase 1 routed in 497 iterations, 15 segments
-  SUCCESS: 15 segments, 0 vias, 497 iterations, length=40.91mm (stubs=0.00mm) (0.01s)
+  SUCCESS: 15 segments, 0 vias, 497 iterations, length=40.91mm (stubs=0.00mm) (0.02s)
 
 [5/5] Routing 5V (id=5)
 ----------------------------------------
@@ -66,7 +66,7 @@ No route found after 10000 iterations (forward), trying backward...
 Probe: forward=5000, backward=5000 iters, trying forward with full iterations...
 No route found after 10000 iterations (forward), trying backward...
 No route found after 60000 iterations (both directions)
-  FAILED: Could not find route (0.14s)
+  FAILED: Could not find route (0.25s)
   Forward direction failed fastest (15000 iterations, 248 blocked cells)
   No previously-routed nets blocking
   Static blockers: pre-existing tracks: GND, I2C_SDA
@@ -78,7 +78,7 @@ Sync pcb_data: 34 -> 0 (kept stubs) -> 34 (after adding 34)
 Multi-point Phase 3: Routing 9 tap connections
 ============================================================
 
-I2C_SCL (net 3):
+I2C_SCL (net 2):
   Multi-point net Phase 3: routing 2 remaining MST edges (longest first)
     [1/9] Routing MST edge: pad 1 -> pad 3 (length=26.28mm) target=(81.44, 40.00)
       Routed in 155 iterations (0.00s)
@@ -86,9 +86,9 @@ I2C_SCL (net 3):
       Routed in 108 iterations (0.00s)
   Phase 3 routing complete: 2 edges, 9 total segments, 0 total vias
   Added 5 tap segments, 0 tap vias
-  Net total time: 0.02s, 629 iterations
+  Net total time: 0.03s, 629 iterations
 
-I2C_SDA (net 4):
+I2C_SDA (net 3):
   Multi-point net Phase 3: routing 2 remaining MST edges (longest first)
     [3/9] Routing MST edge: pad 2 -> pad 3 (length=29.88mm) target=(83.15, 40.00)
       Probe: forward=5000, backward=5000 iters, trying forward with full iterations...
@@ -106,7 +106,7 @@ I2C_SDA (net 4):
       [93mFailed to route MST edge after 30000 iterations (0.01s)[0m
   [93mWarning: 2 pad(s) not connected (2 MST edge(s) failed)[0m
   Phase 3 routing complete: 0 edges, 3 total segments, 0 total vias
-    Ripping 3V3 (net 1) to retry tap route...
+    Ripping 3V3 (net 4) to retry tap route...
   Multi-point net Phase 3: routing 2 remaining MST edges (longest first)
     [5/9] (2 failed) Routing MST edge: pad 2 -> pad 3 (length=29.88mm) target=(83.15, 40.00)
       Routed in 183 iterations (0.00s)
@@ -125,7 +125,7 @@ I2C_SDA (net 4):
     Adding 3 tap segments, 0 tap vias to obstacles before re-routing...
     Re-routing 1 ripped net(s)...
 
-  Re-routing 3V3 (net 1)...
+  Re-routing 3V3 (net 4)...
   Multi-point net Phase 1: routing longest MST edge (pads 2 and 3, length=51.72mm)
   Probe: forward=5000, backward=5000 iters, trying forward with full iterations...
   No route found after 10000 iterations (forward), trying backward...
@@ -143,7 +143,7 @@ I2C_SDA (net 4):
       [93mWide route blocked - retrying at default track width (neck-down)[0m
       Probe: forward=5000, backward=5000 iters, trying forward with full iterations...
       No route found after 10000 iterations (forward), trying backward...
-      [93mFailed to route MST edge after 60000 iterations (0.09s)[0m
+      [93mFailed to route MST edge after 60000 iterations (0.11s)[0m
     Fallback: attempting orphaned pad 2 directly from connected copper
     [2/0] (1 failed) Routing MST edge: pad 1 -> pad 2 (length=41.96mm) target=(50.00, 43.16)
       Probe: forward=5000, backward=5000 iters, trying forward with full iterations...
@@ -151,7 +151,7 @@ I2C_SDA (net 4):
       [93mWide route blocked - retrying at default track width (neck-down)[0m
       Probe: forward=5000, backward=5000 iters, trying forward with full iterations...
       No route found after 10000 iterations (forward), trying backward...
-      [93mFailed to route MST edge after 60000 iterations (0.10s)[0m
+      [93mFailed to route MST edge after 60000 iterations (0.12s)[0m
     Fallback: attempting orphaned pad 3 directly from connected copper
     [2/0] (1 failed) Routing MST edge: pad 1 -> pad 3 (length=63.36mm) target=(86.56, 28.00)
       Routed in 428 iterations (0.00s)
@@ -161,7 +161,7 @@ I2C_SDA (net 4):
       [93mWide route blocked - retrying at default track width (neck-down)[0m
       Probe: forward=5000, backward=5000 iters, trying forward with full iterations...
       No route found after 10000 iterations (forward), trying backward...
-      [93mFailed to route MST edge after 60000 iterations (0.12s)[0m
+      [93mFailed to route MST edge after 60000 iterations (0.13s)[0m
   [93mWarning: 1 pad(s) not connected (2 MST edge(s) failed)[0m
   Phase 3 routing complete: 1 edges, 14 total segments, 0 total vias
     3V3: Attempting rip-up retry for 2 failed tap edge(s)...
@@ -169,9 +169,9 @@ I2C_SDA (net 4):
     [91mNOT CONNECTED (so far): 3V3 - bme280 pad VCC at (50.00, 43.16) - may still be recovered; final verdict in the end-of-run summary[0m
   [91mNOT CONNECTED (so far): I2C_SDA - bme280 pad SDA at (66.00, 48.28) - may still be recovered; final verdict in the end-of-run summary[0m
   Added 3 tap segments, 0 tap vias
-  Net total time: 0.57s, 150604 iterations
+  Net total time: 0.69s, 150604 iterations
 
-GND (net 2):
+GND (net 1):
   Multi-point net Phase 3: routing 3 remaining MST edges (longest first)
     [5/9] (2 failed) Routing MST edge: pad 3 -> pad 2 (length=34.08mm) target=(50.00, 45.72)
       Probe: forward=5000, backward=5000 iters, trying forward with full iterations...
@@ -179,7 +179,7 @@ GND (net 2):
       [93mWide route blocked - retrying at default track width (neck-down)[0m
       Probe: forward=5000, backward=5000 iters, trying forward with full iterations...
       No route found after 10000 iterations (forward), trying backward...
-      [93mFailed to route MST edge after 60000 iterations (0.22s)[0m
+      [93mFailed to route MST edge after 60000 iterations (0.23s)[0m
     Fallback: attempting orphaned pad 2 directly from connected copper
     [6/9] (3 failed) Routing MST edge: pad 3 -> pad 2 (length=34.08mm) target=(50.00, 45.72)
       Probe: forward=5000, backward=5000 iters, trying forward with full iterations...
@@ -187,7 +187,7 @@ GND (net 2):
       [93mWide route blocked - retrying at default track width (neck-down)[0m
       Probe: forward=5000, backward=5000 iters, trying forward with full iterations...
       No route found after 10000 iterations (forward), trying backward...
-      [93mFailed to route MST edge after 60000 iterations (0.21s)[0m
+      [93mFailed to route MST edge after 60000 iterations (0.26s)[0m
     Fallback: attempting orphaned pad 1 directly from connected copper
     [6/9] (3 failed) Routing MST edge: pad 4 -> pad 1 (length=54.12mm) target=(44.50, 14.23)
       Probe: forward=5000, backward=5000 iters, trying forward with full iterations...
@@ -195,7 +195,7 @@ GND (net 2):
       [93mWide route blocked - retrying at default track width (neck-down)[0m
       Probe: forward=5000, backward=5000 iters, trying forward with full iterations...
       No route found after 10000 iterations (forward), trying backward...
-      [93mFailed to route MST edge after 60000 iterations (0.21s)[0m
+      [93mFailed to route MST edge after 60000 iterations (0.22s)[0m
     Fallback: attempting orphaned pad 0 directly from connected copper
     [7/9] (4 failed) Routing MST edge: pad 4 -> pad 0 (length=82.12mm) target=(6.50, 24.23)
       Routed in 900 iterations (0.01s)
@@ -208,16 +208,16 @@ GND (net 2):
       No route found after 10000 iterations (forward), trying backward...
       Probe: forward=5000, backward=5000 iters, trying forward with full iterations...
       No route found after 10000 iterations (forward), trying backward...
-      [93mFailed to route MST edge after 90000 iterations (0.38s)[0m
+      [93mFailed to route MST edge after 90000 iterations (0.43s)[0m
   [93mWarning: 1 pad(s) not connected (3 MST edge(s) failed)[0m
   Phase 3 routing complete: 2 edges, 32 total segments, 0 total vias
   [91mNOT CONNECTED (so far): GND - bme280 pad GND at (50.00, 45.72) - may still be recovered; final verdict in the end-of-run summary[0m
   Added 17 tap segments, 0 tap vias
-  Net total time: 1.15s, 271651 iterations
+  Net total time: 1.28s, 271651 iterations
 
 Per-net fine-parameter rescue (#331/#371): 4 candidate net(s)
   Rescuing 3V3 (partial, 2 disconnected parts)
-  WARNING: net rescue net_1: escalated standard->advanced fab floor (0.25/0.15 via etc., more costly to fab); pass --fab-tier advanced to silence, or --fab-overrides to pin your own floor (forbids escalation)
+  WARNING: net rescue net_4: escalated standard->advanced fab floor (0.25/0.15 via etc., more costly to fab); pass --fab-tier advanced to silence, or --fab-overrides to pin your own floor (forbids escalation)
 Probe: forward=5000, backward=5000 iters, trying forward with full iterations...
 Route found in 359137 iterations, path length: 887
   A* Search Statistics:
@@ -237,7 +237,7 @@ Route found in 359137 iterations, path length: 887
     Revisit ratio:   0.476 (path improvements / expanded)
     Skip ratio:      0.318 (duplicates / total pops)
     [92mrescued a gap[0m: grid 0.025, clearance 0.2, track 0.25 (4 segs, 2 vias, 359137 iters)
-    [92mfully reconnected[0m (2 -> 1 parts, 8.6s)
+    [92mfully reconnected[0m (2 -> 1 parts, 10.3s)
   Rescuing 5V (failed, 2 disconnected parts)
   WARNING: net rescue net_5: escalated standard->advanced fab floor (0.25/0.15 via etc., more costly to fab); pass --fab-tier advanced to silence, or --fab-overrides to pin your own floor (forbids escalation)
 Probe: forward=5000, backward=5000 iters, trying forward with full iterations...
@@ -259,9 +259,9 @@ Route found in 89151 iterations, path length: 2026
     Revisit ratio:   1.065 (path improvements / expanded)
     Skip ratio:      0.501 (duplicates / total pops)
     [92mrescued a gap[0m: grid 0.05, clearance 0.2, track 0.25 (35 segs, 0 vias, 89151 iters)
-    [92mfully reconnected[0m (2 -> 1 parts, 1.4s)
+    [92mfully reconnected[0m (2 -> 1 parts, 3.0s)
   Rescuing GND (partial, 2 disconnected parts)
-  WARNING: net rescue net_2: escalated standard->advanced fab floor (0.25/0.15 via etc., more costly to fab); pass --fab-tier advanced to silence, or --fab-overrides to pin your own floor (forbids escalation)
+  WARNING: net rescue net_1: escalated standard->advanced fab floor (0.25/0.15 via etc., more costly to fab); pass --fab-tier advanced to silence, or --fab-overrides to pin your own floor (forbids escalation)
 Probe: forward=5000, backward=5000 iters, trying forward with full iterations...
 Route found in 362252 iterations, path length: 462
   A* Search Statistics:
@@ -281,9 +281,9 @@ Route found in 362252 iterations, path length: 462
     Revisit ratio:   0.611 (path improvements / expanded)
     Skip ratio:      0.375 (duplicates / total pops)
     [92mrescued a gap[0m: grid 0.025, clearance 0.2, track 0.25 (4 segs, 2 vias, 362252 iters)
-    [92mfully reconnected[0m (2 -> 1 parts, 27.7s)
+    [92mfully reconnected[0m (2 -> 1 parts, 54.8s)
   Rescuing I2C_SDA (partial, 2 disconnected parts)
-  WARNING: net rescue net_4: escalated standard->advanced fab floor (0.25/0.15 via etc., more costly to fab); pass --fab-tier advanced to silence, or --fab-overrides to pin your own floor (forbids escalation)
+  WARNING: net rescue net_3: escalated standard->advanced fab floor (0.25/0.15 via etc., more costly to fab); pass --fab-tier advanced to silence, or --fab-overrides to pin your own floor (forbids escalation)
 Probe: forward=5000, backward=5000 iters, trying forward with full iterations...
 Route found in 424118 iterations, path length: 687
   A* Search Statistics:
@@ -303,8 +303,8 @@ Route found in 424118 iterations, path length: 687
     Revisit ratio:   0.747 (path improvements / expanded)
     Skip ratio:      0.422 (duplicates / total pops)
     [92mrescued a gap[0m: grid 0.025, clearance 0.2, track 0.25 (14 segs, 2 vias, 424118 iters)
-    [92mfully reconnected[0m (2 -> 1 parts, 0.8s)
-Rescue pass: 4 recovered, 0 improved, 0 unchanged (38.5s)
+    [92mfully reconnected[0m (2 -> 1 parts, 1.7s)
+Rescue pass: 4 recovered, 0 improved, 0 unchanged (69.8s)
 Closed 1 stub gap(s) to same-net copper
 Cycle prune: removed 15 redundant loop segment(s) across 4 net(s)
 Strict collapse: removed 3 redundant segment(s) (superseded parallel/buried copper)
@@ -316,14 +316,14 @@ Routing complete
   Single-ended:  5/5 routed
   Multi-point:   17/17 pads connected (4 nets)
   Total vias:    6
-  Total time:    0.17s
+  Total time:    0.30s
   Iterations:    61,952
 
 Power trace ampacity (bottleneck segment, IPC-2152):
   3V3: 0.88A max (0.250mm on F.Cu (1 oz copper, 10掳C rise), IPC-2221: 0.88A)
   5V: 0.88A max (0.250mm on F.Cu (1 oz copper, 10掳C rise), IPC-2221: 0.88A)
   GND: 1.85A max (0.700mm on F.Cu (1 oz copper, 10掳C rise), IPC-2221: 1.85A)
-JSON_SUMMARY: {"routed_single": ["I2C_SCL", "I2C_SDA", "3V3", "GND", "5V"], "failed_single": [], "failed_multipoint": [], "multipoint_nets": 4, "multipoint_pads_connected": 17, "multipoint_pads_total": 17, "multipoint_edges_routed": 10, "multipoint_edges_failed": 6, "ripup_success_pairs": [], "rerouted_pairs": [], "single_ended_target_swaps": [], "layer_swaps": 0, "successful": 5, "failed": 0, "total_time": 0.17, "total_iterations": 61952, "total_vias": 6, "cleanup_disconnected": [], "min_clearance_used": 0.2, "rescue": {"attempted": 4, "recovered": ["3V3", "5V", "GND", "I2C_SDA"], "improved": [], "unchanged": [], "pads_reconnected": 3, "time": 38.5}, "pad_pairs_connected": 14, "pad_pairs_total": 14, "power_trace_ampacity": [{"net": "3V3", "bottleneck_width_mm": 0.25, "bottleneck_layer": "F.Cu", "copper_oz": 1.0, "max_current_a": 0.88, "max_current_ipc2152_a": 0.88, "temp_rise_c": 10.0, "trace_length_mm": 119.2}, {"net": "5V", "bottleneck_width_mm": 0.25, "bottleneck_layer": "F.Cu", "copper_oz": 1.0, "max_current_a": 0.88, "max_current_ipc2152_a": 0.88, "temp_rise_c": 10.0, "trace_length_mm": 116.3}, {"net": "GND", "bottleneck_width_mm": 0.7, "bottleneck_layer": "F.Cu", "copper_oz": 1.0, "max_current_a": 1.85, "max_current_ipc2152_a": 1.85, "temp_rise_c": 10.0, "trace_length_mm": 163.3}]}
+JSON_SUMMARY: {"routed_single": ["I2C_SCL", "I2C_SDA", "3V3", "GND", "5V"], "failed_single": [], "failed_multipoint": [], "multipoint_nets": 4, "multipoint_pads_connected": 17, "multipoint_pads_total": 17, "multipoint_edges_routed": 10, "multipoint_edges_failed": 6, "ripup_success_pairs": [], "rerouted_pairs": [], "single_ended_target_swaps": [], "layer_swaps": 0, "successful": 5, "failed": 0, "total_time": 0.3, "total_iterations": 61952, "total_vias": 6, "cleanup_disconnected": [], "min_clearance_used": 0.2, "rescue": {"attempted": 4, "recovered": ["3V3", "5V", "GND", "I2C_SDA"], "improved": [], "unchanged": [], "pads_reconnected": 3, "time": 69.77}, "pad_pairs_connected": 14, "pad_pairs_total": 14, "power_trace_ampacity": [{"net": "3V3", "bottleneck_width_mm": 0.25, "bottleneck_layer": "F.Cu", "copper_oz": 1.0, "max_current_a": 0.88, "max_current_ipc2152_a": 0.88, "temp_rise_c": 10.0, "trace_length_mm": 119.2}, {"net": "5V", "bottleneck_width_mm": 0.25, "bottleneck_layer": "F.Cu", "copper_oz": 1.0, "max_current_a": 0.88, "max_current_ipc2152_a": 0.88, "temp_rise_c": 10.0, "trace_length_mm": 116.3}, {"net": "GND", "bottleneck_width_mm": 0.7, "bottleneck_layer": "F.Cu", "copper_oz": 1.0, "max_current_a": 1.85, "max_current_ipc2152_a": 1.85, "temp_rise_c": 10.0, "trace_length_mm": 163.3}]}
 
 Writing output to F:\blockless鈥慶sp鈥慳ssembler\kicad-host-mvp\generated\external-router-output\desktop-air-monitor-krt-routed.kicad_pcb...
 Successfully wrote F:\blockless鈥慶sp鈥慳ssembler\kicad-host-mvp\generated\external-router-output\desktop-air-monitor-krt-routed.kicad_pcb
