@@ -6,7 +6,7 @@
     "gcodeDir":  "F:\\blockless‑csp‑assembler\\output\\cam-real\\long-range-env-node\\gcode",
     "webDir":  "F:\\blockless‑csp‑assembler\\public\\assets\\cam-real\\long-range-env-node",
     "tool":  "pcb2gcode 2.4.0",
-    "generatedAt":  "2026-08-09T10:06:46.8213655Z",
+    "generatedAt":  "2026-08-09T14:09:46.5112869Z",
     "files":  [
                   {
                       "name":  "long-range-env-node_back.ngc",
@@ -25,7 +25,7 @@
                   {
                       "name":  "long-range-env-node_front.ngc",
                       "kind":  "top-isolation",
-                      "bytes":  129645,
+                      "bytes":  129640,
                       "path":  "F:\\blockless‑csp‑assembler\\output\\cam-real\\long-range-env-node\\gcode\\long-range-env-node_front.ngc",
                       "url":  "/assets/cam-real/long-range-env-node/long-range-env-node_front.ngc"
                   },
@@ -53,7 +53,7 @@
                   {
                       "name":  "outp1_original_front.svg",
                       "kind":  "support",
-                      "bytes":  23287,
+                      "bytes":  23285,
                       "path":  "F:\\blockless‑csp‑assembler\\output\\cam-real\\long-range-env-node\\gcode\\outp1_original_front.svg",
                       "url":  "/assets/cam-real/long-range-env-node/outp1_original_front.svg"
                   },
@@ -74,7 +74,7 @@
                   {
                       "name":  "outp4_masked_front.svg",
                       "kind":  "support",
-                      "bytes":  23287,
+                      "bytes":  23285,
                       "path":  "F:\\blockless‑csp‑assembler\\output\\cam-real\\long-range-env-node\\gcode\\outp4_masked_front.svg",
                       "url":  "/assets/cam-real/long-range-env-node/outp4_masked_front.svg"
                   },
@@ -95,14 +95,14 @@
                   {
                       "name":  "processed_front.svg",
                       "kind":  "support",
-                      "bytes":  360350,
+                      "bytes":  360307,
                       "path":  "F:\\blockless‑csp‑assembler\\output\\cam-real\\long-range-env-node\\gcode\\processed_front.svg",
                       "url":  "/assets/cam-real/long-range-env-node/processed_front.svg"
                   },
                   {
                       "name":  "processed_front_final.svg",
                       "kind":  "front-preview",
-                      "bytes":  239964,
+                      "bytes":  239923,
                       "path":  "F:\\blockless‑csp‑assembler\\output\\cam-real\\long-range-env-node\\gcode\\processed_front_final.svg",
                       "url":  "/assets/cam-real/long-range-env-node/processed_front_final.svg"
                   },
@@ -130,14 +130,14 @@
                   {
                       "name":  "traced_front.svg",
                       "kind":  "support",
-                      "bytes":  283246,
+                      "bytes":  283254,
                       "path":  "F:\\blockless‑csp‑assembler\\output\\cam-real\\long-range-env-node\\gcode\\traced_front.svg",
                       "url":  "/assets/cam-real/long-range-env-node/traced_front.svg"
                   },
                   {
                       "name":  "traced_front_final.svg",
                       "kind":  "support",
-                      "bytes":  162860,
+                      "bytes":  162870,
                       "path":  "F:\\blockless‑csp‑assembler\\output\\cam-real\\long-range-env-node\\gcode\\traced_front_final.svg",
                       "url":  "/assets/cam-real/long-range-env-node/traced_front_final.svg"
                   },

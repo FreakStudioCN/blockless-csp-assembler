@@ -89,357 +89,13 @@
 	)
 	(footprint ""
 		(layer "F.Cu")
-		(uuid "283665b5-fb9c-45b2-b046-1cfa7dffc653")
-		(at 58 47)
-		(property "Reference" "bme280"
-			(at 0 0 0)
-			(layer "F.SilkS")
-			(hide yes)
-			(uuid "45582adc-3134-465d-a010-e9062b0bce29")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "SGP30/Air Quality I2C Module"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "ae1233d3-68a9-4e89-807c-4b6251278bf4")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "d8064aa4-c8be-4a83-80f1-73ae55a16e00")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "797abb70-9daf-47a5-9999-ab4d4724c822")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -9 -7)
-			(end 9 -7)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.CrtYd")
-			(uuid "42a1b760-36bf-444a-8bd8-052bfab91daf")
-		)
-		(fp_line
-			(start -9 7)
-			(end -9 -7)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.CrtYd")
-			(uuid "303ca1bc-d789-45b7-b076-7e46f5f70119")
-		)
-		(fp_line
-			(start 9 -7)
-			(end 9 7)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.CrtYd")
-			(uuid "968f65fd-d0c0-4a32-b5ff-6c8ad2105523")
-		)
-		(fp_line
-			(start 9 7)
-			(end -9 7)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.CrtYd")
-			(uuid "4e1afc1d-6088-4e2d-9b10-0e126c71e35d")
-		)
-		(fp_line
-			(start -8 -6)
-			(end 8 -6)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "9c512b2a-480c-4e0d-9c61-b2fb1c55c4c3")
-		)
-		(fp_line
-			(start -8 6)
-			(end -8 -6)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "647d2483-fd91-4067-9470-a17ecc46c6e6")
-		)
-		(fp_line
-			(start 8 -6)
-			(end 8 6)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "a2c79b19-8268-4696-a6a8-5206513f697b")
-		)
-		(fp_line
-			(start 8 6)
-			(end -8 6)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "28db670b-d580-44f3-9efd-7a74ca3ad7e6")
-		)
-		(pad "GND" thru_hole oval
-			(at -8 -1.28)
-			(size 1.7 1.2)
-			(drill 0.8)
-			(layers "*.Cu")
-			(remove_unused_layers no)
-			(net "GND")
-			(thermal_bridge_angle 45)
-			(uuid "e3e971c6-a2ce-4191-908a-5925d7d9984e")
-		)
-		(pad "SCL" thru_hole oval
-			(at 8 3.84)
-			(size 1.7 1.2)
-			(drill 0.8)
-			(layers "*.Cu")
-			(remove_unused_layers no)
-			(net "I2C_SCL")
-			(thermal_bridge_angle 45)
-			(uuid "a5c9933b-b3a8-4284-86b6-c20d598caa02")
-		)
-		(pad "SDA" thru_hole oval
-			(at 8 1.28)
-			(size 1.7 1.2)
-			(drill 0.8)
-			(layers "*.Cu")
-			(remove_unused_layers no)
-			(net "I2C_SDA")
-			(thermal_bridge_angle 45)
-			(uuid "a612a853-2aeb-4403-9d8b-d902103449ed")
-		)
-		(pad "VCC" thru_hole oval
-			(at -8 -3.84)
-			(size 1.7 1.2)
-			(drill 0.8)
-			(layers "*.Cu")
-			(remove_unused_layers no)
-			(net "3V3")
-			(thermal_bridge_angle 45)
-			(uuid "02086f06-97be-48cb-908e-41c831dae46c")
-		)
-		(embedded_fonts no)
-		(model "F:/blockless‑csp‑assembler/kicad-host-mvp/assets/presentation-cad/bme280.wrl"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 0)
-			)
-		)
-	)
-	(footprint ""
-		(layer "F.Cu")
-		(uuid "50f5032c-8590-4bfa-9086-db70c544f2f7")
-		(at 76 54)
-		(property "Reference" "usb-c-5v-breakout"
-			(at 0 0 0)
-			(layer "F.SilkS")
-			(hide yes)
-			(uuid "067df406-dfe6-4ee8-974e-88634786c771")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "USB-C 5V Power Breakout"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "4448c6df-8f40-40aa-90a2-c1da2f367509")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "a9c0ac14-199d-421a-89c6-549270f15aa7")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "e41740d7-0c7b-479b-abad-c33474a961eb")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -8 -10)
-			(end 8 -10)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.CrtYd")
-			(uuid "facaa6f5-6378-4c85-a568-df19b146f5b1")
-		)
-		(fp_line
-			(start -8 10)
-			(end -8 -10)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.CrtYd")
-			(uuid "bfe0a8b4-1e40-4ef8-8d68-3cc0fecdc395")
-		)
-		(fp_line
-			(start 8 -10)
-			(end 8 10)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.CrtYd")
-			(uuid "51e9dac6-77f4-4d33-ba62-b83281d51a39")
-		)
-		(fp_line
-			(start 8 10)
-			(end -8 10)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.CrtYd")
-			(uuid "9710c768-1fb4-4e77-9433-fc0044410e78")
-		)
-		(fp_line
-			(start -7 -9)
-			(end 7 -9)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "98a0d5c1-458e-4a89-9dff-6099b4587a86")
-		)
-		(fp_line
-			(start -7 9)
-			(end -7 -9)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "e5114b4a-ee25-41a9-812f-951bf57ff648")
-		)
-		(fp_line
-			(start 7 -9)
-			(end 7 9)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "dcba9939-7ce6-4b28-9fb9-960d8103d7a8")
-		)
-		(fp_line
-			(start 7 9)
-			(end -7 9)
-			(stroke
-				(width 0.08)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "8aa21baa-5092-4c2f-9714-4b0583723487")
-		)
-		(pad "GND" thru_hole oval
-			(at -7 6.8)
-			(size 1.7 1.2)
-			(drill 0.8)
-			(layers "*.Cu")
-			(remove_unused_layers no)
-			(net "GND")
-			(thermal_bridge_angle 45)
-			(uuid "12e8b8f0-1b28-4b2c-926a-3b83293e742e")
-		)
-		(pad "VBUS" thru_hole oval
-			(at 7 -6.8)
-			(size 1.7 1.2)
-			(drill 0.8)
-			(layers "*.Cu")
-			(remove_unused_layers no)
-			(net "5V")
-			(thermal_bridge_angle 45)
-			(uuid "41e0f336-8a08-4bd2-a6a2-72199370333f")
-		)
-		(embedded_fonts no)
-		(model "F:/blockless‑csp‑assembler/kicad-host-mvp/assets/presentation-cad/usb-c-5v-breakout.wrl"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 0)
-			)
-		)
-	)
-	(footprint ""
-		(layer "F.Cu")
-		(uuid "7dd028e5-4a01-45b1-b8a9-402f69d687e3")
+		(uuid "306d3ded-0a9c-4a9f-bf04-48a2843196d7")
 		(at 58 18)
 		(property "Reference" "oled-128x32"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "7c37bedc-4d3f-44f2-9a97-aa7da0e813cf")
+			(uuid "f26abba2-1f1f-4458-a438-1848e97154c6")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -450,7 +106,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "38036f84-daee-41cf-a37e-3e6f65e00c88")
+			(uuid "0a6e5cd0-76ac-4b6d-902e-86b821bb5688")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -461,7 +117,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "b23dcd3e-4e71-4bcd-bbac-d175729a430a")
+			(uuid "71a241da-20d4-4712-a484-1fc6474f891d")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -472,7 +128,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "5c7dd8f1-89d2-4b69-b169-7dda22649f9e")
+			(uuid "9d703533-b95e-445d-af88-9807b03c5d11")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -488,7 +144,7 @@
 				(type default)
 			)
 			(layer "F.CrtYd")
-			(uuid "24fb6785-dabc-4cb6-85af-a011539ab7c4")
+			(uuid "0328d883-eb5f-46f7-bf7e-8b7d6ef01aa1")
 		)
 		(fp_line
 			(start -14.5 14.5)
@@ -498,7 +154,7 @@
 				(type default)
 			)
 			(layer "F.CrtYd")
-			(uuid "d3f0c101-ae71-4078-bb13-4ce6d8d80985")
+			(uuid "00510438-ceb7-4abb-957b-743482f22c8e")
 		)
 		(fp_line
 			(start 14.5 -14.5)
@@ -508,7 +164,7 @@
 				(type default)
 			)
 			(layer "F.CrtYd")
-			(uuid "03426daa-bae3-4856-9476-7cda4c3d0ab6")
+			(uuid "511e203d-8c66-454d-8097-d050373decb8")
 		)
 		(fp_line
 			(start 14.5 14.5)
@@ -518,7 +174,7 @@
 				(type default)
 			)
 			(layer "F.CrtYd")
-			(uuid "6b8596d8-713c-4552-b7bc-bb223d179786")
+			(uuid "31b34aa9-d488-45f3-a6a0-ec340d8856e6")
 		)
 		(fp_line
 			(start -13.5 -13.5)
@@ -528,7 +184,7 @@
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "0f72b8e3-801b-4895-b32b-d06468c23d8e")
+			(uuid "9051f92b-d775-4a3c-8abf-f1f1bdc07aec")
 		)
 		(fp_line
 			(start -13.5 13.5)
@@ -538,7 +194,7 @@
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "25389ab6-f97f-4f6d-85ac-21a17775fd46")
+			(uuid "5e051682-1405-41ab-8745-78280fad4918")
 		)
 		(fp_line
 			(start 13.5 -13.5)
@@ -548,7 +204,7 @@
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "0bcbf2fa-38f0-4c98-9501-ee5e2374cbb9")
+			(uuid "76222a1d-b399-49b0-a6a6-5eaef0c5acb6")
 		)
 		(fp_line
 			(start 13.5 13.5)
@@ -558,7 +214,7 @@
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "796503fb-24bc-4d78-b7f8-c911c11080c9")
+			(uuid "7e5efb9e-24a3-45c2-b6e7-4891a88845b5")
 		)
 		(pad "GND" thru_hole oval
 			(at -13.5 -3.766667)
@@ -568,7 +224,7 @@
 			(remove_unused_layers no)
 			(net "GND")
 			(thermal_bridge_angle 45)
-			(uuid "93aa0b15-f8a1-438c-a34f-a61ccf834a52")
+			(uuid "15d7d7e4-c00e-40ec-b108-17a6364f31a1")
 		)
 		(pad "SCL" thru_hole oval
 			(at 13.5 11.3)
@@ -578,7 +234,7 @@
 			(remove_unused_layers no)
 			(net "I2C_SCL")
 			(thermal_bridge_angle 45)
-			(uuid "f2a6e39c-9422-47d9-b5e7-b8269aaff69e")
+			(uuid "cf294f94-54f3-4753-8f83-3897ac143e6f")
 		)
 		(pad "SDA" thru_hole oval
 			(at 13.5 3.766667)
@@ -588,7 +244,7 @@
 			(remove_unused_layers no)
 			(net "I2C_SDA")
 			(thermal_bridge_angle 45)
-			(uuid "aa85808e-dbc4-4adb-b2a5-26285b27fec5")
+			(uuid "c23b0d95-5ecd-419a-99fc-709c0276778d")
 		)
 		(pad "VCC" thru_hole oval
 			(at -13.5 -11.3)
@@ -598,7 +254,7 @@
 			(remove_unused_layers no)
 			(net "3V3")
 			(thermal_bridge_angle 45)
-			(uuid "978821eb-bd3c-44d1-b1fd-1511042e1e50")
+			(uuid "4cdf278c-02ce-4386-ba8a-bec47a72ddc5")
 		)
 		(embedded_fonts no)
 		(model "F:/blockless‑csp‑assembler/kicad-host-mvp/assets/presentation-cad/oled-128x32.wrl"
@@ -615,13 +271,13 @@
 	)
 	(footprint ""
 		(layer "F.Cu")
-		(uuid "b2067048-2698-433e-85b5-affb488766a4")
+		(uuid "5bd58d2c-fb5b-4b90-a81f-009c192f8b58")
 		(at 84 34 90)
 		(property "Reference" "i2c-expansion"
 			(at 0 0 90)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "a713a7e3-3484-4646-9a7c-62c2166db9dc")
+			(uuid "3a7ddad0-1319-49da-8a29-b966e137c0f7")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -632,7 +288,7 @@
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "2057e696-8e1a-4180-a34d-91cc8da8f113")
+			(uuid "53941d6b-5570-4d8b-831e-e95ba29423bc")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -643,7 +299,7 @@
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "f3ad85e1-0fd3-447e-9ecf-1a718fc1a9dd")
+			(uuid "e37f8a90-2d3a-4025-91ba-16bbbec2ff8e")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -654,7 +310,7 @@
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "412ead6d-0d93-45c9-8518-4a5d359c1371")
+			(uuid "c47aff3d-b025-4310-97fa-f99a8745e287")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -670,7 +326,7 @@
 				(type default)
 			)
 			(layer "F.CrtYd")
-			(uuid "00da7611-2048-4cd7-9306-6d66d0c9e817")
+			(uuid "234a4880-56c3-499f-85df-c8a2c5bafc51")
 		)
 		(fp_line
 			(start -7 -5)
@@ -680,7 +336,7 @@
 				(type default)
 			)
 			(layer "F.CrtYd")
-			(uuid "09730c92-4603-4f17-8c76-67522392c59c")
+			(uuid "0b54ffec-759e-44b1-a02d-5740d4d02e1c")
 		)
 		(fp_line
 			(start 7 5)
@@ -690,7 +346,7 @@
 				(type default)
 			)
 			(layer "F.CrtYd")
-			(uuid "7e844ba2-c1e5-4b56-a362-528e5d859cb9")
+			(uuid "82b0d518-6396-47a0-8396-c718541a3d24")
 		)
 		(fp_line
 			(start -7 5)
@@ -700,7 +356,7 @@
 				(type default)
 			)
 			(layer "F.CrtYd")
-			(uuid "dbf52c58-4baa-4718-86d9-5114f14f799f")
+			(uuid "2435a61a-5d9b-411b-9048-50da506c8fee")
 		)
 		(fp_line
 			(start 6 -4)
@@ -710,7 +366,7 @@
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "432696ca-0e8b-4fb0-8ac5-07f464c0a17d")
+			(uuid "62ea2666-c85e-46c8-a623-e14c126f15fa")
 		)
 		(fp_line
 			(start -6 -4)
@@ -720,7 +376,7 @@
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "7859e4d0-75e9-43b4-b572-17f0f5facb3e")
+			(uuid "c035d1de-70bf-4de8-95d4-80079e8b5348")
 		)
 		(fp_line
 			(start 6 4)
@@ -730,7 +386,7 @@
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "28f0957e-d705-4d60-8aeb-8a628ee74e17")
+			(uuid "37bb1ce7-df55-42f0-9dd1-4e7457143022")
 		)
 		(fp_line
 			(start -6 4)
@@ -740,7 +396,7 @@
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "2f17f904-5691-4608-b52c-40d9bd2954aa")
+			(uuid "41a34171-56d5-408e-bb97-3e5d576cace9")
 		)
 		(pad "GND" thru_hole oval
 			(at 6 0.853333 90)
@@ -750,7 +406,7 @@
 			(remove_unused_layers no)
 			(net "GND")
 			(thermal_bridge_angle 45)
-			(uuid "90888099-dc80-48cb-908d-ffa1b7770bc2")
+			(uuid "4b7b9dd3-ef45-4709-9a11-12b83745cc49")
 		)
 		(pad "SCL" thru_hole oval
 			(at -6 -2.56 90)
@@ -760,7 +416,7 @@
 			(remove_unused_layers no)
 			(net "I2C_SCL")
 			(thermal_bridge_angle 45)
-			(uuid "8dbefbb6-92d6-48d4-9a79-2ab4497740e8")
+			(uuid "05c7fc52-11fc-41b7-9245-bef5ec19bd62")
 		)
 		(pad "SDA" thru_hole oval
 			(at -6 -0.853333 90)
@@ -770,7 +426,7 @@
 			(remove_unused_layers no)
 			(net "I2C_SDA")
 			(thermal_bridge_angle 45)
-			(uuid "9992e864-ecaf-42cf-b6f4-b5c87ef2ccdf")
+			(uuid "fdbd7e95-fb68-4f16-bca3-c0dfd118c242")
 		)
 		(pad "VCC" thru_hole oval
 			(at 6 2.56 90)
@@ -780,7 +436,7 @@
 			(remove_unused_layers no)
 			(net "3V3")
 			(thermal_bridge_angle 45)
-			(uuid "cf5193f3-04b1-4af6-a0cb-37fa4d344af0")
+			(uuid "ce8f89c0-d48d-4e11-891e-008da3d10965")
 		)
 		(embedded_fonts no)
 		(model "F:/blockless‑csp‑assembler/kicad-host-mvp/assets/presentation-cad/i2c-expansion.wrl"
@@ -797,13 +453,13 @@
 	)
 	(footprint ""
 		(layer "F.Cu")
-		(uuid "c4441d79-dc21-4cc2-abdc-52e9f07adb43")
+		(uuid "7a012f47-9ef8-4bb1-b2b2-3056e6fdb6ec")
 		(at 18 32)
 		(property "Reference" "esp32-feather"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "0be142a3-20f6-4dbd-a084-12ea0e8c2820")
+			(uuid "79021219-1622-4755-a7f9-1feeab6cd8f3")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -814,7 +470,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "a9389a68-5fee-4aeb-be48-8e0dab33e4da")
+			(uuid "a2d4e555-a318-430c-9130-7cfe8809556b")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -825,7 +481,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "b89f0d4f-a0d9-4758-9d8e-9449f0d47361")
+			(uuid "1c0f3903-7fc3-4028-873f-efd9dede905b")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -836,7 +492,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "53060211-5253-4f6b-85e1-558ba6e13c57")
+			(uuid "60091b97-ea19-41ff-a347-e1d9a957f5db")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -852,7 +508,7 @@
 				(type default)
 			)
 			(layer "F.CrtYd")
-			(uuid "1461cbd5-91d9-46df-97b0-e1dae58bd708")
+			(uuid "da85b88d-a37a-4893-b8b3-6d233fb1bcc6")
 		)
 		(fp_line
 			(start -12.5 26.5)
@@ -862,7 +518,7 @@
 				(type default)
 			)
 			(layer "F.CrtYd")
-			(uuid "d76b2194-3a24-4520-b7e8-efe8ecc57b5b")
+			(uuid "baab08c5-037c-4149-90dd-c95bd9f0448c")
 		)
 		(fp_line
 			(start 12.5 -26.5)
@@ -872,7 +528,7 @@
 				(type default)
 			)
 			(layer "F.CrtYd")
-			(uuid "eb3aacd3-7807-419d-a462-52e395e8d328")
+			(uuid "87c8e625-ae96-4020-b4d8-3c08bb702837")
 		)
 		(fp_line
 			(start 12.5 26.5)
@@ -882,7 +538,7 @@
 				(type default)
 			)
 			(layer "F.CrtYd")
-			(uuid "e1ac99e5-21eb-434f-af75-1cfad237018d")
+			(uuid "dc25dee6-48aa-4ed9-87ae-0b8db008acc5")
 		)
 		(fp_line
 			(start -11.5 -25.5)
@@ -892,7 +548,7 @@
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "aa1a94c1-02db-4737-9046-d817e10da316")
+			(uuid "6f57f273-6674-4be6-b2a2-e9937a12bc3e")
 		)
 		(fp_line
 			(start -11.5 25.5)
@@ -902,7 +558,7 @@
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "84d3c81c-78a2-40ea-9dc0-9082a2b47087")
+			(uuid "84f9dc69-1808-4f75-8fc8-e11824155046")
 		)
 		(fp_line
 			(start 11.5 -25.5)
@@ -912,7 +568,7 @@
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "d32546db-99e4-40e1-9d05-77650582b213")
+			(uuid "99ed9c04-bddd-4c3b-98d6-d49193b768b6")
 		)
 		(fp_line
 			(start 11.5 25.5)
@@ -922,7 +578,7 @@
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "d7d9db72-9026-4b14-8aec-9ac0123b1da0")
+			(uuid "b982e758-e883-4319-a622-aeb051d3b8f7")
 		)
 		(pad "3V3" thru_hole oval
 			(at -11.5 -15.533333)
@@ -932,7 +588,7 @@
 			(remove_unused_layers no)
 			(net "3V3")
 			(thermal_bridge_angle 45)
-			(uuid "688233ca-ab4b-4b3a-86c5-c32ceaf1554f")
+			(uuid "7c69bb96-262d-4451-ba2e-5cff1e3967a6")
 		)
 		(pad "GND" thru_hole oval
 			(at -11.5 -7.766667)
@@ -942,7 +598,7 @@
 			(remove_unused_layers no)
 			(net "GND")
 			(thermal_bridge_angle 45)
-			(uuid "6db8ffb9-90fd-4e72-a5b1-ad1b125c1d7e")
+			(uuid "5b2d91da-7970-46c1-b002-d77adab675e1")
 		)
 		(pad "RX" thru_hole oval
 			(at 11.5 23.3)
@@ -951,7 +607,7 @@
 			(layers "*.Cu")
 			(remove_unused_layers no)
 			(thermal_bridge_angle 45)
-			(uuid "e2c5171d-1957-4b0e-8c69-815b9dd065ad")
+			(uuid "3a355e66-34e0-4dac-9268-837bdb92c91b")
 		)
 		(pad "SCL" thru_hole oval
 			(at 11.5 7.766667)
@@ -961,7 +617,7 @@
 			(remove_unused_layers no)
 			(net "I2C_SCL")
 			(thermal_bridge_angle 45)
-			(uuid "9907f4ca-a933-483b-bd44-a160ed848f39")
+			(uuid "8cf8af46-f0cf-4e31-87b1-46470acd5f61")
 		)
 		(pad "SDA" thru_hole oval
 			(at 11.5 0)
@@ -971,7 +627,7 @@
 			(remove_unused_layers no)
 			(net "I2C_SDA")
 			(thermal_bridge_angle 45)
-			(uuid "e1e138f8-45c4-4ede-bd35-215670aa0933")
+			(uuid "ed79be26-e413-44f8-82ae-4e35e245f1bb")
 		)
 		(pad "TX" thru_hole oval
 			(at 11.5 15.533333)
@@ -980,7 +636,7 @@
 			(layers "*.Cu")
 			(remove_unused_layers no)
 			(thermal_bridge_angle 45)
-			(uuid "8ece45d7-6437-46c8-b86a-839e4568cdb3")
+			(uuid "25cc852b-8bad-4e52-a760-702aa728ff70")
 		)
 		(pad "VIN" thru_hole oval
 			(at -11.5 -23.3)
@@ -990,10 +646,354 @@
 			(remove_unused_layers no)
 			(net "5V")
 			(thermal_bridge_angle 45)
-			(uuid "d8b8635f-3958-4ec6-b873-86ae01163248")
+			(uuid "268bb76c-d0b5-435d-afc6-cccf559a100c")
 		)
 		(embedded_fonts no)
 		(model "F:/blockless‑csp‑assembler/kicad-host-mvp/assets/presentation-cad/esp32-feather.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint ""
+		(layer "F.Cu")
+		(uuid "9aa8939a-f67e-4ed1-b215-bcf62984b1b4")
+		(at 58 47)
+		(property "Reference" "bme280"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "9408c525-5fbf-4cf1-8479-32b7b7ebc44b")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SGP30/Air Quality I2C Module"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "61c788a3-4440-4ed3-a230-8d0cedab4266")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "4b8a0481-0629-4dd2-9301-8651d7c711c2")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "75b16201-f26e-462f-833e-31f39a451f49")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -9 -7)
+			(end 9 -7)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "F.CrtYd")
+			(uuid "186a8267-a33a-4815-87f3-1209ff5434fa")
+		)
+		(fp_line
+			(start -9 7)
+			(end -9 -7)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "F.CrtYd")
+			(uuid "6535658d-0548-4e52-9bfb-21ddeb035bef")
+		)
+		(fp_line
+			(start 9 -7)
+			(end 9 7)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "F.CrtYd")
+			(uuid "209342f9-fea7-4dc7-8c9a-1d08eea8884c")
+		)
+		(fp_line
+			(start 9 7)
+			(end -9 7)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "F.CrtYd")
+			(uuid "e80815fe-9262-4737-9caf-29680b6ff5e1")
+		)
+		(fp_line
+			(start -8 -6)
+			(end 8 -6)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "500a055a-7b56-4af8-8e54-815e64585941")
+		)
+		(fp_line
+			(start -8 6)
+			(end -8 -6)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "45f80731-6bbb-424c-bab1-2800e4c6e8b6")
+		)
+		(fp_line
+			(start 8 -6)
+			(end 8 6)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "0b01c12e-b196-4f19-8aea-eef0bed3e2a0")
+		)
+		(fp_line
+			(start 8 6)
+			(end -8 6)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "2be088fc-d934-4131-a36f-0fdc7063bf21")
+		)
+		(pad "GND" thru_hole oval
+			(at -8 -1.28)
+			(size 1.7 1.2)
+			(drill 0.8)
+			(layers "*.Cu")
+			(remove_unused_layers no)
+			(net "GND")
+			(thermal_bridge_angle 45)
+			(uuid "d1ac9aa8-a18c-4f60-a676-a422708a74c5")
+		)
+		(pad "SCL" thru_hole oval
+			(at 8 3.84)
+			(size 1.7 1.2)
+			(drill 0.8)
+			(layers "*.Cu")
+			(remove_unused_layers no)
+			(net "I2C_SCL")
+			(thermal_bridge_angle 45)
+			(uuid "ade2e03a-0df7-49a2-be5f-2b0a2b21601e")
+		)
+		(pad "SDA" thru_hole oval
+			(at 8 1.28)
+			(size 1.7 1.2)
+			(drill 0.8)
+			(layers "*.Cu")
+			(remove_unused_layers no)
+			(net "I2C_SDA")
+			(thermal_bridge_angle 45)
+			(uuid "80bb4406-e852-4270-bee5-ff41b17200c2")
+		)
+		(pad "VCC" thru_hole oval
+			(at -8 -3.84)
+			(size 1.7 1.2)
+			(drill 0.8)
+			(layers "*.Cu")
+			(remove_unused_layers no)
+			(net "3V3")
+			(thermal_bridge_angle 45)
+			(uuid "976d93b9-a586-44cb-8dee-248d8140af69")
+		)
+		(embedded_fonts no)
+		(model "F:/blockless‑csp‑assembler/kicad-host-mvp/assets/presentation-cad/bme280.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint ""
+		(layer "F.Cu")
+		(uuid "e340aa62-a9b5-414c-a893-a528f71d55b6")
+		(at 76 54)
+		(property "Reference" "usb-c-5v-breakout"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "721b494f-873e-4be8-a89f-c257aeb078de")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "USB-C 5V Power Breakout"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "11ed022e-b0a2-4491-b6ac-2b54d8291e99")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "e3b8993c-ee47-4b22-88a2-22f5da304449")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "68026187-42c6-4193-92a5-37049290ab01")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -8 -10)
+			(end 8 -10)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "F.CrtYd")
+			(uuid "feb646a0-9967-4b27-841f-8b64c4bd3bcb")
+		)
+		(fp_line
+			(start -8 10)
+			(end -8 -10)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "F.CrtYd")
+			(uuid "3db2f1db-d62d-4311-9283-5521ae719086")
+		)
+		(fp_line
+			(start 8 -10)
+			(end 8 10)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "F.CrtYd")
+			(uuid "4a771f3e-83a9-4fd2-b1e2-f30853fcf632")
+		)
+		(fp_line
+			(start 8 10)
+			(end -8 10)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "F.CrtYd")
+			(uuid "d7e858d0-3d8e-4619-a7e1-532aa43b994b")
+		)
+		(fp_line
+			(start -7 -9)
+			(end 7 -9)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "975f2a69-5c84-45e1-85dd-5af320be2714")
+		)
+		(fp_line
+			(start -7 9)
+			(end -7 -9)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "7acd8343-a08c-41ea-b734-a728b2df1951")
+		)
+		(fp_line
+			(start 7 -9)
+			(end 7 9)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "441bb9cc-8940-4973-94d1-ea62abf3535c")
+		)
+		(fp_line
+			(start 7 9)
+			(end -7 9)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "36fea1a0-68f0-4d4e-a1ec-ef3afe34d7b7")
+		)
+		(pad "GND" thru_hole oval
+			(at -7 6.8)
+			(size 1.7 1.2)
+			(drill 0.8)
+			(layers "*.Cu")
+			(remove_unused_layers no)
+			(net "GND")
+			(thermal_bridge_angle 45)
+			(uuid "577ac6d1-fb83-4ce6-a7cc-43ccac0aaf3b")
+		)
+		(pad "VBUS" thru_hole oval
+			(at 7 -6.8)
+			(size 1.7 1.2)
+			(drill 0.8)
+			(layers "*.Cu")
+			(remove_unused_layers no)
+			(net "5V")
+			(thermal_bridge_angle 45)
+			(uuid "e3f5feb8-1540-498a-828d-400d13400374")
+		)
+		(embedded_fonts no)
+		(model "F:/blockless‑csp‑assembler/kicad-host-mvp/assets/presentation-cad/usb-c-5v-breakout.wrl"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -1013,7 +1013,7 @@
 			(type default)
 		)
 		(layer "F.SilkS")
-		(uuid "134b3073-6e08-4d78-a37e-a9c77c765919")
+		(uuid "41fdbc20-7cbe-496e-952d-a8ed6cd75b63")
 	)
 	(gr_line
 		(start 6.5 57.5)
@@ -1023,7 +1023,7 @@
 			(type default)
 		)
 		(layer "F.SilkS")
-		(uuid "a0564349-82e1-4c18-b2c7-ba5423123c10")
+		(uuid "ef98b7bf-137c-4d3d-af1d-1ae86ecb9847")
 	)
 	(gr_line
 		(start 29.5 6.5)
@@ -1033,7 +1033,7 @@
 			(type default)
 		)
 		(layer "F.SilkS")
-		(uuid "8b614d42-ddc9-49be-81d9-42cd977a3d16")
+		(uuid "cacaaec5-affc-4bcf-bfec-4d0ecf9cbe1e")
 	)
 	(gr_line
 		(start 29.5 57.5)
@@ -1043,7 +1043,7 @@
 			(type default)
 		)
 		(layer "F.SilkS")
-		(uuid "56d2d62d-7237-464e-9abd-d4e8878cded4")
+		(uuid "9241bb17-e3f1-4ada-b561-15340754a94e")
 	)
 	(gr_line
 		(start 44.5 4.5)
@@ -1053,7 +1053,7 @@
 			(type default)
 		)
 		(layer "F.SilkS")
-		(uuid "61fd89f1-9eba-43e5-89de-ac0b9114d79e")
+		(uuid "98e7560b-9d8a-47ad-9243-8c4940f7cc3a")
 	)
 	(gr_line
 		(start 44.5 31.5)
@@ -1063,7 +1063,7 @@
 			(type default)
 		)
 		(layer "F.SilkS")
-		(uuid "cdae020b-1ac7-448f-9e04-be81dfceb80e")
+		(uuid "9aee2848-f288-4aae-a10d-c9383256860d")
 	)
 	(gr_line
 		(start 50 41)
@@ -1073,7 +1073,7 @@
 			(type default)
 		)
 		(layer "F.SilkS")
-		(uuid "ea14d287-34c6-4e45-a648-7397b907ac74")
+		(uuid "43ce4c3e-86e0-478e-9b9e-a1590c08525b")
 	)
 	(gr_line
 		(start 50 53)
@@ -1083,7 +1083,7 @@
 			(type default)
 		)
 		(layer "F.SilkS")
-		(uuid "b262b895-4e33-4191-aad3-0ddf44b9cc97")
+		(uuid "cfed28bb-b0e8-4402-b3ca-2430e39110a2")
 	)
 	(gr_line
 		(start 66 41)
@@ -1093,7 +1093,7 @@
 			(type default)
 		)
 		(layer "F.SilkS")
-		(uuid "4b9c9015-a5a9-4ed5-b349-5cc3ddc8b5f5")
+		(uuid "2ba745b9-7f51-4735-9d32-e979d54a7e5d")
 	)
 	(gr_line
 		(start 66 53)
@@ -1103,7 +1103,7 @@
 			(type default)
 		)
 		(layer "F.SilkS")
-		(uuid "67e19895-8dc2-4b40-9d50-a34049872e43")
+		(uuid "305d75a2-a9ce-4f04-9144-c8c8f3d11976")
 	)
 	(gr_line
 		(start 69 45)
@@ -1113,7 +1113,7 @@
 			(type default)
 		)
 		(layer "F.SilkS")
-		(uuid "32189a0f-ae5e-458c-ad1f-de60e1ba3fac")
+		(uuid "92a787a2-3708-4766-a3af-c851aebd394b")
 	)
 	(gr_line
 		(start 69 63)
@@ -1123,7 +1123,7 @@
 			(type default)
 		)
 		(layer "F.SilkS")
-		(uuid "184be827-9870-4e6b-8b20-17587e83a695")
+		(uuid "d0af85cf-3567-4bce-ad85-ddd1e682cb33")
 	)
 	(gr_line
 		(start 71.5 4.5)
@@ -1133,7 +1133,7 @@
 			(type default)
 		)
 		(layer "F.SilkS")
-		(uuid "8b8a0e56-c3e5-4c65-87c7-e59d4b3bddda")
+		(uuid "f1abe3de-2efc-4a48-829c-99a94ce0ab59")
 	)
 	(gr_line
 		(start 71.5 31.5)
@@ -1143,7 +1143,7 @@
 			(type default)
 		)
 		(layer "F.SilkS")
-		(uuid "83c814fd-4bcc-4b30-8939-d7c269ff6311")
+		(uuid "f6aada39-54f4-4696-8453-697db0dd4f64")
 	)
 	(gr_line
 		(start 80 28)
@@ -1153,7 +1153,7 @@
 			(type default)
 		)
 		(layer "F.SilkS")
-		(uuid "a7222869-2e30-4310-9864-7af69c7a3fb8")
+		(uuid "9ea8bf1b-679f-4bb5-95e8-45fd341c7565")
 	)
 	(gr_line
 		(start 80 40)
@@ -1163,7 +1163,7 @@
 			(type default)
 		)
 		(layer "F.SilkS")
-		(uuid "3e29c90b-54a7-4c3e-b204-3e10bd9d4bf2")
+		(uuid "90cdddac-70f9-47ed-af2c-a90edf834405")
 	)
 	(gr_line
 		(start 83 45)
@@ -1173,7 +1173,7 @@
 			(type default)
 		)
 		(layer "F.SilkS")
-		(uuid "64275d40-a6b5-434b-ac8d-a1985d31189a")
+		(uuid "aec4e7da-61f8-4edd-8c98-4a43bfb8a526")
 	)
 	(gr_line
 		(start 83 63)
@@ -1183,7 +1183,7 @@
 			(type default)
 		)
 		(layer "F.SilkS")
-		(uuid "18b115c7-c304-4812-bcbb-351c9ee3e313")
+		(uuid "682ef953-cdc4-4d6a-8aea-bd8057733fbe")
 	)
 	(gr_line
 		(start 88 28)
@@ -1193,7 +1193,7 @@
 			(type default)
 		)
 		(layer "F.SilkS")
-		(uuid "14f1e303-dbde-46a2-a928-1cb96475a5cc")
+		(uuid "ad7ad1ad-d7fb-4a0d-82f0-a3a91ec57f39")
 	)
 	(gr_line
 		(start 88 40)
@@ -1203,7 +1203,7 @@
 			(type default)
 		)
 		(layer "F.SilkS")
-		(uuid "1e0e17d1-8309-4e33-a0c1-673c2694ada6")
+		(uuid "9b589f4a-674b-48f8-8509-f934d9375960")
 	)
 	(gr_line
 		(start 0 0)
@@ -1213,7 +1213,7 @@
 			(type default)
 		)
 		(layer "Edge.Cuts")
-		(uuid "d2dc4c7d-f794-41b1-a885-eb88d0a77ffd")
+		(uuid "beed2ae2-c6da-408a-81f9-91af3cf53975")
 	)
 	(gr_line
 		(start 0 64)
@@ -1223,7 +1223,7 @@
 			(type default)
 		)
 		(layer "Edge.Cuts")
-		(uuid "401e9b44-9a9d-4dfc-a3bc-d32e4c9e1323")
+		(uuid "19e3ecfe-a55b-478e-9a07-5495201e79f9")
 	)
 	(gr_line
 		(start 92 0)
@@ -1233,7 +1233,7 @@
 			(type default)
 		)
 		(layer "Edge.Cuts")
-		(uuid "50812d80-1bf4-413b-a258-6051da32c317")
+		(uuid "b57a1083-8a06-46f9-98a2-1320514d55d4")
 	)
 	(gr_line
 		(start 92 64)
@@ -1243,12 +1243,12 @@
 			(type default)
 		)
 		(layer "Edge.Cuts")
-		(uuid "0425a84b-07a0-42fb-b3e5-73bbd0682610")
+		(uuid "9ac02a21-882c-447d-9c76-b5815101f218")
 	)
 	(gr_text "esp32-feather"
 		(at 7.7 55.5 0)
 		(layer "Dwgs.User")
-		(uuid "473584f7-4d41-408b-aff8-653bb0dd9128")
+		(uuid "eeff928a-db3b-440e-a69d-10aec93ce92f")
 		(effects
 			(font
 				(size 0.8 0.8)
@@ -1258,7 +1258,7 @@
 	(gr_text "oled-128x32"
 		(at 45.7 29.5 0)
 		(layer "Dwgs.User")
-		(uuid "f1a2c1c7-9d50-43ce-bb7c-efe06471a0bb")
+		(uuid "be2f6412-d5d2-4df3-b48e-7708b0f43526")
 		(effects
 			(font
 				(size 0.8 0.8)
@@ -1268,7 +1268,7 @@
 	(gr_text "bme280"
 		(at 51.2 51 0)
 		(layer "Dwgs.User")
-		(uuid "a5599c8b-a84b-44ca-a558-5114701ff269")
+		(uuid "1d2fbb38-40aa-48ea-b255-388f587b27fc")
 		(effects
 			(font
 				(size 0.8 0.8)
@@ -1278,7 +1278,7 @@
 	(gr_text "usb-c-5v-breakout"
 		(at 70.2 61 0)
 		(layer "Dwgs.User")
-		(uuid "1d0c961e-1411-4f0a-9853-af6278a5674f")
+		(uuid "e98b2ef1-9d86-40fd-a1e3-e89d95f32dd5")
 		(effects
 			(font
 				(size 0.8 0.8)
@@ -1288,7 +1288,7 @@
 	(gr_text "i2c-expansion"
 		(at 79.2 36 0)
 		(layer "Dwgs.User")
-		(uuid "8353fb68-5707-4705-b2ce-4b22434d3a44")
+		(uuid "6a924974-68a3-4dec-b564-95f7749f5f87")
 		(effects
 			(font
 				(size 0.8 0.8)
@@ -1298,7 +1298,7 @@
 	(gr_text "Desktop air quality monitor"
 		(at 5 5 0)
 		(layer "Dwgs.User")
-		(uuid "bf83f7c7-bd7f-4004-a6e8-ad90bc371aad")
+		(uuid "b5fd2a22-6f69-4ae6-93c9-6b17bd7754b4")
 		(effects
 			(font
 				(size 1.2 1.2)

@@ -4,6 +4,7 @@ import { getPinPoint, rotatedSize } from "./geometry";
 
 type Point = { x: number; y: number };
 type Rect = { x1: number; y1: number; x2: number; y2: number };
+type RouteQuality = "interactive" | "polished";
 
 const GRID_MM = 3;
 const EDGE_MARGIN_MM = 2;
@@ -236,6 +237,7 @@ function routeAStar({
   routed,
   net,
   layer,
+  quality,
 }: {
   start: Point;
   end: Point;
@@ -244,6 +246,7 @@ function routeAStar({
   routed: TrackSegment[];
   net: string;
   layer: TrackSegment["layer"];
+  quality: RouteQuality;
 }) {
   const startNode = snap(start, boardSize);
   const endNode = snap(end, boardSize);
@@ -284,7 +287,8 @@ function routeAStar({
     const current = pointsByKey.get(currentKey);
     if (!current) break;
     if (currentKey === endKey) {
-      return polishRoute([start, ...reconstruct(cameFrom, pointsByKey, currentKey).slice(1, -1), end]);
+      const route = [start, ...reconstruct(cameFrom, pointsByKey, currentKey).slice(1, -1), end];
+      return quality === "polished" ? polishRoute(route) : simplify(route);
     }
 
     open.delete(currentKey);
@@ -306,7 +310,7 @@ function routeAStar({
         diagonalBias +
         clearancePenalty(next, obstacles) +
         reservedTrackPenalty(next, routed, net, layer) +
-        reservedSegmentPenalty(current, next, routed, net, layer);
+        (quality === "polished" ? reservedSegmentPenalty(current, next, routed, net, layer) : 0);
 
       if (tentative >= (gScore.get(nextKey) ?? Number.POSITIVE_INFINITY)) continue;
       cameFrom.set(nextKey, currentKey);
@@ -317,7 +321,8 @@ function routeAStar({
     }
   }
 
-  return polishRoute(fallbackRoute(start, end));
+  const route = fallbackRoute(start, end);
+  return quality === "polished" ? polishRoute(route) : simplify(route);
 }
 
 export function routeNets(
@@ -325,9 +330,11 @@ export function routeNets(
   placements: Placement[],
   boardSize: { w: number; h: number },
   keepouts: Keepout[] = [],
+  options: { quality?: RouteQuality } = {},
 ): TrackSegment[] {
   const byModule = Object.fromEntries(placements.map((placement) => [placement.moduleId, placement]));
   const routed: TrackSegment[] = [];
+  const quality = options.quality ?? "interactive";
 
   [...nets].sort((a, b) => routePriority(a) - routePriority(b)).forEach((net) => {
     const fromPlacement = byModule[net.from.moduleId];
@@ -353,6 +360,7 @@ export function routeNets(
         routed,
         net: net.net,
         layer: net.layer,
+        quality,
       });
 
       routed.push({

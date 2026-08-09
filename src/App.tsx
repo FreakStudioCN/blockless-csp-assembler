@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import type { CSSProperties, PointerEvent as ReactPointerEvent } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
@@ -34,6 +34,9 @@ const trackColors: Record<TrackSegment["kind"], string> = {
   gpio: "#8064c9",
   spi: "#b76b1c",
 };
+const ROUTE_DRAG_THROTTLE_MS = 110;
+const THREE_MAX_PIXEL_RATIO = 1.5;
+const stlGeometryCache = new Map<string, THREE.BufferGeometry>();
 
 function routeViaPoints(track: TrackSegment) {
   if (track.layer !== "bottom" || track.points.length < 2) return [];
@@ -541,6 +544,7 @@ function BoardSvg({
   const [drag, setDrag] = useState<{ moduleId: string; dx: number; dy: number } | null>(null);
   const [boardClickStart, setBoardClickStart] = useState<{ x: number; y: number } | null>(null);
   const lastModuleTapRef = useRef<{ moduleId: string; time: number } | null>(null);
+  const lastDragEmitRef = useRef(0);
   const lockedSet = useMemo(() => new Set(lockedModuleIds), [lockedModuleIds]);
   const scaleStroke = (width: number) => Math.max(0.35, width);
   const pointerToBoard = (event: ReactPointerEvent<SVGSVGElement>) => {
@@ -556,6 +560,9 @@ function BoardSvg({
   const onPointerMove = (event: ReactPointerEvent<SVGSVGElement>) => {
     if (!drag || !onPlacementChange) return;
     const pointer = pointerToBoard(event);
+    const now = performance.now();
+    if (now - lastDragEmitRef.current < ROUTE_DRAG_THROTTLE_MS) return;
+    lastDragEmitRef.current = now;
     onPlacementChange(drag.moduleId, pointer.x - drag.dx, pointer.y - drag.dy);
   };
 
@@ -568,6 +575,11 @@ function BoardSvg({
 
   const onSvgPointerUp = (event: ReactPointerEvent<SVGSVGElement>) => {
     if (drag) {
+      if (onPlacementChange) {
+        const pointer = pointerToBoard(event);
+        lastDragEmitRef.current = performance.now();
+        onPlacementChange(drag.moduleId, pointer.x - drag.dx, pointer.y - drag.dy);
+      }
       setDrag(null);
       setBoardClickStart(null);
       return;
@@ -594,6 +606,7 @@ function BoardSvg({
       onPointerMove={onPointerMove}
       onPointerUp={onSvgPointerUp}
       onPointerCancel={() => {
+        lastDragEmitRef.current = 0;
         setDrag(null);
         setBoardClickStart(null);
       }}
@@ -775,6 +788,7 @@ function BoardSvg({
               }
               if (!onPlacementChange || isLocked) return;
               const pointer = pointerToBoard(event as unknown as ReactPointerEvent<SVGSVGElement>);
+              lastDragEmitRef.current = 0;
               setDrag({ moduleId: item.id, dx: pointer.x - placement.x, dy: pointer.y - placement.y });
               event.currentTarget.setPointerCapture(event.pointerId);
             }}
@@ -902,6 +916,19 @@ function makeTrackMesh(
   }
 
   return group;
+}
+
+function disposeThreeObject(object: THREE.Object3D) {
+  object.traverse((child) => {
+    const mesh = child as THREE.Mesh;
+    mesh.geometry?.dispose();
+    const material = mesh.material as THREE.Material | THREE.Material[] | undefined;
+    if (Array.isArray(material)) {
+      material.forEach((item) => item.dispose());
+    } else {
+      material?.dispose();
+    }
+  });
 }
 
 function addParametricDetails(group: THREE.Group, item: HardwareModule, moduleW: number, moduleH: number, moduleHeight: number) {
@@ -1065,6 +1092,7 @@ function Board3D({
   useEffect(() => {
     const host = ref.current;
     if (!host) return;
+    let disposed = false;
 
     const width = host.clientWidth;
     const height = Math.max(320, host.clientHeight);
@@ -1075,9 +1103,9 @@ function Board3D({
     camera.position.set(0, 94, 78);
     camera.lookAt(0, 0, 0);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, THREE_MAX_PIXEL_RATIO));
     host.appendChild(renderer.domElement);
 
     const controls = new OrbitControls(camera, renderer.domElement);
@@ -1136,17 +1164,14 @@ function Board3D({
       while (routeRoot.children.length > 0) {
         const child = routeRoot.children[0];
         routeRoot.remove(child);
+        disposeThreeObject(child);
       }
     };
 
-    const drawRoutes = (placements: Placement[]) => {
+    const drawRoutes = () => {
       clearRouteRoot();
       if (!showRoutes) return;
-      const tracks =
-        routeStyle === "pseudo"
-          ? routeNets(design.nets, placements, design.boardSizeMm, design.keepouts)
-          : design.tracks;
-      for (const track of tracks) {
+      for (const track of design.tracks) {
         const y = track.layer === "top" ? copperY : -0.15;
         routeRoot.add(makeTrackMesh(track.points, design.boardSizeMm, scale, track.widthMm, trackColors[track.kind], y, routeStyle));
         for (const point of routeViaPoints(track)) {
@@ -1161,8 +1186,19 @@ function Board3D({
       }
     };
 
+    const setRouteGhosted = (ghosted: boolean) => {
+      routeRoot.traverse((child) => {
+        const mesh = child as THREE.Mesh;
+        const materials = Array.isArray(mesh.material) ? mesh.material : mesh.material ? [mesh.material] : [];
+        materials.forEach((material) => {
+          material.transparent = ghosted || routeStyle === "pseudo";
+          material.opacity = ghosted ? 0.2 : routeStyle === "pseudo" ? 0.78 : 1;
+        });
+      });
+    };
+
     group.add(routeRoot);
-    drawRoutes(design.placements);
+    drawRoutes();
 
     const loader = new STLLoader();
     const threeMfLoader = new ThreeMFLoader();
@@ -1223,6 +1259,7 @@ function Board3D({
         threeMfLoader.load(
           item.model3d.localUrl,
           (object) => {
+            if (disposed) return;
             const fittedObject = object.clone(true);
             fittedObject.applyMatrix4(stlToBoardAxes);
             fittedObject.traverse((child) => {
@@ -1247,37 +1284,50 @@ function Board3D({
           },
           undefined,
           () => {
+            if (disposed) return;
             addParametricDetails(moduleGroup, item, moduleW, moduleH, moduleHeight);
           },
         );
       } else if (hasRealModel && item.model3d.localUrl) {
-        loader.load(
-          item.model3d.localUrl,
-          (geometry) => {
-            const fittedGeometry = geometry.clone();
-            fittedGeometry.applyMatrix4(stlToBoardAxes);
-            fittedGeometry.computeVertexNormals();
-            fittedGeometry.computeBoundingBox();
-            const box = fittedGeometry.boundingBox;
-            if (!box) return;
-            const size = new THREE.Vector3();
-            box.getSize(size);
-            const fit = Math.min(moduleW / Math.max(size.x, 1), moduleH / Math.max(size.z, 1)) * 0.96;
-            const stlMesh = new THREE.Mesh(
-              fittedGeometry,
-              new THREE.MeshStandardMaterial({ color: item.model3d.bodyColor, roughness: 0.58, metalness: 0.03 }),
-            );
-            stlMesh.scale.setScalar(fit);
-            const center = new THREE.Vector3();
-            box.getCenter(center);
-            stlMesh.position.set(-center.x * fit, moduleHeight * 0.22 + 0.08 - box.min.y * fit, -center.z * fit);
-            moduleGroup.add(stlMesh);
-          },
-          undefined,
-          () => {
-            addParametricDetails(moduleGroup, item, moduleW, moduleH, moduleHeight);
-          },
-        );
+        const modelUrl = item.model3d.localUrl;
+        const addStlGeometry = (geometry: THREE.BufferGeometry) => {
+          if (disposed) return;
+          const fittedGeometry = geometry.clone();
+          fittedGeometry.applyMatrix4(stlToBoardAxes);
+          fittedGeometry.computeVertexNormals();
+          fittedGeometry.computeBoundingBox();
+          const box = fittedGeometry.boundingBox;
+          if (!box) return;
+          const size = new THREE.Vector3();
+          box.getSize(size);
+          const fit = Math.min(moduleW / Math.max(size.x, 1), moduleH / Math.max(size.z, 1)) * 0.96;
+          const stlMesh = new THREE.Mesh(
+            fittedGeometry,
+            new THREE.MeshStandardMaterial({ color: item.model3d.bodyColor, roughness: 0.58, metalness: 0.03 }),
+          );
+          stlMesh.scale.setScalar(fit);
+          const center = new THREE.Vector3();
+          box.getCenter(center);
+          stlMesh.position.set(-center.x * fit, moduleHeight * 0.22 + 0.08 - box.min.y * fit, -center.z * fit);
+          moduleGroup.add(stlMesh);
+        };
+        const cachedGeometry = stlGeometryCache.get(modelUrl);
+        if (cachedGeometry) {
+          addStlGeometry(cachedGeometry);
+        } else {
+          loader.load(
+            modelUrl,
+            (geometry) => {
+              stlGeometryCache.set(modelUrl, geometry.clone());
+              addStlGeometry(geometry);
+            },
+            undefined,
+            () => {
+              if (disposed) return;
+              addParametricDetails(moduleGroup, item, moduleW, moduleH, moduleHeight);
+            },
+          );
+        }
       } else {
         addParametricDetails(moduleGroup, item, moduleW, moduleH, moduleHeight);
       }
@@ -1364,6 +1414,7 @@ function Board3D({
         }
         if (!onPlacementChange || moduleRoot.userData.locked) return;
         controls.enabled = false;
+        setRouteGhosted(true);
         renderer.domElement.setPointerCapture(event.pointerId);
         activeDrag = {
           moduleId: moduleRoot.userData.moduleId,
@@ -1398,13 +1449,6 @@ function Board3D({
       const next = hitPoint.clone().sub(activeDrag.offset);
       activeDrag.root.position.x = next.x;
       activeDrag.root.position.z = next.z;
-      const boardPoint = sceneToBoard(next);
-      const livePlacements = design.placements.map((placement) =>
-        placement.moduleId === activeDrag?.moduleId
-          ? { ...placement, x: boardPoint.x, y: boardPoint.y }
-          : placement,
-      );
-      drawRoutes(livePlacements);
     };
 
     const onPointerUp = (event: PointerEvent) => {
@@ -1413,6 +1457,7 @@ function Board3D({
         controls.enabled = true;
         const boardX = activeDrag.root.position.x / scale + design.boardSizeMm.w / 2;
         const boardY = activeDrag.root.position.z / scale + design.boardSizeMm.h / 2;
+        setRouteGhosted(false);
         onPlacementChange?.(activeDrag.moduleId, boardX, boardY);
         activeDrag = null;
         return;
@@ -1452,6 +1497,7 @@ function Board3D({
     window.addEventListener("resize", onResize);
 
     return () => {
+      disposed = true;
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", onResize);
       renderer.domElement.removeEventListener("pointerdown", onPointerDown);
@@ -1459,6 +1505,7 @@ function Board3D({
       renderer.domElement.removeEventListener("pointerup", onPointerUp);
       renderer.domElement.removeEventListener("pointercancel", onPointerUp);
       controls.dispose();
+      disposeThreeObject(scene);
       renderer.dispose();
       host.removeChild(renderer.domElement);
     };
@@ -1491,9 +1538,9 @@ function Enclosure3D({
     camera.position.set(42, 55, 86);
     camera.lookAt(0, 8, 0);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, THREE_MAX_PIXEL_RATIO));
     host.appendChild(renderer.domElement);
 
     const controls = new OrbitControls(camera, renderer.domElement);
@@ -2204,14 +2251,14 @@ function GenerateView({
 
   const withAssetVersion = (url: string) => `${url}?v=${assetVersion}`;
 
-  const handlePlacementChange = (moduleId: string, x: number, y: number) => {
+  const handlePlacementChange = useCallback((moduleId: string, x: number, y: number) => {
     if (lockedModuleIds.includes(moduleId)) return;
     setSelectedModuleId(moduleId);
     setRoutingRevision((current) => current + 1);
     onPlacementChange(moduleId, snapToGrid ? snapMm(x) : x, snapToGrid ? snapMm(y) : y);
-  };
+  }, [lockedModuleIds, onPlacementChange, snapToGrid]);
 
-  const addMountingHole = (x: number, y: number) => {
+  const addMountingHole = useCallback((x: number, y: number) => {
     const margin = 3.2;
     const nextX = Math.min(design.boardSizeMm.w - margin, Math.max(margin, snapToGrid ? snapMm(x) : x));
     const nextY = Math.min(design.boardSizeMm.h - margin, Math.max(margin, snapToGrid ? snapMm(y) : y));
@@ -2224,7 +2271,7 @@ function GenerateView({
         diameterMm: holeDiameterMm,
       },
     ]);
-  };
+  }, [design.boardSizeMm.h, design.boardSizeMm.w, holeDiameterMm, snapToGrid]);
 
   const toggleSelectedLock = () => {
     if (!selectedModuleId) return;
@@ -3367,14 +3414,21 @@ export default function App() {
     }
   };
 
-  const updatePlacement = (moduleId: string, x: number, y: number) => {
+  const updatePlacement = useCallback((moduleId: string, x: number, y: number) => {
     setDesign((current) => {
       const target = moduleById(moduleId);
+      let changed = false;
       const placements = current.placements.map((placement) =>
         placement.moduleId === moduleId
-          ? clampPlacement(target, { ...placement, x, y }, current.boardSizeMm)
+          ? (() => {
+              const nextPlacement = clampPlacement(target, { ...placement, x, y }, current.boardSizeMm);
+              if (nextPlacement.x !== placement.x || nextPlacement.y !== placement.y) changed = true;
+              return nextPlacement;
+            })()
           : placement,
       );
+
+      if (!changed) return current;
 
       const tracks = routeNets(current.nets, placements, current.boardSizeMm, current.keepouts);
       const nextDesign = {
@@ -3384,9 +3438,9 @@ export default function App() {
       };
       return { ...nextDesign, report: checkDesign(nextDesign, locale) };
     });
-  };
+  }, [locale]);
 
-  const rotateModule = (moduleId: string) => {
+  const rotateModule = useCallback((moduleId: string) => {
     setDesign((current) => {
       const target = moduleById(moduleId);
       const placements = current.placements.map((placement) => {
@@ -3403,9 +3457,9 @@ export default function App() {
       };
       return { ...nextDesign, report: checkDesign(nextDesign, locale) };
     });
-  };
+  }, [locale]);
 
-  const rerouteSketch = () => {
+  const rerouteSketch = useCallback(() => {
     setDesign((current) => {
       const nextDesign = {
         ...current,
@@ -3413,7 +3467,7 @@ export default function App() {
       };
       return { ...nextDesign, report: checkDesign(nextDesign, locale) };
     });
-  };
+  }, [locale]);
 
   return (
     <main className="app-shell">
