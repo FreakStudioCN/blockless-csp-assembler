@@ -10,8 +10,7 @@ FILE_DESCRIPTION(
 
 FILE_NAME(
 /* name */ 
-'/Users/emac5k/Dropbox/3D/Products/Adafruit BME280/Adafruit BME280.ste
-p',
+'bme280.step',
 /* time_stamp */ '2020-07-23T10:46:36-04:00',
 /* author */ (''),
 /* organization */ (''),

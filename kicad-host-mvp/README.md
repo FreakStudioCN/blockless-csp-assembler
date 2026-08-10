@@ -21,7 +21,8 @@ Do not keep expanding the React/Three.js app into a fake EDA. KiCad should host 
 - KiCad 10 installed on Windows.
 - KiCad's bundled Python and `pcbnew` module available inside KiCad.
 - KiCad CLI available at `C:\Program Files\KiCad\10.0\bin\kicad-cli.exe`.
-- KiCadRoutingTools v0.19.3 unpacked under `tools/KiCadRoutingTools-0.19.3`.
+- The pinned KiCadRoutingTools v0.19.3 source included under `tools/KiCadRoutingTools-0.19.3`.
+- For CNC export only: `pcb2gcode.exe` available on `PATH`, or its full path set in `PCB2GCODE_EXE`.
 
 This repo can generate plan JSON without KiCad. The plugin itself must run inside KiCad PCB Editor.
 
@@ -48,6 +49,7 @@ kicad-host-mvp/
 Generate/validate plans first:
 
 ```powershell
+npm run kicad:setup-router
 npm run kicad:plans
 npm run kicad:validate
 npm run kicad:build
@@ -77,7 +79,7 @@ kicad-host-mvp/reports/*-krt-drc.rpt
 
 ## Current Scope
 
-This is a KiCad-hosted MVP, not a production PCB generator. It uses real KiCad board objects, KRT-generated copper, and color-coded WRL presentation models for clear video capture. The original STEP/STL model paths are still kept in the plans, but the default render favors visual distinction over strict CAD material fidelity. Current routed demo outputs have 0 unconnected items after KRT rescue, while KiCad DRC still reports violations that need cleanup before fabrication.
+This is a KiCad-hosted MVP, not a production PCB generator. It uses real KiCad board objects, KRT-generated copper, and color-coded WRL presentation models for clear video capture. The original STEP/STL model paths are still kept in the plans, but the default render favors visual distinction over strict CAD material fidelity. The checked-in KRT-routed reports have 0 DRC violations and 0 unconnected pads, with explicitly listed exclusions; the pre-routing reports still contain the expected unresolved connectivity.
 
 The AI boundary is intentional:
 

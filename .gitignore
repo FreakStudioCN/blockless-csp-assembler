@@ -9,3 +9,13 @@ test-results/
 playwright-report/
 __pycache__/
 *.pyc
+.venv*/
+.codex/
+.playwright-cli/
+artifacts/
+output/
+tools/*.zip
+tools/wheels/
+tools/KiCadRoutingTools-main/
+tools/pcb2gcode*/
+tools/kicad-python-deps/

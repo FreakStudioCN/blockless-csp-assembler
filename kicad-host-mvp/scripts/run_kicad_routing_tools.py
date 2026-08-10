@@ -1,16 +1,21 @@
 import runpy
+import os
 import sys
 from pathlib import Path
 
 
 REPO = Path(__file__).resolve().parents[2]
-TOOLS = REPO / "tools" / "KiCadRoutingTools-0.19.3"
-DEPS = REPO / "tools" / "kicad-python-deps"
+TOOLS = Path(os.environ.get("KICAD_ROUTING_TOOLS_DIR", REPO / "tools" / "KiCadRoutingTools-0.19.3"))
+DEPS = Path(os.environ.get("BLOCKLESS_KICAD_DEPS", REPO / "tools" / "kicad-python-deps"))
 RUST_ROUTER = TOOLS / "rust_router"
 
 
 def main():
-    for path in (str(DEPS), str(RUST_ROUTER), str(TOOLS)):
+    paths = [RUST_ROUTER, TOOLS]
+    if DEPS.exists():
+        paths.insert(0, DEPS)
+
+    for path in map(str, paths):
         if path not in sys.path:
             sys.path.insert(0, path)
 

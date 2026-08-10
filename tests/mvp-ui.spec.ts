@@ -28,7 +28,6 @@ test("workspace renders planning, generation progress, board output, CNC export,
   page,
 }, testInfo) => {
   await page.goto("/");
-  await page.getByRole("button", { name: "EN" }).click();
 
   await expect(page.getByRole("heading", { name: "Modular PCB design workstation" })).toBeVisible();
   await expect(page.locator(".workspace-rail .rail-card").first()).toContainText("Long-range environmental node");
@@ -87,7 +86,7 @@ test("workspace renders planning, generation progress, board output, CNC export,
 
   await expect(page.getByRole("heading", { name: "PCB to CNC toolpaths" })).toBeVisible();
   await expect(page.locator(".cnc-toolpath-panel")).toContainText("long-range-env-node_front.ngc");
-  if (testInfo.project.name === "desktop-chromium") {
+  if (testInfo.project.name === "desktop-chromium" && process.env.RUN_KICAD_INTEGRATION === "1") {
     await page.getByRole("button", { name: "Generate real CNC toolpaths" }).click();
     await expect(page.locator(".cnc-toolpath-panel .route-status")).toContainText("Calling KiCad CLI + pcb2gcode");
     await expect(page.locator(".cnc-toolpath-panel .route-status")).toContainText("Real CNC toolpath files ready", {
