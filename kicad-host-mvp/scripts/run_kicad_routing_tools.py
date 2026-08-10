@@ -5,7 +5,7 @@ from pathlib import Path
 
 
 REPO = Path(__file__).resolve().parents[2]
-TOOLS = Path(os.environ.get("KICAD_ROUTING_TOOLS_DIR", REPO / "tools" / "KiCadRoutingTools-0.19.3"))
+TOOLS = Path(os.environ.get("KICAD_ROUTING_TOOLS_DIR", REPO / "tools" / "KiCadRoutingTools"))
 DEPS = Path(os.environ.get("BLOCKLESS_KICAD_DEPS", REPO / "tools" / "kicad-python-deps"))
 RUST_ROUTER = TOOLS / "rust_router"
 

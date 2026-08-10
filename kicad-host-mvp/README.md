@@ -13,15 +13,16 @@ Do not keep expanding the React/Three.js app into a fake EDA. KiCad should host 
 - Users drag footprints in KiCad.
 - KiCad shows ratsnest, DRC, copper layers, vias, zones, and 3D preview.
 - The plugin creates/updates module placements, board outline, tracks, vias, silkscreen notes, and constraints.
-- KiCadRoutingTools is the current Windows-native autorouting backend.
+- KiCadRoutingTools is the current autorouting backend.
 - Freerouting can be added later through DSN/SES when export/import is stable in the local KiCad toolchain.
 
 ## Requirements
 
-- KiCad 10 installed on Windows.
+- KiCad 10 installed on Windows or macOS.
+- Python 3 and Git available from the terminal.
 - KiCad's bundled Python and `pcbnew` module available inside KiCad.
-- KiCad CLI available at `C:\Program Files\KiCad\10.0\bin\kicad-cli.exe`.
-- The pinned KiCadRoutingTools v0.19.3 source included under `tools/KiCadRoutingTools-0.19.3`.
+- KiCad CLI available in the standard installation location, or configured with `KICAD_CLI` and `KICAD_PYTHON`.
+- `npm run kicad:setup-router` downloads a pinned KiCadRoutingTools revision into the ignored `tools/KiCadRoutingTools` directory.
 - For CNC export only: `pcb2gcode.exe` available on `PATH`, or its full path set in `PCB2GCODE_EXE`.
 
 This repo can generate plan JSON without KiCad. The plugin itself must run inside KiCad PCB Editor.
@@ -49,12 +50,15 @@ kicad-host-mvp/
 Generate/validate plans first:
 
 ```powershell
+npm run kicad:check
 npm run kicad:setup-router
 npm run kicad:plans
 npm run kicad:validate
 npm run kicad:build
 npm run kicad:ai-route
 ```
+
+On macOS, the scripts automatically inspect `/Applications/KiCad/KiCad.app`. CNC export is not supported there. If KiCad is installed elsewhere, set `KICAD_CLI` and `KICAD_PYTHON` to the two executable paths before running the commands.
 
 1. Install KiCad.
 2. Copy the plugin into KiCad's scripting plugin folder:

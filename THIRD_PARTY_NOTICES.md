@@ -16,9 +16,9 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-## KiCadRoutingTools
+## Optional KiCadRoutingTools
 
-`tools/KiCadRoutingTools-0.19.3/` is a pinned snapshot of [KiCadRoutingTools](https://github.com/drandyhaas/KiCadRoutingTools). Its own `LICENSE` file is included in that directory.
+KiCadRoutingTools is not distributed in this repository. The optional `npm run kicad:setup-router` command downloads a pinned revision from [KiCadRoutingTools](https://github.com/drandyhaas/KiCadRoutingTools) into an ignored local directory. It remains available under its MIT license.
 
 MIT License
 
@@ -34,4 +34,4 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 JavaScript dependencies are not committed to this repository. Their package names, versions, integrity hashes, and declared licenses are recorded in `package-lock.json` and installed locally with `npm ci`.
 
-KiCadRoutingTools Python dependencies are also not committed. `npm run kicad:setup-router` installs them into an ignored local directory from the pinned requirements file.
+KiCadRoutingTools and its Python dependencies are not committed. `npm run kicad:setup-router` downloads the pinned source and installs its dependencies into ignored local directories.

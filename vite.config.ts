@@ -55,10 +55,10 @@ function kicadRouteApiPlugin(): Plugin {
     configureServer(server) {
       const runKiCadRoute = () => {
         const root = server.config.root;
-        const script = path.join(root, "kicad-host-mvp", "scripts", "ai_route_with_kicad_routing_tools.ps1");
+        const script = path.join(root, "kicad-host-mvp", "scripts", "kicad_host.py");
         const child = spawn(
-          "powershell.exe",
-          ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", script],
+          process.platform === "win32" ? "python" : "python3",
+          [script, "route"],
           {
             cwd: root,
             windowsHide: true,
@@ -94,6 +94,18 @@ function kicadRouteApiPlugin(): Plugin {
       };
 
       const runCamExport = (caseId: string) => {
+        if (process.platform !== "win32") {
+          camState = {
+            status: "error",
+            code: null,
+            output: "CNC export is currently available on Windows only.",
+            startedAt: new Date().toISOString(),
+            finishedAt: new Date().toISOString(),
+            caseId,
+            manifest: null,
+          };
+          return;
+        }
         const root = server.config.root;
         const script = path.join(root, "kicad-host-mvp", "scripts", "export_cnc_toolpaths.ps1");
         const child = spawn(

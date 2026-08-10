@@ -17,5 +17,6 @@ output/
 tools/*.zip
 tools/wheels/
 tools/KiCadRoutingTools-main/
+tools/KiCadRoutingTools/
 tools/pcb2gcode*/
 tools/kicad-python-deps/

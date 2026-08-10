@@ -8,7 +8,7 @@ Turn a product brief into a modular PCB backplane concept, then inspect the modu
 
 ## What it does
 
-Blockless PCB Studio is a Windows-first prototype for building products from reviewed commercial modules instead of redesigning every circuit from scratch.
+Blockless PCB Studio is a browser-based prototype for building products from reviewed commercial modules instead of redesigning every circuit from scratch.
 
 The browser workspace can:
 
@@ -48,6 +48,16 @@ npm run dev -- --port 5173
 
 Open <http://127.0.0.1:5173>.
 
+### Docker Desktop
+
+For a browser-only demo on Windows or macOS:
+
+```powershell
+docker compose up --build
+```
+
+Open <http://127.0.0.1:5173>. Native KiCad and CAM actions are disabled in the container.
+
 The real CAD assets and generated demo outputs needed by the UI are already cached in the repository. To refresh public module assets from their upstream sources:
 
 ```powershell
@@ -65,7 +75,7 @@ Product brief
     -> interactive A* routing sketch
     -> BOM / checks / enclosure / export
 
-Optional Windows host flow
+Optional native host flow
     -> plan JSON
     -> KiCad board synthesis
     -> KiCadRoutingTools autorouting
@@ -84,11 +94,12 @@ The browser contains 13 curated briefs. Two have complete checked-in KiCad host 
 
 ## KiCad host flow
 
-The host scripts currently target Windows and KiCad 10. Real CNC export also requires `pcb2gcode.exe` on `PATH`, or its full path in `PCB2GCODE_EXE`. See [`kicad-host-mvp/README.md`](kicad-host-mvp/README.md) for the full setup.
+The host scripts support KiCad 10 on Windows and macOS. macOS support covers board generation, KiCadRoutingTools, DRC, rendering, and SVG export; CNC export remains Windows-only. See [`kicad-host-mvp/README.md`](kicad-host-mvp/README.md) for setup details.
 
-Install the optional autorouter dependencies into an ignored local directory once:
+Check that KiCad was detected, then download the pinned optional autorouter and its dependencies into ignored local directories:
 
 ```powershell
+npm run kicad:check
 npm run kicad:setup-router
 ```
 
@@ -128,7 +139,7 @@ npm run test:ui
 src/                    React workspace and deterministic planning engine
 public/assets/          Cached CAD, screenshots, KiCad SVGs, and CAM previews
 kicad-host-mvp/         KiCad plugin, plans, scripts, routed boards, and reports
-tools/                  Pinned KiCadRoutingTools source; local dependencies are ignored
+tools/                  Optional local KiCadRoutingTools checkout and dependencies (ignored)
 tests/                  Desktop and mobile Playwright flow
 docs/media/             README and release media
 ```
@@ -136,13 +147,13 @@ docs/media/             README and release media
 ## Known limitations
 
 - Only the two primary demo cases have a complete checked-in KiCad host pipeline.
-- KiCad paths and helper binaries are Windows-specific today.
+- Native KiCad automation is exercised locally on Windows. The cross-platform entry point and Web app run in macOS CI, but the full KiCad GUI/render pipeline still needs confirmation on a physical Mac.
 - The production JavaScript bundle is about 946 kB before gzip; Three.js and export code should eventually be split into lazy-loaded chunks.
 - Module metadata, pin maps, purchase links, and CAD provenance need continued human review as the registry grows.
 
 ## License and third-party work
 
-Blockless PCB Studio is licensed under the [Apache License 2.0](LICENSE). Bundled Adafruit CAD assets and KiCadRoutingTools remain under their MIT licenses; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+Blockless PCB Studio is licensed under the [Apache License 2.0](LICENSE). Bundled Adafruit CAD assets and the optional KiCadRoutingTools dependency remain under their MIT licenses; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 ## Safety
 
