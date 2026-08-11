@@ -94,7 +94,7 @@ export function buildHarvestManifest(selectedModules: SelectedModule[], locale: 
     mode: "offline-cache-first",
     note:
       locale === "en"
-        ? "Uses cached module metadata and local parametric 3D assets for a stable Windows-native workflow."
+        ? "Uses cached module metadata and local parametric 3D assets for a stable browser workflow."
         : "使用缓存模块元数据和本地参数化 3D 资产，保持 Windows 原生流程稳定。",
     modules: buildHarvestProfiles(selectedModules, locale),
   };

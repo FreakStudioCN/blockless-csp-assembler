@@ -1,15 +1,37 @@
 {
-  "name": "ai-pcb-module-backplane-mvp",
+  "name": "blockless-pcb-studio",
   "version": "0.1.0",
+  "description": "A modular PCB backplane planner with browser previews and an optional KiCad autorouting workflow.",
   "private": true,
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FreakStudioCN/blockless-pcb-studio.git"
+  },
+  "homepage": "https://github.com/FreakStudioCN/blockless-pcb-studio#readme",
+  "bugs": {
+    "url": "https://github.com/FreakStudioCN/blockless-pcb-studio/issues"
+  },
+  "keywords": [
+    "pcb",
+    "kicad",
+    "eda",
+    "autorouting",
+    "hardware"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "harvest:assets": "node scripts/harvest-real-cad.mjs",
-    "kicad:plans": "python kicad-host-mvp/scripts/generate_plan.py",
-    "kicad:validate": "python kicad-host-mvp/scripts/validate_plans.py",
-    "kicad:build": "powershell -NoProfile -ExecutionPolicy Bypass -File kicad-host-mvp/scripts/build_boards.ps1",
-    "kicad:ai-route": "powershell -NoProfile -ExecutionPolicy Bypass -File kicad-host-mvp/scripts/ai_route_with_kicad_routing_tools.ps1",
+    "kicad:plans": "node scripts/run-python.mjs kicad-host-mvp/scripts/generate_plan.py",
+    "kicad:validate": "node scripts/run-python.mjs kicad-host-mvp/scripts/validate_plans.py",
+    "kicad:check": "node scripts/run-python.mjs kicad-host-mvp/scripts/kicad_host.py check",
+    "kicad:setup-router": "node scripts/run-python.mjs kicad-host-mvp/scripts/kicad_host.py setup-router",
+    "kicad:build": "node scripts/run-python.mjs kicad-host-mvp/scripts/kicad_host.py build",
+    "kicad:ai-route": "node scripts/run-python.mjs kicad-host-mvp/scripts/kicad_host.py route",
     "build": "tsc -b && vite build",
     "typecheck": "tsc -b",
     "test:ui": "playwright test",

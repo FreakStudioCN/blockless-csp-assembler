@@ -1,95 +1,160 @@
-# AI Modular PCB Backplane MVP
+# Blockless PCB Studio
 
-Windows-native demo for the AI modular PCB product concept.
+Turn a product brief into a modular PCB backplane concept, then inspect the module plan, placement, routing, enclosure, BOM, checks, and manufacturing-oriented outputs in one workspace.
 
-[![Investor presentation](https://img.shields.io/badge/Investor_presentation-GitHub_Pages-43d69b?style=for-the-badge)](https://freakstudiocn.github.io/blockless-csp-assembler/presentation.html)
-[![Local HTML](https://img.shields.io/badge/Local-presentation.html-67c7ff?style=for-the-badge)](presentation.html)
+[Apache-2.0 licensed](LICENSE) · English UI by default · Chinese UI included
 
-The app demonstrates:
+![Interactive 3D workbench](docs/media/workbench-3d.png)
 
-- Natural-language prompt to module plan.
-- Selection from a verified commercial module registry.
-- Interface matching for Power, I2C, UART, and GND.
-- Constraint-based placement and visual routing.
-- Draggable PCB module placement with live rerouting.
-- JLC EDA-like 3D board preview with board thickness, copper tracks, vias, pads, silkscreen labels, and real STL assets when available.
-- Real public CAD asset harvesting from Adafruit CAD Parts, plus cached module review including source, extracted fields, confidence, and 3D strategy.
-- BOM, ERC/DRC/DFM report, module asset manifest, and JLC/EasyEDA-oriented export ZIP.
-- KiCad Host flow for real `.kicad_pcb` generation, KiCadRoutingTools autorouting, KiCad DRC, and KiCad 3D renders with STEP models.
+## What it does
 
-## Run
+Blockless PCB Studio is a browser-based prototype for building products from reviewed commercial modules instead of redesigning every circuit from scratch.
+
+The browser workspace can:
+
+- match a natural-language brief to one of 13 curated product cases;
+- select compatible ESP32, sensor, radio, power, display, storage, and connector modules;
+- generate deterministic placement constraints, keepouts, nets, and an editable routing sketch;
+- preview the board and a generated enclosure in 2D and 3D;
+- export a BOM, review report, module-asset manifest, OpenSCAD enclosure, and a structured JLC EDA-oriented ZIP;
+- display cached KiCad/KiCadRoutingTools outputs and CAM/CNC previews.
+
+The optional KiCad host flow goes further: it creates real `.kicad_pcb` files, routes copper with KiCadRoutingTools, runs KiCad DRC, exports layer SVGs, renders the board, and can generate pcb2gcode CNC toolpaths.
+
+![KiCad-rendered board](docs/media/kicad-render.png)
+
+## Important scope boundary
+
+This repository is an MVP, not a general-purpose or fabrication-ready AI PCB designer.
+
+- The current browser planner does not call an LLM. It scores the prompt against 13 curated cases and applies deterministic module, placement, and routing rules.
+- The interactive browser routes are design sketches. The KiCad host flow is the source of real copper geometry.
+- The JLC EDA export is a structured demo subset, not a native production project.
+- The checked-in `*-krt-drc.rpt` reports show 0 DRC violations and 0 unconnected pads for the two routed demos. The pre-routing reports intentionally show unresolved connectivity, and several checks in the routed reports are excluded. Always review the board, footprints, rules, and manufacturing outputs before fabrication.
+
+## Quick start
+
+Requirements:
+
+- Node.js 22 or newer
+- npm 10 or newer
 
 ```powershell
-npm install
-npm run harvest:assets
+git clone https://github.com/FreakStudioCN/blockless-pcb-studio.git
+cd blockless-pcb-studio
+npm ci
 npm run dev -- --port 5173
 ```
 
-Open:
+Open <http://127.0.0.1:5173>.
 
-```text
-http://127.0.0.1:5173
-```
+### Docker Desktop
 
-Run the Windows-native KiCad autorouting demo:
+For a browser-only demo on Windows or macOS:
 
 ```powershell
-npm run kicad:ai-route
+docker compose up --build
 ```
 
-This generates plan JSON, builds unrouted KiCad boards, calls KiCadRoutingTools, runs KiCad DRC, repairs 3D model paths for nested output folders, and renders PNG screenshots.
+Open <http://127.0.0.1:5173>. Native KiCad and CAM actions are disabled in the container.
 
-## Supported Demo Cases
+The real CAD assets and generated demo outputs needed by the UI are already cached in the repository. To refresh public module assets from their upstream sources:
 
-- Long-range battery-powered environment node: ESP32, LoRa, BME280, TP4056, battery connector, I2C expansion.
-- Desktop air quality monitor: ESP32, SGP30, OLED, USB-C 5V input, I2C expansion.
+```powershell
+npm run harvest:assets
+```
 
-## Current Scope
+## How it works
 
-This is an MVP demo. The EasyEDA export is a structured demo subset and must be reviewed in JLC EDA before manufacturing.
+```text
+Product brief
+    -> curated case matching
+    -> commercial module selection
+    -> interface and net matching
+    -> constraint-based placement
+    -> interactive A* routing sketch
+    -> BOM / checks / enclosure / export
 
-The current real-CAD cache includes STL/STEP/JPG or STEP assets for ESP32 Feather HUZZAH, BME280, MicroLipo Charger, Radio FeatherWing, and OLED. Browser rendering uses STL geometry plus local material approximation. The KiCad Host demo now defaults to color-coded WRL presentation models for video clarity, while the real STEP/STL paths remain in each plan for later asset verification.
+Optional native host flow
+    -> plan JSON
+    -> KiCad board synthesis
+    -> KiCadRoutingTools autorouting
+    -> KiCad DRC / SVG / 3D render
+    -> pcb2gcode CAM output
+```
 
-## KiCad Host Direction
+The AI boundary is deliberately narrow: language models can propose module choices and constraints, while deterministic tools own geometry, routing, and verification.
 
-The real EDA direction is in `kicad-host-mvp/`.
+## Demo cases
 
-The React app should be treated as the AI console and concept UI. The real board editing experience should move into KiCad:
+The browser contains 13 curated briefs. Two have complete checked-in KiCad host outputs:
 
-- KiCad PCB Editor hosts real footprint placement, routing, vias, DRC, zones, and 3D Viewer.
-- The AI layer produces `plans/*.json`, placement constraints, keepouts, net priorities, and routing parameters.
-- The KiCad Action Plugin reads a plan and creates a real KiCad board.
-- KiCadRoutingTools performs the current open-source autorouting step. This is a deterministic Rust A* autorouter, not a trained AI router.
-- Users can then drag modules, inspect ratsnest/DRC, edit routes, and open KiCad's real 3D preview.
+- Long-range battery-powered environmental node: ESP32, LoRa, BME280/SHT31, LiPo charging, battery connector, and I2C expansion.
+- Desktop air-quality monitor: ESP32, SGP30, BME280, OLED, USB-C power, and I2C expansion.
 
-Generate and validate KiCad-host plans:
+## KiCad host flow
+
+The host scripts support KiCad 10 on Windows and macOS. macOS support covers board generation, KiCadRoutingTools, DRC, rendering, and SVG export; CNC export remains Windows-only. See [`kicad-host-mvp/README.md`](kicad-host-mvp/README.md) for setup details.
+
+Check that KiCad was detected, then download the pinned optional autorouter and its dependencies into ignored local directories:
+
+```powershell
+npm run kicad:check
+npm run kicad:setup-router
+```
 
 ```powershell
 npm run kicad:plans
 npm run kicad:validate
+npm run kicad:build
 npm run kicad:ai-route
 ```
 
-Check whether KiCad is installed:
+Check the local installation first:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\kicad-host-mvp\scripts\check_kicad.ps1
 ```
 
-Install the KiCad plugin after installing KiCad:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\kicad-host-mvp\scripts\install_plugin.ps1
-```
-
 ## Verification
 
+The default checks do not require KiCad:
+
 ```powershell
-npm run typecheck
 npm run build
+npm run kicad:validate
 npm run test:ui
 ```
 
-`test:ui` opens the app in desktop and mobile Chromium, walks through the demo flow, captures the export page, and checks that the Three.js canvas has rendered nonblank pixels.
+To include the real KiCad + pcb2gcode action in the desktop end-to-end test:
 
-Current KiCad autorouter outputs are demo-ready but not production-clean: the two routed cases have 0 unconnected items, while DRC still reports rule violations that require layout/rule cleanup before fabrication.
+```powershell
+$env:RUN_KICAD_INTEGRATION = "1"
+npm run test:ui
+```
+
+## Repository map
+
+```text
+src/                    React workspace and deterministic planning engine
+public/assets/          Cached CAD, screenshots, KiCad SVGs, and CAM previews
+kicad-host-mvp/         KiCad plugin, plans, scripts, routed boards, and reports
+tools/                  Optional local KiCadRoutingTools checkout and dependencies (ignored)
+tests/                  Desktop and mobile Playwright flow
+docs/media/             README and release media
+```
+
+## Known limitations
+
+- Only the two primary demo cases have a complete checked-in KiCad host pipeline.
+- Native KiCad automation is exercised locally on Windows. The cross-platform entry point and Web app run in macOS CI, but the full KiCad GUI/render pipeline still needs confirmation on a physical Mac.
+- The production JavaScript bundle is about 946 kB before gzip; Three.js and export code should eventually be split into lazy-loaded chunks.
+- Module metadata, pin maps, purchase links, and CAD provenance need continued human review as the registry grows.
+
+## License and third-party work
+
+Blockless PCB Studio is licensed under the [Apache License 2.0](LICENSE). Bundled Adafruit CAD assets and the optional KiCadRoutingTools dependency remain under their MIT licenses; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+## Safety
+
+Do not send generated boards or CNC toolpaths directly to fabrication or a machine. Review electrical rules, footprints, clearances, stack-up, tool diameters, feeds, speeds, workholding, and machine limits first.

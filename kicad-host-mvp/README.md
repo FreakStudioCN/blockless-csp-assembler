@@ -13,15 +13,17 @@ Do not keep expanding the React/Three.js app into a fake EDA. KiCad should host 
 - Users drag footprints in KiCad.
 - KiCad shows ratsnest, DRC, copper layers, vias, zones, and 3D preview.
 - The plugin creates/updates module placements, board outline, tracks, vias, silkscreen notes, and constraints.
-- KiCadRoutingTools is the current Windows-native autorouting backend.
+- KiCadRoutingTools is the current autorouting backend.
 - Freerouting can be added later through DSN/SES when export/import is stable in the local KiCad toolchain.
 
 ## Requirements
 
-- KiCad 10 installed on Windows.
+- KiCad 10 installed on Windows or macOS.
+- Python 3 and Git available from the terminal.
 - KiCad's bundled Python and `pcbnew` module available inside KiCad.
-- KiCad CLI available at `C:\Program Files\KiCad\10.0\bin\kicad-cli.exe`.
-- KiCadRoutingTools v0.19.3 unpacked under `tools/KiCadRoutingTools-0.19.3`.
+- KiCad CLI available in the standard installation location, or configured with `KICAD_CLI` and `KICAD_PYTHON`.
+- `npm run kicad:setup-router` downloads a pinned KiCadRoutingTools revision into the ignored `tools/KiCadRoutingTools` directory.
+- For CNC export only: `pcb2gcode.exe` available on `PATH`, or its full path set in `PCB2GCODE_EXE`.
 
 This repo can generate plan JSON without KiCad. The plugin itself must run inside KiCad PCB Editor.
 
@@ -48,11 +50,15 @@ kicad-host-mvp/
 Generate/validate plans first:
 
 ```powershell
+npm run kicad:check
+npm run kicad:setup-router
 npm run kicad:plans
 npm run kicad:validate
 npm run kicad:build
 npm run kicad:ai-route
 ```
+
+On macOS, the scripts automatically inspect `/Applications/KiCad/KiCad.app`. CNC export is not supported there. If KiCad is installed elsewhere, set `KICAD_CLI` and `KICAD_PYTHON` to the two executable paths before running the commands.
 
 1. Install KiCad.
 2. Copy the plugin into KiCad's scripting plugin folder:
@@ -77,7 +83,7 @@ kicad-host-mvp/reports/*-krt-drc.rpt
 
 ## Current Scope
 
-This is a KiCad-hosted MVP, not a production PCB generator. It uses real KiCad board objects, KRT-generated copper, and color-coded WRL presentation models for clear video capture. The original STEP/STL model paths are still kept in the plans, but the default render favors visual distinction over strict CAD material fidelity. Current routed demo outputs have 0 unconnected items after KRT rescue, while KiCad DRC still reports violations that need cleanup before fabrication.
+This is a KiCad-hosted MVP, not a production PCB generator. It uses real KiCad board objects, KRT-generated copper, and color-coded WRL presentation models for clear video capture. The original STEP/STL model paths are still kept in the plans, but the default render favors visual distinction over strict CAD material fidelity. The checked-in KRT-routed reports have 0 DRC violations and 0 unconnected pads, with explicitly listed exclusions; the pre-routing reports still contain the expected unresolved connectivity.
 
 The AI boundary is intentional:
 

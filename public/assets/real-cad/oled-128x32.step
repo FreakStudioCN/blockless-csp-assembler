@@ -10,8 +10,7 @@ FILE_DESCRIPTION(
 
 FILE_NAME(
 /* name */ 
-'/Users/emac5k/Dropbox/Adafruit/3D/Adafruit_CAD_Parts/931 OLED 128x32 
-I2C/931 OLED 128x32 I2C.step',
+'oled-128x32.step',
 /* time_stamp */ '2018-07-07T16:11:39-04:00',
 /* author */ ('Adafruit'),
 /* organization */ (''),

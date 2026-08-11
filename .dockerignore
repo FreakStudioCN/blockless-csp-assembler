@@ -1,0 +1,15 @@
+.git
+.github
+node_modules
+dist
+test-results
+playwright-report
+artifacts
+output
+.venv*
+.codex
+.playwright-cli
+tools
+kicad-host-mvp
+docs
+*.log

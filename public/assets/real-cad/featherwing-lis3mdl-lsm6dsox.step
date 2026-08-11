@@ -10,8 +10,7 @@ FILE_DESCRIPTION(
 
 FILE_NAME(
 /* name */ 
-'/Users/purplemac/Dropbox/3D/Products/FeatherWing LIS3MDL LSM6DSOX/PCB
- Component.step',
+'featherwing-lis3mdl-lsm6dsox.step',
 /* time_stamp */ '2022-10-18T11:39:55-04:00',
 /* author */ (''),
 /* organization */ (''),

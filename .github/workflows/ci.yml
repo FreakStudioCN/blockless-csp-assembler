@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  web:
+    name: Web (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - windows-latest
+          - macos-latest
+
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm run kicad:validate
+      - run: node scripts/run-python.mjs kicad-host-mvp/scripts/kicad_host.py --help
+      - name: Exercise the macOS native entry point
+        if: runner.os == 'macOS'
+        run: KICAD_PYTHON="$(command -v python3)" KICAD_CLI="/usr/bin/true" npm run kicad:check
+      - run: npx playwright install chromium
+      - run: npm run test:ui

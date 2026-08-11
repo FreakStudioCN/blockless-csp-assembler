@@ -1103,7 +1103,7 @@ function Board3D({
     camera.position.set(0, 94, 78);
     camera.lookAt(0, 0, 0);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, THREE_MAX_PIXEL_RATIO));
     host.appendChild(renderer.domElement);
@@ -1538,7 +1538,7 @@ function Enclosure3D({
     camera.position.set(42, 55, 86);
     camera.lookAt(0, 8, 0);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, THREE_MAX_PIXEL_RATIO));
     host.appendChild(renderer.domElement);
@@ -3330,9 +3330,9 @@ function PromptView({
 
 export default function App() {
   const [locale, setLocale] = useState<Locale>(() => {
-    if (typeof window === "undefined") return "zh";
+    if (typeof window === "undefined") return "en";
     const stored = window.localStorage.getItem(LOCALE_STORAGE_KEY);
-    return stored === "en" ? "en" : "zh";
+    return stored === "zh" ? "zh" : "en";
   });
   const initialPrompt = locale === "en" ? defaultPromptEn : defaultPrompt;
   const [prompt, setPrompt] = useState(initialPrompt);

@@ -8,7 +8,8 @@ $ErrorActionPreference = "Stop"
 $repo = Resolve-Path (Join-Path $PSScriptRoot "..\..")
 $root = Join-Path $repo "kicad-host-mvp"
 $kicadCli = "C:\Program Files\KiCad\10.0\bin\kicad-cli.exe"
-$pcb2gcode = Join-Path $repo "tools\pcb2gcode-windows-2.4.0\pcb2gcode-2.4.0\.libs\pcb2gcode.exe"
+$pcb2gcodeCommand = Get-Command pcb2gcode.exe -ErrorAction SilentlyContinue
+$pcb2gcode = if ($env:PCB2GCODE_EXE) { $env:PCB2GCODE_EXE } elseif ($pcb2gcodeCommand) { $pcb2gcodeCommand.Source } else { $null }
 
 $sourcePcb = Join-Path $root "generated\external-router-output\$Case-krt-routed.kicad_pcb"
 if (-not (Test-Path -LiteralPath $sourcePcb)) {
@@ -18,8 +19,8 @@ if (-not (Test-Path -LiteralPath $sourcePcb)) {
 if (-not (Test-Path -LiteralPath $kicadCli)) {
   throw "KiCad CLI not found: $kicadCli"
 }
-if (-not (Test-Path -LiteralPath $pcb2gcode)) {
-  throw "pcb2gcode not found: $pcb2gcode"
+if (-not $pcb2gcode -or -not (Test-Path -LiteralPath $pcb2gcode)) {
+  throw "pcb2gcode not found. Add pcb2gcode.exe to PATH or set PCB2GCODE_EXE to its full path."
 }
 if (-not (Test-Path -LiteralPath $sourcePcb)) {
   throw "KiCad PCB not found for case '$Case': $sourcePcb"
