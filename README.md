@@ -6,6 +6,19 @@ Turn a product brief into a modular PCB backplane concept, then inspect the modu
 
 ![Interactive 3D workbench](docs/media/workbench-3d.png)
 
+## Investor presentation
+
+The roadshow/investor presentation is available as a static HTML deck:
+
+- Local file: [`presentation.html`](presentation.html)
+- GitHub Pages URL, after Pages is enabled: <https://freakstudiocn.github.io/blockless-csp-assembler/presentation.html>
+
+GitHub Pages setup for this repository:
+
+1. Open the repository on GitHub, then go to **Settings** -> **Pages**.
+2. Under **Build and deployment**, set **Source** to **Deploy from a branch**.
+3. Set **Branch** to `main` and the folder to `/(root)`, then click **Save**.
+
 ## What it does
 
 Blockless PCB Studio is a browser-based prototype for building products from reviewed commercial modules instead of redesigning every circuit from scratch.
@@ -40,8 +53,8 @@ Requirements:
 - npm 10 or newer
 
 ```powershell
-git clone https://github.com/FreakStudioCN/blockless-pcb-studio.git
-cd blockless-pcb-studio
+git clone https://github.com/FreakStudioCN/blockless-csp-assembler.git
+cd blockless-csp-assembler
 npm ci
 npm run dev -- --port 5173
 ```
