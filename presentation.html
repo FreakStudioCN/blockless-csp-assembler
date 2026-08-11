@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blockless PCB Studio | 投资人展示</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080a0f;
+  --bg2:#11151d;
+  --panel:#121821;
+  --panel2:#18202b;
+  --line:rgba(220,232,255,.16);
+  --line2:rgba(220,232,255,.28);
+  --text:#f4f7fb;
+  --muted:#a8b4c5;
+  --muted2:#728093;
+  --sky:#67c7ff;
+  --mint:#43d69b;
+  --copper:#f4a340;
+  --coral:#ff6b5f;
+  --violet:#a78bfa;
+  --paper:#f5efe2;
+  --shadow:0 24px 70px rgba(0,0,0,.38);
+}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:"Microsoft YaHei","PingFang SC","Segoe UI",system-ui,-apple-system,sans-serif}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px),
+    linear-gradient(135deg,rgba(103,199,255,.14),transparent 26%,rgba(244,163,64,.08) 62%,transparent);
+  background-size:34px 34px,34px 34px,auto;
+  opacity:.5;
+}
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:linear-gradient(90deg,rgba(8,10,15,.94) 0%,rgba(8,10,15,.58) 46%,rgba(8,10,15,.9) 100%);
+}
+button,a{font:inherit}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.deck{position:fixed;inset:0;z-index:10}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:34px 42px;opacity:0;transform:translateX(100%);transition:opacity .55s cubic-bezier(.77,0,.175,1),transform .55s cubic-bezier(.77,0,.175,1);pointer-events:none;overflow:hidden}
+.slide.active{opacity:1;transform:translateX(0);pointer-events:auto}
+.slide.exit{opacity:0;transform:translateX(-100%)}
+.slide-inner{width:min(1180px,calc(100vw - 110px));transform-origin:top center;transition:transform .24s ease,margin-top .24s ease}
+.top-ui{position:fixed;left:0;right:0;top:0;z-index:50;height:4px;background:rgba(255,255,255,.08)}
+#bar{height:100%;width:0;background:linear-gradient(90deg,var(--sky),var(--mint),var(--copper));transition:width .45s ease}
+#counter{position:fixed;top:20px;right:28px;z-index:55;font:12px/1 "Segoe UI",sans-serif;color:var(--muted);letter-spacing:3px}
+.nav{position:fixed;left:50%;bottom:24px;z-index:55;display:flex;gap:8px;transform:translateX(-50%)}
+.dot{width:8px;height:8px;border:0;border-radius:50%;background:rgba(255,255,255,.22);cursor:pointer}
+.dot.on{width:28px;border-radius:8px;background:var(--mint)}
+.arrow{position:fixed;top:50%;z-index:55;width:42px;height:42px;display:grid;place-items:center;border:1px solid var(--line2);border-radius:50%;background:rgba(18,24,33,.72);color:var(--text);cursor:pointer;backdrop-filter:blur(12px)}
+.arrow:hover{border-color:rgba(103,199,255,.62);background:rgba(28,39,53,.82)}
+#prev{left:22px}#next{right:22px}
+.eyebrow{margin-bottom:12px;color:var(--sky);font-size:12px;font-weight:900;letter-spacing:3px;text-transform:uppercase}
+.kicker{color:var(--muted);font-size:15px;line-height:1.7}
+h1{font-size:clamp(42px,6.5vw,86px);line-height:1.03;letter-spacing:0;font-weight:900}
+h2{font-size:clamp(28px,4vw,50px);line-height:1.12;letter-spacing:0;font-weight:900}
+h3{font-size:clamp(18px,2.1vw,26px);line-height:1.22;font-weight:900}
+p{font-size:16px;line-height:1.72;color:var(--muted)}
+.accent{color:var(--mint)}
+.copper{color:var(--copper)}
+.sky{color:var(--sky)}
+.coral{color:var(--coral)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:28px;align-items:center}
+.hero-grid.visual-heavy,.split.visual-heavy{grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr)}
+.hero-copy{display:grid;gap:18px}
+.headline-note{max-width:680px;color:#dce7f5;font-size:clamp(20px,2vw,29px);font-weight:800;line-height:1.38}
+.slide-lead{max-width:820px;color:#dce7f5;font-size:clamp(18px,1.7vw,24px);font-weight:800;line-height:1.45}
+.statement{border-left:4px solid var(--mint);padding-left:18px;color:var(--text);font-size:clamp(20px,2.1vw,30px);font-weight:900;line-height:1.35}
+.cta-row,.tag-row{display:flex;flex-wrap:wrap;gap:10px}
+.button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:0 16px;border:1px solid rgba(103,199,255,.38);border-radius:8px;background:rgba(103,199,255,.12);color:#e9f7ff;font-weight:900}
+.button.primary{border-color:rgba(67,214,155,.58);background:linear-gradient(135deg,rgba(67,214,155,.28),rgba(103,199,255,.2))}
+.pill{display:inline-flex;align-items:center;min-height:32px;padding:0 10px;border:1px solid var(--line);border-radius:8px;background:rgba(18,24,33,.78);color:#dce7f5;font-size:13px;font-weight:800}
+.visual-card{position:relative;overflow:hidden;border:1px solid var(--line2);border-radius:8px;background:rgba(18,24,33,.82);box-shadow:var(--shadow)}
+.visual-card img{width:100%;height:100%;object-fit:cover}
+.visual-card.contain img{object-fit:contain;background:#eef1ee}
+.hero-visual{height:min(62vh,620px)}
+.big-visual{height:min(68vh,660px)}
+.mid-visual{height:min(56vh,540px)}
+.visual-label{position:absolute;left:14px;bottom:14px;max-width:calc(100% - 28px);padding:9px 12px;border:1px solid rgba(255,255,255,.18);border-radius:8px;background:rgba(7,10,15,.76);color:#eef5ff;font-size:13px;font-weight:900;backdrop-filter:blur(10px)}
+.metric-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.metric{min-height:92px;border:1px solid var(--line);border-radius:8px;background:rgba(18,24,33,.78);padding:14px}
+.metric strong{display:block;margin-bottom:8px;color:var(--text);font-size:22px;line-height:1.1}
+.metric span{display:block;color:var(--muted);font-size:12px;line-height:1.45;font-weight:800}
+.split{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:24px;align-items:stretch}
+.copy-stack{display:grid;align-content:center;gap:18px}
+.panel-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.panel,.quote-panel{border:1px solid var(--line);border-radius:8px;background:linear-gradient(180deg,rgba(18,24,33,.88),rgba(13,18,25,.92));padding:18px;box-shadow:0 16px 40px rgba(0,0,0,.2)}
+.panel b{display:block;margin-bottom:10px;color:var(--text);font-size:20px;line-height:1.25}
+.panel p{font-size:14px}
+.quote-panel{display:grid;align-content:center;gap:16px;min-height:360px}
+.quote-panel strong{font-size:clamp(24px,3.3vw,44px);line-height:1.15}
+.quote-panel span{color:var(--muted);font-size:15px;line-height:1.65}
+.flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.flow-step{position:relative;min-height:170px;border:1px solid var(--line);border-radius:8px;background:rgba(18,24,33,.82);padding:16px}
+.flow-step::after{content:"";position:absolute;right:-7px;top:50%;width:14px;height:2px;background:var(--copper)}
+.flow-step:last-child::after{display:none}
+.flow-step small{display:block;margin-bottom:18px;color:var(--copper);font-size:11px;font-weight:900;letter-spacing:2px}
+.flow-step b{display:block;margin-bottom:10px;color:var(--text);font-size:20px;line-height:1.2}
+.flow-step p{font-size:13px;line-height:1.55}
+.gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.shot{min-height:250px}
+.shot.wide{grid-column:span 2}
+.shot img{object-position:top}
+.caption-block{display:grid;gap:8px;margin-bottom:18px}
+.caption-block p{max-width:860px}
+.user-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.user-card{min-height:190px;border:1px solid var(--line);border-radius:8px;background:rgba(18,24,33,.82);padding:16px;display:grid;align-content:start;gap:10px}
+.user-card .num{width:34px;height:34px;display:grid;place-items:center;border-radius:8px;background:rgba(244,163,64,.16);color:var(--copper);font-weight:900}
+.scenario-grid{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:20px;align-items:stretch}
+.scenario-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.scenario{border:1px solid var(--line);border-radius:8px;background:rgba(18,24,33,.84);padding:16px}
+.scenario b{display:block;margin-bottom:8px;color:#fff;font-size:18px}
+.roadmap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.road{min-height:320px;border:1px solid var(--line);border-radius:8px;background:linear-gradient(180deg,rgba(18,24,33,.9),rgba(12,17,24,.94));padding:20px}
+.road small{display:block;margin-bottom:14px;color:var(--mint);font-size:12px;font-weight:900;letter-spacing:2px}
+.road h3{margin-bottom:14px}
+.road p{font-size:14px}
+.road ul{display:grid;gap:9px;margin-top:16px;list-style:none}
+.road li{position:relative;padding-left:16px;color:#c4cfde;font-size:14px;line-height:1.5}
+.road li::before{content:"";position:absolute;left:0;top:.72em;width:6px;height:6px;border-radius:50%;background:var(--copper)}
+.video-grid{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:24px;align-items:center}
+.video-frame{height:min(60vh,560px);border:1px solid var(--line2);border-radius:8px;overflow:hidden;background:#06080c;box-shadow:var(--shadow)}
+.video-frame iframe{width:100%;height:100%;border:0;display:block}
+.video-frame.poster{position:relative;display:block}
+.video-frame.poster img{width:100%;height:100%;object-fit:cover;filter:saturate(.95) brightness(.66)}
+.play-circle{position:absolute;left:50%;top:50%;width:84px;height:84px;display:grid;place-items:center;transform:translate(-50%,-50%);border:1px solid rgba(255,255,255,.28);border-radius:50%;background:rgba(8,10,15,.72);color:#fff;font-size:44px;line-height:1;box-shadow:0 18px 42px rgba(0,0,0,.34);backdrop-filter:blur(10px)}
+.final-mark{display:grid;gap:24px;text-align:center;place-items:center}
+.final-mark h2{max-width:900px;font-size:clamp(36px,5.6vw,76px)}
+.final-mark p{max-width:760px;font-size:20px;color:#dbe5f2}
+.final-grid{display:grid;grid-template-columns:minmax(0,.74fr) minmax(0,1.26fr);gap:24px;align-items:center}
+.final-copy{display:grid;gap:20px}
+.final-copy h2{font-size:clamp(34px,5vw,68px)}
+.final-copy p{color:#dbe5f2;font-size:20px;line-height:1.55}
+.final-visual{display:grid;gap:12px}
+.final-main{height:min(50vh,500px)}
+.final-strip{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.final-strip .visual-card{height:min(18vh,170px)}
+.thin-line{width:min(560px,70vw);height:2px;background:linear-gradient(90deg,transparent,var(--sky),var(--mint),var(--copper),transparent)}
+.image-stack{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.image-stack .visual-card{height:220px}
+.duo-visual{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.duo-visual .visual-card{height:min(58vh,560px)}
+.trio-visual{display:grid;grid-template-columns:1.2fr .9fr .9fr;gap:12px}
+.trio-visual .visual-card{height:min(52vh,500px)}
+.collage-visual{display:grid;grid-template-columns:1.2fr .8fr;grid-template-rows:1fr 1fr;gap:12px;height:min(66vh,640px)}
+.collage-visual .visual-card{height:100%}
+.collage-visual .visual-card:first-child{grid-row:span 2}
+.logo-lockup{display:flex;align-items:center;gap:12px}
+.mark{width:48px;height:48px;border-radius:8px;display:grid;place-items:center;background:linear-gradient(135deg,var(--mint),var(--sky));color:#071017;font-weight:900;font-size:24px}
+.logo-lockup span{display:block;color:var(--muted);font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase}
+.logo-lockup strong{display:block;color:#fff;font-size:22px}
+.asset-wall{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.asset-wall .visual-card{height:230px}
+.asset-wall .visual-card:first-child{grid-column:span 2;height:330px}
+.pipeline-visual{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;align-items:stretch}
+.pipe-card{position:relative;min-height:240px;border:1px solid var(--line);border-radius:8px;background:rgba(18,24,33,.86);padding:18px;display:grid;align-content:center;gap:12px;text-align:center}
+.pipe-card::after{content:"";position:absolute;right:-10px;top:50%;width:10px;height:2px;background:var(--mint)}
+.pipe-card:last-child::after{display:none}
+.pipe-card small{color:var(--copper);font-size:11px;font-weight:900;letter-spacing:2px}
+.pipe-card b{color:#fff;font-size:18px;line-height:1.22}
+.pipe-card p{font-size:13px;line-height:1.45}
+.file-stack{display:grid;gap:8px}
+.file-token{border:1px solid rgba(103,199,255,.28);border-radius:7px;background:rgba(103,199,255,.1);padding:9px;color:#eaf7ff;font:800 13px/1.25 "Segoe UI",sans-serif}
+.toolpath-board{position:relative;height:min(64vh,600px);min-height:430px;border:1px solid rgba(67,214,155,.32);border-radius:8px;background:linear-gradient(135deg,#245642,#173a31);overflow:hidden;box-shadow:inset 0 0 0 2px rgba(255,255,255,.05),var(--shadow)}
+.toolpath-board::before{content:"";position:absolute;inset:34px;border:2px solid rgba(244,163,64,.8);border-radius:8px}
+.copper-zone{position:absolute;border-radius:18px;background:rgba(244,163,64,.18);filter:blur(.2px)}
+.copper-zone.a{left:9%;top:16%;width:35%;height:24%}
+.copper-zone.b{right:12%;top:22%;width:30%;height:36%}
+.copper-zone.c{left:22%;bottom:15%;width:52%;height:22%}
+.route-line{position:absolute;height:6px;border-radius:999px;background:#7df0b7;box-shadow:0 0 0 4px rgba(22,35,60,.85),0 0 18px rgba(125,240,183,.45);transform-origin:left center}
+.route-line.r1{left:18%;top:30%;width:46%;transform:rotate(0deg)}
+.route-line.r2{left:28%;top:44%;width:34%;transform:rotate(22deg)}
+.route-line.r3{left:22%;bottom:31%;width:50%;transform:rotate(0deg)}
+.route-line.r4{right:17%;top:38%;width:26%;transform:rotate(90deg)}
+.drill-dot{position:absolute;width:18px;height:18px;border:3px solid #f5d07a;border-radius:50%;background:#0d1620;box-shadow:0 0 14px rgba(245,208,122,.4)}
+.drill-dot.d1{left:16%;top:24%}.drill-dot.d2{right:18%;top:24%}.drill-dot.d3{left:16%;bottom:24%}.drill-dot.d4{right:18%;bottom:24%}
+.diagram-label{position:absolute;left:18px;bottom:18px;padding:9px 12px;border-radius:8px;background:rgba(7,10,15,.72);border:1px solid rgba(255,255,255,.18);color:#eef5ff;font-size:13px;font-weight:900}
+.source-note{margin-top:10px;color:var(--muted2);font-size:11px;line-height:1.45}
+@media(max-width:980px){
+  .slide{padding:24px 20px}
+  .slide-inner{width:calc(100vw - 58px)}
+  #counter{right:18px}
+  .arrow{width:36px;height:36px}
+  #prev{left:10px}#next{right:10px}
+  .hero-grid,.split,.scenario-grid,.video-grid,.final-grid{grid-template-columns:1fr}
+  .hero-grid.visual-heavy,.split.visual-heavy{grid-template-columns:1fr}
+  .hero-visual{height:38vh}
+  .big-visual{height:42vh}
+  .mid-visual{height:36vh}
+  .metric-strip,.panel-grid,.gallery,.user-grid,.roadmap,.flow,.pipeline-visual{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .shot.wide{grid-column:span 1}
+  .flow-step::after{display:none}
+  .asset-wall .visual-card:first-child{height:250px}
+  .duo-visual,.trio-visual,.collage-visual{grid-template-columns:1fr 1fr;height:auto}
+  .duo-visual .visual-card,.trio-visual .visual-card,.collage-visual .visual-card{height:220px}
+  .collage-visual .visual-card:first-child{grid-row:auto}
+  .video-frame{height:36vh;min-height:260px}
+  .final-main{height:34vh}
+  .final-strip .visual-card{height:180px}
+  .pipe-card{min-height:135px}
+}
+@media(max-width:640px){
+  h1{font-size:40px}
+  h2{font-size:30px}
+  .metric-strip,.panel-grid,.gallery,.user-grid,.roadmap,.flow,.scenario-list,.image-stack,.asset-wall,.pipeline-visual{grid-template-columns:1fr}
+  .pipe-card::after{display:none}
+  .toolpath-board{min-height:300px}
+  .video-frame{height:250px}
+  .final-main{height:250px}
+  .final-strip{grid-template-columns:1fr}
+  .final-strip .visual-card{height:150px}
+  .asset-wall .visual-card:first-child{grid-column:auto}
+  .shot,.asset-wall .visual-card,.asset-wall .visual-card:first-child,.image-stack .visual-card{height:180px}
+  .duo-visual,.trio-visual,.collage-visual{grid-template-columns:1fr}
+  .duo-visual .visual-card,.trio-visual .visual-card,.collage-visual .visual-card{height:170px}
+  .hero-visual{height:30vh}
+  .panel,.quote-panel,.road,.user-card,.scenario,.flow-step{padding:14px}
+  .nav{bottom:14px}
+}
+</style>
+</head>
+<body>
+<div class="top-ui"><div id="bar"></div></div>
+<div id="counter"><span id="cur">01</span> / <span id="total">12</span></div>
+<button class="arrow" id="prev" aria-label="上一页">‹</button>
+<button class="arrow" id="next" aria-label="下一页">›</button>
+<div class="nav" id="dots"></div>
+
+<main class="deck" id="deck">
+  <section class="slide active">
+    <div class="slide-inner">
+      <div class="hero-grid visual-heavy">
+        <div class="hero-copy">
+          <div class="logo-lockup">
+            <div class="mark">B</div>
+            <div><span>Investor Demo</span><strong>Blockless PCB Studio</strong></div>
+          </div>
+          <h1>把硬件 Demo 推到可制作阶段</h1>
+          <p class="headline-note">基于成熟电子模块，帮助创客、教学团队和小批量项目更快得到可审阅、可生成、可导出的硬件方案。</p>
+          <div class="statement">不是承诺 AI 从零替代 EDA，而是把模块组合、产品验证和制造输出连成一条更短的路径。</div>
+          <div class="cta-row">
+            <a class="button primary" href="https://www.youtube.com/watch?v=UYmW1R2ZMPo" target="_blank" rel="noreferrer">观看演示视频</a>
+            <span class="button">模块化 PCB / 3D / CNC 输出</span>
+          </div>
+        </div>
+        <figure class="visual-card big-visual contain">
+          <img src="docs/static/blockless-pcb/hero-enclosure-workbench.png" alt="Blockless PCB Studio 外壳生成工作台">
+          <figcaption class="visual-label">从底板到外壳：投资人可以直接看到硬件 Demo 的最终形态</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="hero-grid visual-heavy">
+        <div class="hero-copy">
+          <div class="eyebrow">Core Judgment</div>
+          <h2>硬件难点不在“有没有芯片”，而在工程整合</h2>
+          <p class="slide-lead">现实中的大量创客硬件、教学套件、行业 Demo 和小批量设备，本来就是由成熟模块拼出来的。</p>
+          <p>Blockless 的判断是：先把模块选型、接口匹配、布局审阅、外壳配合和导出链路做成可视化流程。</p>
+        </div>
+        <figure class="visual-card big-visual">
+          <img src="docs/static/blockless-pcb/public-library-workbench.png" alt="Blockless PCB Studio 公开项目库">
+          <figcaption class="visual-label">项目库说明：同一套流程可以服务多类硬件 Demo 和教学项目</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="split visual-heavy">
+        <div class="hero-copy">
+          <div class="eyebrow">Module Foundation</div>
+          <h2>以成熟模块为基础，而不是从零发明每一块电路</h2>
+          <p class="slide-lead">ESP32、LoRa、传感器、电源、显示和接口模块已经被市场反复验证。平台价值在于把它们组合成更像产品的系统。</p>
+          <p>这条路线更适合教学、创客、小批量验证和快速 Demo，因为它降低了第一次硬件交付的经验门槛。</p>
+        </div>
+        <figure class="visual-card big-visual">
+          <img src="docs/static/blockless-pcb/module-review-workbench.png" alt="模块资料审阅工作台">
+          <figcaption class="visual-label">模块数据底座：尺寸、接口、资料和 3D 状态都需要可审阅</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="caption-block">
+        <div class="eyebrow">Product Flow</div>
+        <h2>一句话需求到可导出文件，路演只讲 5 步</h2>
+        <p class="slide-lead">Prompt → Plan → Review → Generate → Export。用户先得到可理解的方案，再看板卡、外壳和制造输出。</p>
+      </div>
+      <div class="pipeline-visual">
+        <div class="pipe-card"><small>01</small><b>自然语言输入</b><p>说清楚目标装置和使用场景。</p></div>
+        <div class="pipe-card"><small>02</small><b>模块组合方案</b><p>选择成熟模块和连接关系。</p></div>
+        <div class="pipe-card"><small>03</small><b>用户审阅</b><p>看模块、方向、尺寸和约束。</p></div>
+        <div class="pipe-card"><small>04</small><b>生成底板</b><p>输出布局、布线和 3D 形态。</p></div>
+        <div class="pipe-card"><small>05</small><b>制造导出</b><p>BOM、工程包、外壳和 CNC 文件。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="split visual-heavy">
+        <div class="hero-copy">
+          <div class="eyebrow">3D + Enclosure</div>
+          <h2>板卡和外壳必须一起看，Demo 才像真实产品</h2>
+          <p class="slide-lead">对教学和创客来说，板子不是终点。接口、外壳开孔、安装柱、传感器露出位置，都会影响 Demo 能不能讲清楚。</p>
+          <p>所以原型里不只看 PCB，还看 3D 板卡、外壳 CAD 和装配空间。</p>
+        </div>
+        <div class="duo-visual">
+          <figure class="visual-card contain"><img src="docs/static/blockless-pcb/interactive-board-workbench.png" alt="交互式 3D 板卡预览"><figcaption class="visual-label">交互式 3D 板卡</figcaption></figure>
+          <figure class="visual-card contain"><img src="docs/static/blockless-pcb/hero-enclosure-workbench.png" alt="外壳生成预览"><figcaption class="visual-label">外壳生成与开孔</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="split visual-heavy">
+        <div class="copy-stack">
+          <div class="eyebrow">CNC Application</div>
+          <h2>PCB 转 CNC 文件，是平台输出能力的一部分</h2>
+          <p class="slide-lead">在教学、培训和海外创客场景里，用户经常不想等工厂打样，只想用桌面雕刻机先做出一块可验证的板。</p>
+          <p>这里的核心不是重新设计 PCB，而是把已有 PCB / Gerber 文件转成机器能跑的刀路、钻孔和轮廓文件。</p>
+        </div>
+        <div class="toolpath-board" aria-label="刀路示意图">
+          <div class="copper-zone a"></div><div class="copper-zone b"></div><div class="copper-zone c"></div>
+          <div class="route-line r1"></div><div class="route-line r2"></div><div class="route-line r3"></div><div class="route-line r4"></div>
+          <div class="drill-dot d1"></div><div class="drill-dot d2"></div><div class="drill-dot d3"></div><div class="drill-dot d4"></div>
+          <div class="diagram-label">绿色线：刀具行走路径；圆点：钻孔位置；外框：切割轮廓</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="hero-grid visual-heavy">
+        <div class="hero-copy">
+          <div class="eyebrow">PCB To Machine Files</div>
+          <h2>输入 PCB 文件，拿到雕刻机制作文件</h2>
+          <p class="slide-lead">导入后可以看层、遮罩、追踪路径、刀路、钻孔和 G-code。这个功能尤其适合课堂、实验室、创客空间和海外小团队。</p>
+        </div>
+        <figure class="visual-card big-visual">
+          <img src="docs/static/blockless-pcb/manufacturing-chain-workbench.png" alt="PCB to CNC toolpaths">
+          <figcaption class="visual-label">CNC 输出：top / bottom / drill / outline / G-code</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="scenario-grid">
+        <div class="copy-stack">
+          <div class="eyebrow">Teaching / Training</div>
+          <h2>教学场景：从“看文件”变成“做实物”</h2>
+          <p class="slide-lead">老师发一份 PCB 文件，学生在课堂或实验室里完成导入、预览、生成、制作。错误可以当场复盘，学习反馈更快。</p>
+          <div class="tag-row">
+            <span class="pill">课程演示</span><span class="pill">学生练习</span><span class="pill">低成本耗材</span><span class="pill">快速复盘</span>
+          </div>
+        </div>
+        <div class="duo-visual">
+          <figure class="visual-card contain"><img src="docs/static/blockless-pcb/commons-cnc-milling-machine.jpg" alt="桌面 CNC 设备"><figcaption class="visual-label">课堂可用的桌面 CNC</figcaption></figure>
+          <figure class="visual-card contain"><img src="docs/static/blockless-pcb/commons-milled-pcb.jpg" alt="铣削 PCB"><figcaption class="visual-label">铣削出的 PCB 实物</figcaption></figure>
+        </div>
+      </div>
+      <p class="source-note">概念图片来自 Wikimedia Commons，用于解释 PCB 铣削和 CNC 制作场景。</p>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="scenario-grid">
+        <div class="copy-stack">
+          <div class="eyebrow">Overseas Maker Scenario</div>
+          <h2>海外创客：本地先做一版，再决定是否打样</h2>
+          <p class="slide-lead">海外用户常遇到打样周期、邮费和供应链不稳定。Blockless 让他们先在本地创客空间完成 Demo 验证，确认价值后再进入工厂打样。</p>
+          <div class="tag-row">
+            <span class="pill">开源项目复刻</span>
+            <span class="pill">机器人 / 传感器 Demo</span>
+            <span class="pill">Makerspace 课程</span>
+            <span class="pill">低预算创业验证</span>
+          </div>
+        </div>
+        <div class="collage-visual">
+          <figure class="visual-card"><img src="docs/static/blockless-pcb/public-library-workbench.png" alt="项目库"><figcaption class="visual-label">先从可复用项目开始</figcaption></figure>
+          <figure class="visual-card contain"><img src="docs/static/blockless-pcb/routing-workbench.png" alt="PCB 生成与布线预览"><figcaption class="visual-label">查看板卡输出</figcaption></figure>
+          <figure class="visual-card contain"><img src="docs/static/blockless-pcb/manufacturing-chain-workbench.png" alt="CNC 制作文件"><figcaption class="visual-label">本地制作文件</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="split visual-heavy">
+        <div class="hero-copy">
+          <div class="eyebrow">Prototype Evidence</div>
+          <h2>当前页面必须像“可演示产品”，不是概念 PPT</h2>
+          <p class="slide-lead">展示页把项目库、模块审阅、3D 板卡、外壳、布线和 CNC 输出都放出来，让投资人看到连续链路。</p>
+          <p>叙事重点：先做好少量高质量案例，再把模块库、导出链路和制作场景逐步扩展。</p>
+        </div>
+        <div class="collage-visual">
+          <figure class="visual-card"><img src="docs/static/blockless-pcb/project-library-covers.png" alt="项目库封面"><figcaption class="visual-label">场景项目库</figcaption></figure>
+          <figure class="visual-card contain"><img src="docs/static/blockless-pcb/module-review-workbench.png" alt="模块审阅"><figcaption class="visual-label">模块审阅</figcaption></figure>
+          <figure class="visual-card contain"><img src="docs/static/blockless-pcb/hero-enclosure-workbench.png" alt="外壳生成"><figcaption class="visual-label">外壳生成</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="video-grid">
+        <div class="copy-stack">
+          <div class="eyebrow">Demo Video</div>
+          <h2>演示视频：从项目工作台到制造输出</h2>
+          <p class="slide-lead">视频用于路演时补充动态证据：项目库、板卡预览、外壳生成，以及 PCB 转 CNC 制作文件。</p>
+          <div class="cta-row">
+            <a class="button primary" href="https://www.youtube.com/watch?v=UYmW1R2ZMPo" target="_blank" rel="noreferrer">在 YouTube 打开</a>
+            <span class="button">GitHub Pages 展示页</span>
+          </div>
+        </div>
+        <a class="video-frame poster" href="https://www.youtube.com/watch?v=UYmW1R2ZMPo" target="_blank" rel="noreferrer" aria-label="打开 Blockless PCB Studio 演示视频">
+          <img src="docs/static/blockless-pcb/manufacturing-chain-workbench.png" alt="Blockless PCB Studio 演示视频海报">
+          <span class="play-circle">›</span>
+          <span class="visual-label">点击打开 YouTube 演示视频</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="final-grid">
+        <div class="final-copy">
+          <div class="logo-lockup">
+            <div class="mark">B</div>
+            <div><span>Blockless PCB Studio</span><strong>Prompt to Product Files</strong></div>
+          </div>
+          <h2>让硬件 Demo 看得见、审得清、做得出。</h2>
+          <div class="thin-line"></div>
+          <p>CNC 制作文件是教学和海外创客的切入场景；更大的目标，是把成熟模块组合成可交付硬件 Demo 的平台。</p>
+        </div>
+        <div class="final-visual">
+          <figure class="visual-card final-main contain">
+            <img src="docs/static/blockless-pcb/hero-enclosure-workbench.png" alt="Blockless PCB Studio 外壳生成">
+            <figcaption class="visual-label">最终目标：让板卡、外壳和制造输出同时可见</figcaption>
+          </figure>
+          <div class="final-strip">
+            <figure class="visual-card contain">
+              <img src="docs/static/blockless-pcb/manufacturing-chain-workbench.png" alt="CNC 制作文件输出">
+              <figcaption class="visual-label">CNC 输出</figcaption>
+            </figure>
+            <figure class="visual-card contain">
+              <img src="docs/static/blockless-pcb/module-review-workbench.png" alt="模块审阅">
+              <figcaption class="visual-label">模块审阅</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+const slides=[...document.querySelectorAll(".slide")];
+const dotsHost=document.getElementById("dots");
+const cur=document.getElementById("cur");
+const total=document.getElementById("total");
+const bar=document.getElementById("bar");
+let index=0;
+total.textContent=String(slides.length).padStart(2,"0");
+slides.forEach((_,i)=>{
+  const dot=document.createElement("button");
+  dot.className="dot";
+  dot.type="button";
+  dot.setAttribute("aria-label",`第 ${i+1} 页`);
+  dot.addEventListener("click",()=>go(i));
+  dotsHost.appendChild(dot);
+});
+const dots=[...document.querySelectorAll(".dot")];
+function scaleSlide(slide){
+  const inner=slide.querySelector(".slide-inner");
+  if(!inner)return;
+  inner.style.transform="scale(1)";
+  inner.style.marginTop="0";
+  const margin=window.innerWidth<760?28:88;
+  const maxW=window.innerWidth-margin;
+  const chrome=window.innerWidth<760?72:96;
+  const maxH=window.innerHeight-chrome;
+  const scale=Math.min(1,maxW/inner.scrollWidth,maxH/inner.scrollHeight);
+  const minScale=window.innerWidth<760?.42:.62;
+  const applied=Math.max(minScale,scale);
+  inner.style.transform=`scale(${applied})`;
+  inner.style.marginTop=`${chrome/2+Math.max(0,(maxH-inner.scrollHeight*applied)/2)}px`;
+}
+function update(){
+  slides.forEach((slide,i)=>{
+    slide.classList.remove("active","exit");
+    if(i===index)slide.classList.add("active");
+    if(i<index)slide.classList.add("exit");
+  });
+  dots.forEach((dot,i)=>dot.classList.toggle("on",i===index));
+  cur.textContent=String(index+1).padStart(2,"0");
+  bar.style.width=`${((index+1)/slides.length)*100}%`;
+  window.setTimeout(()=>scaleSlide(slides[index]),40);
+}
+function go(next){
+  if(next<0||next>=slides.length)return;
+  index=next;
+  update();
+}
+function next(){go(Math.min(index+1,slides.length-1))}
+function prev(){go(Math.max(index-1,0))}
+document.getElementById("next").addEventListener("click",next);
+document.getElementById("prev").addEventListener("click",prev);
+document.addEventListener("keydown",(event)=>{
+  if(event.key==="ArrowRight"||event.key===" "){event.preventDefault();next()}
+  if(event.key==="ArrowLeft"){event.preventDefault();prev()}
+  if(event.key==="Home")go(0);
+  if(event.key==="End")go(slides.length-1);
+});
+let touchX=0;
+document.addEventListener("touchstart",(event)=>{touchX=event.touches[0].clientX},{passive:true});
+document.addEventListener("touchend",(event)=>{
+  const dx=event.changedTouches[0].clientX-touchX;
+  if(Math.abs(dx)>50)(dx<0?next:prev)();
+},{passive:true});
+window.addEventListener("resize",()=>scaleSlide(slides[index]));
+update();
+</script>
+</body>
+</html>

@@ -2,6 +2,9 @@
 
 Windows-native demo for the AI modular PCB product concept.
 
+[![Investor presentation](https://img.shields.io/badge/Investor_presentation-GitHub_Pages-43d69b?style=for-the-badge)](https://freakstudiocn.github.io/blockless-csp-assembler/presentation.html)
+[![Local HTML](https://img.shields.io/badge/Local-presentation.html-67c7ff?style=for-the-badge)](presentation.html)
+
 The app demonstrates:
 
 - Natural-language prompt to module plan.
