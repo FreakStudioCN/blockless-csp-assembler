@@ -2,6 +2,9 @@
 
 Turn a product brief into a modular PCB backplane concept, then inspect the module plan, placement, routing, enclosure, BOM, checks, and manufacturing-oriented outputs in one workspace.
 
+[![Investor presentation](https://img.shields.io/badge/Investor_presentation-GitHub_Pages-43d69b?style=for-the-badge)](https://freakstudiocn.github.io/blockless-csp-assembler/presentation.html)
+[![Backup link](https://img.shields.io/badge/Backup-htmlpreview-555555?style=for-the-badge)](https://htmlpreview.github.io/?https://github.com/FreakStudioCN/blockless-csp-assembler/blob/main/presentation.html)
+
 [Apache-2.0 licensed](LICENSE) · English UI by default · Chinese UI included
 
 ![Interactive 3D workbench](docs/media/workbench-3d.png)
@@ -10,8 +13,9 @@ Turn a product brief into a modular PCB backplane concept, then inspect the modu
 
 The roadshow/investor presentation is available as a static HTML deck:
 
+- GitHub Pages: <https://freakstudiocn.github.io/blockless-csp-assembler/presentation.html>
+- Backup preview: <https://htmlpreview.github.io/?https://github.com/FreakStudioCN/blockless-csp-assembler/blob/main/presentation.html>
 - Local file: [`presentation.html`](presentation.html)
-- GitHub Pages URL, after Pages is enabled: <https://freakstudiocn.github.io/blockless-csp-assembler/presentation.html>
 
 GitHub Pages setup for this repository:
 
