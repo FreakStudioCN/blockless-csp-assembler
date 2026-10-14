@@ -46,6 +46,7 @@ This repository is an MVP, not a general-purpose or fabrication-ready AI PCB des
 
 - The current browser planner does not call an LLM. It scores the prompt against 13 curated cases and applies deterministic module, placement, and routing rules.
 - The interactive browser routes are design sketches. The KiCad host flow is the source of real copper geometry.
+- Browser-side net, trace-width, and clearance entries describe design intent or preview geometry; they are not KiCad ERC/DRC results. KiCad ERC/DRC remains authoritative.
 - The JLC EDA export is a structured demo subset, not a native production project.
 - The checked-in `*-krt-drc.rpt` reports show 0 DRC violations and 0 unconnected pads for the two routed demos. The pre-routing reports intentionally show unresolved connectivity, and several checks in the routed reports are excluded. Always review the board, footprints, rules, and manufacturing outputs before fabrication.
 

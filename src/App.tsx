@@ -3189,9 +3189,9 @@ function ExportView({ design, locale }: { design: BoardDesign; locale: Locale })
           <button onClick={() => downloadText("bom.csv", bomCsv, "text/csv")}>BOM CSV</button>
           <button onClick={() => downloadText("report.json", reportJson, "application/json")}>{t("检查报告", "Check report")}</button>
         </div>
-        <div className="checks">
-          <CheckList title="ERC" items={design.report.erc} />
-          <CheckList title="DRC" items={design.report.drc} />
+        <div className="checks"><p className="scope-note">{t("浏览器检查仅验证设计意图和预览几何；制造前必须以 KiCad ERC/DRC 为准。", "Browser checks cover design intent and preview geometry only. KiCad ERC/DRC is authoritative before fabrication.")}</p>
+          <CheckList title={t("设计意图 / 网络表", "Design intent / netlist")} items={design.report.erc} />
+          <CheckList title={t("浏览器几何 / 走线意图", "Browser geometry / routing intent")} items={design.report.drc} />
           <CheckList title="DFM" items={design.report.dfm} />
         </div>
       </section>

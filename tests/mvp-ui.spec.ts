@@ -80,6 +80,7 @@ test("workspace renders planning, generation progress, board output, CNC export,
   await exportButton.scrollIntoViewIfNeeded();
   await exportButton.click({ force: true });
   await expect(page.getByRole("heading", { name: "3D board preview" })).toBeVisible();
+  await expect(page.getByText("KiCad ERC/DRC is authoritative before fabrication.", { exact: false })).toBeVisible();
   await expect(page.locator(".three-host canvas")).toBeVisible();
   await page.waitForTimeout(500);
   expect(await sampledCanvasHasPaint(page)).toBe(true);

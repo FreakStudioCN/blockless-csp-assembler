@@ -118,31 +118,94 @@ function moduleMechanicalChecks(design: Omit<BoardDesign, "report" | "bom">, loc
 }
 
 export function checkDesign(design: Omit<BoardDesign, "report" | "bom">, locale: Locale = "zh"): CheckReport {
+  const selectedWithGround = design.selectedModules
+    .filter(({ module }) => module.pins.some((pin) => pin.type === "gnd"))
+    .map(({ module }) => module.id);
+  const groundNet = design.nets.find((net) => net.kind === "gnd");
+  const groundedModules = new Set(groundNet ? [groundNet.from.moduleId, ...groundNet.to.map((endpoint) => endpoint.moduleId)] : []);
+  const groundIntentComplete = selectedWithGround.every((moduleId) => groundedModules.has(moduleId));
+
   const erc: CheckItem[] = [
     {
-      level: "pass",
-      code: "ERC-PWR-001",
-      message: locale === "en" ? "All modules are tied to the GND network." : "所有模块都绑定到 GND 网络。",
-    },
-    {
-      level: "pass",
-      code: "ERC-I2C-001",
-      message: locale === "en" ? "I2C SDA/SCL are routed from the ESP32 to sensors and expansion ports." : "I2C SDA/SCL 已从 ESP32 分配到传感器和扩展口。",
-    },
-    {
-      level: "pass",
-      code: "ERC-UART-001",
-      message: locale === "en" ? "UART TX/RX directions are correctly crossed." : "UART TX/RX 方向已交叉匹配。",
+      level: groundIntentComplete ? "pass" : "fail",
+      code: "INTENT-GND-001",
+      message:
+        locale === "en"
+          ? groundIntentComplete
+            ? `The browser netlist assigns GND endpoints to all ${selectedWithGround.length} grounded modules; this is not an electrical connectivity test.`
+            : "The browser netlist is missing one or more expected GND endpoints."
+          : groundIntentComplete
+            ? `浏览器网络表已为 ${selectedWithGround.length} 个带 GND 引脚的模块分配端点；这不是电气连通性测试。`
+            : "浏览器网络表缺少一个或多个预期的 GND 端点。",
     },
   ];
 
-  if (!design.selectedModules.some((item) => item.module.category === "power")) {
-    erc.push({ level: "fail", code: "ERC-PWR-002", message: locale === "en" ? "Missing a power input module." : "缺少电源输入模块。" });
+  const i2cTargets = design.selectedModules
+    .filter(({ module }) => module.id !== "esp32-devkit-v1" && module.interfaces.includes("i2c"))
+    .map(({ module }) => module.id);
+  if (i2cTargets.length > 0) {
+    const i2cNets = design.nets.filter((net) => net.kind === "i2c");
+    const i2cCovered = i2cTargets.every((moduleId) =>
+      i2cNets.some((net) => net.from.moduleId === moduleId || net.to.some((endpoint) => endpoint.moduleId === moduleId)),
+    );
+    erc.push({
+      level: i2cCovered && i2cNets.length >= 2 ? "pass" : "fail",
+      code: "INTENT-I2C-001",
+      message:
+        locale === "en"
+          ? i2cCovered && i2cNets.length >= 2
+            ? `The design-intent netlist includes SDA/SCL endpoints for ${i2cTargets.length} I2C modules; KiCad ERC remains required.`
+            : "The design-intent netlist is missing expected I2C SDA/SCL endpoints."
+          : i2cCovered && i2cNets.length >= 2
+            ? `设计意图网络表包含 ${i2cTargets.length} 个 I2C 模块的 SDA/SCL 端点；仍需运行 KiCad ERC。`
+            : "设计意图网络表缺少预期的 I2C SDA/SCL 端点。",
+    });
   }
 
+  const uartTargets = design.selectedModules
+    .filter(({ module }) => module.id !== "esp32-devkit-v1" && module.interfaces.includes("uart"))
+    .map(({ module }) => module.id);
+  if (uartTargets.length > 0) {
+    const uartNets = design.nets.filter((net) => net.kind === "uart");
+    const uartCovered = uartTargets.every((moduleId) =>
+      uartNets.some((net) => net.from.moduleId === moduleId || net.to.some((endpoint) => endpoint.moduleId === moduleId)),
+    );
+    erc.push({
+      level: uartCovered ? "pass" : "fail",
+      code: "INTENT-UART-001",
+      message:
+        locale === "en"
+          ? uartCovered
+            ? `The design-intent netlist includes UART endpoints for ${uartTargets.length} modules; pin direction still requires KiCad review.`
+            : "The design-intent netlist is missing expected UART endpoints."
+          : uartCovered
+            ? `设计意图网络表包含 ${uartTargets.length} 个模块的 UART 端点；引脚方向仍需在 KiCad 中复核。`
+            : "设计意图网络表缺少预期的 UART 端点。",
+    });
+  }
+
+  if (!design.selectedModules.some(({ module }) => module.pins.some((pin) => pin.type === "power_out"))) {
+    erc.push({ level: "fail", code: "INTENT-PWR-001", message: locale === "en" ? "The selected modules do not provide a power-source output pin." : "所选模块没有提供电源输出引脚。" });
+  }
+
+  const minimumSketchWidth = Math.min(...design.tracks.map((track) => track.widthMm));
   const drc: CheckItem[] = [
-    { level: "pass", code: "DRC-WIDTH-001", message: locale === "en" ? "Signal trace width is at least 0.25 mm." : "信号线宽度不低于 0.25 mm。" },
-    { level: "pass", code: "DRC-CLEAR-001", message: locale === "en" ? "Routing clearance follows conservative JLC 2-layer board rules." : "走线间距使用 JLC 2 层标准板保守规则。" },
+    {
+      level: "warn",
+      code: "INTENT-WIDTH-001",
+      message:
+        locale === "en"
+          ? `The browser routing sketch uses widths down to ${minimumSketchWidth.toFixed(2)} mm; validate real copper widths with KiCad DRC.`
+          : `浏览器走线草图的最小线宽为 ${minimumSketchWidth.toFixed(2)} mm；真实铜线宽度必须用 KiCad DRC 验证。`,
+    },
+    {
+      level: "warn",
+      code: "INTENT-CLEARANCE-001",
+      message:
+        locale === "en"
+          ? "The browser preview does not compute copper clearance. KiCad DRC is authoritative."
+          : "浏览器预览不计算铜箔间距，必须以 KiCad DRC 为准。",
+    },
     ...moduleMechanicalChecks(design, locale),
   ];
 
@@ -155,7 +218,7 @@ export function checkDesign(design: Omit<BoardDesign, "report" | "bom">, locale:
   }
 
   const dfm: CheckItem[] = [
-    { level: "pass", code: "DFM-JLC-001", message: locale === "en" ? "Conservative JLC 2-layer board rules were selected." : "已选择 JLC 2 层标准板保守规则。" },
+    { level: "warn", code: "INTENT-FAB-001", message: locale === "en" ? "A conservative JLC 2-layer profile is the design intent; confirm the actual fab rules in KiCad." : "设计意图采用保守的 JLC 2 层板参数；请在 KiCad 中确认实际制造规则。" },
     {
       level: "pass",
       code: "DFM-SIZE-001",
